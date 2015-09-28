@@ -1,16 +1,16 @@
 <?php
 	include("includer.php");
-	
 	$url = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 	
 	$urlPieces = split("/", $url);
 	
-	if(count($urlPieces) < 2)
+	//print_r($urlPieces);
+	if (count($urlPieces) < 2)
 		$control = "none";
 	else 
 		$control = $urlPieces[2];
 	
-	switch($control){
+	switch ($control) {
 		case "login":
 			LoginController::run();
 			break;
@@ -19,6 +19,5 @@
 			break;
 		default:
 			HomeView::show();
-		
-	}
+	};
 ?>

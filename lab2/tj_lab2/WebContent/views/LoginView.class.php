@@ -24,9 +24,9 @@ class LoginView {
 	</span>
 	<br>
 		User name: <input type="password" name ="pass" 
-	<?php if (!is_null($pass)) {echo 'value = "'. $pass->getUserName() .'"';}?>> 
+	<?php //if (!is_null($pass)) {echo 'value = "'. $pass->getUserName() .'"';}?>> 
 	<span class="error">
-	   <?php if (!is_null($pass)) {echo $pass->getError('userName');}?>
+	   <?php // if (!is_null($pass)) {echo $pass->getError('userName');}?>
 	</span>
 	</p>
 	<p><input type="submit" value="Submit"></p>
