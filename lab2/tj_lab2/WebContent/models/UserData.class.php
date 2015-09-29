@@ -67,6 +67,10 @@ class UserData {
 		return $this->color;
 	}
 	
+	public function getHockUser(){
+		return $this->hockUser;
+	}
+	
 	public function getParameters() {
 		// Return data fields as an associative array
 		$paramArray = array("userName" => $this->userName); 
@@ -156,7 +160,5 @@ class UserData {
 		if($this->confirmedpw != $this->password)
 			$this->setError('confirmedpw', 'PASSWORD_MISMATCH');
 	}
-	
-	
 }
 ?>
