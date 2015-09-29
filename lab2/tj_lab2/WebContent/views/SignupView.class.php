@@ -1,6 +1,6 @@
 <?php
 class SignupView {
-  public static function show() {  
+  public static function show($userdata) {  
 		
 ?>
 	<!DOCTYPE html>
@@ -12,27 +12,36 @@ class SignupView {
 	<body>
 	<section>
 	<h3>Register Account</h3>
-	<form action="simpleEcho.php" method="post">
+	<form action="signup" method="post">
 	<p>
-	User name: <input type="text" name="user" tabindex="1">
+	User name: <input type="text" name="userName" tabindex="1" <?php if (!is_null($userdata)) {echo 'value = "'. $userdata->getUserName() .'"';}?> required>
+	<span class="error">
+	   <?php if (!is_null($userdata)) {echo $userdata->getError('userName');}?>
+	</span>
 	<br>
-	Password: <input type="password" name="pass" tabindex="2">
+	Password: <input type="password" name="password" tabindex="2" required>
+	<span class="error">
+	<?php  if (!is_null($userdata)) {echo $userdata->getError('password');}?>
+	</span>
 	<br>
-	Confirm Password: <input type="password" name="pass2" tabindex="3">
+	Confirm Password: <input type="password" name="confirmedpw" tabindex="3" required>
+	<span class="error">
+	<?php  if (!is_null($userdata)) {echo $userdata->getError('confirmedpw');}?>
+	</span>
 	<br> <br>
-	Hock user name: <input type="text" name="hockuser" tabindex="4">
+	Hock user name: <input type="text" name="hockUser" tabindex="4" required>
 	<br>
-	Email: <input type="email" name="email" tabindex="5">
+	Email: <input type="email" name="email" tabindex="5" required>
 	<br> <br>
 	Gender: 
 	<input type="radio" name="gender" value="male" checked tabindex="6">Male 
 	<input type="radio" name="gender" value="female">Female
 	<br>
-	Birthday: <input type="date" name="bday" tabindex="7">
+	Birthday: <input type="date" name="dob" tabindex="7">
 	<br>
 	Favorite Ship Color: <input type="color" name="color" tabindex="8">
 	<br>
-	Upload a profile picture: <input type="file" name="picture" tabindex="9">
+	Upload a profile picture: <input type="file" name="picture" tabindex="9" required>
 	<br>
 	URL: <input type="url" name="url" tabindex="10">
 	<br> <br>
@@ -47,7 +56,7 @@ class SignupView {
 	<br> <br>
 	<fieldset>
 	<legend>Acknowledgement:</legend>
-	<input type="checkbox" name="acknowledgement" value="Papers" tabindex="14"> I am who I say I am<br>
+	<input type="checkbox" name="acknowledgement" value="Papers" tabindex="14" required> I am who I say I am<br>
 	</fieldset>
 	<br>
 	<input type="submit" value="Submit" tabindex="15">

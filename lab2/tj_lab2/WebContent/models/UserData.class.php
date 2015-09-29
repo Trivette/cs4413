@@ -1,11 +1,19 @@
 <?php
 include ("Messages.class.php");
-class User {
+class UserData {
 	private $errorCount;
 	private $errors;
 	private $formInput;
+	
 	private $userName;
+	private $email;
 	private $password;
+	private $confirmedpw;
+	private $dob;
+	private $gender;
+	private $url;
+	private $picture;
+	private $hockUser;
 	
 	public function __construct($formInput = null) {
 		$this->formInput = $formInput;
@@ -38,13 +46,9 @@ class User {
 		return $this->userName;
 	}
 	
-	public function getPassword() {
-		return $this->password;
-	}
-	
 	public function getParameters() {
 		// Return data fields as an associative array
-		$paramArray = array("userName" => $this->userName, "password" => $this->password); 
+		$paramArray = array("userName" => $this->userName); 
 		return $paramArray;
 	}
 
@@ -69,9 +73,10 @@ class User {
 		$errors = array();
 		if (is_null($this->formInput))
 			$this->initializeEmpty();
-		else{
+		else {
 		   $this->validateUserName();
 		   $this->validatePassword();
+		   $this->validateConfirmedPassword();
 		}
 	}
 
@@ -79,7 +84,14 @@ class User {
 		$this->errorCount = 0;
 		$errors = array();
 	 	$this->userName = "";
+	 	$this->email = "";
 	 	$this->password = "";
+	 	$this->confirmedpw = "";
+	 	$this->gender = "";
+	 	$this->dob = "";
+	 	$this->url = "";
+	 	$this->picture = "";
+	 	$this->hockUser = "";
 	}
 
 	private function validateUserName() {
@@ -110,5 +122,13 @@ class User {
 		elseif(strlen($this->password)<8)
 			$this->setError('password', 'PASSWORD_REQUIREMENTS');
 	}
+	
+	private function validateConfirmedPassword(){
+		$this->confirmedpw = $this->extractForm('confirmedpw');
+		if($this->confirmedpw != $this->password)
+			$this->setError('confirmedpw', 'PASSWORD_MISMATCH');
+	}
+	
+	
 }
 ?>
