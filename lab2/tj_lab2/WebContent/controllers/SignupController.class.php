@@ -5,7 +5,7 @@ class SignupController {
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$userdata = new UserData($_POST);
 			if ($userdata->getErrorCount() == 0)
-				SimpleEchoView::show();//HomeView::show();
+				ProfileView::show($userdata);//HomeView::show();
 			else
 				SignupView::show($userdata);
 		} else  // Initial link

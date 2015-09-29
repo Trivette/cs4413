@@ -17,7 +17,7 @@
 		case "signup":
 			SignupController::run();
 			break;
-		case "fakeuser":
+		case "profile":
 			ProfileController::run();
 			break;
 		default:

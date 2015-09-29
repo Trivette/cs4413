@@ -51,7 +51,7 @@ class SignupView {
 	<br>
 	<input type="radio" name="textnotify" value="no" tabindex="12">No I don't want texts
 	<br> <br>
-	Cell Number: <input type="tel" name="phone_number" tabindex="13">
+	Cell Number: <input type="tel" name="phone" tabindex="13">
 	</fieldset>
 	<br> <br>
 	<fieldset>

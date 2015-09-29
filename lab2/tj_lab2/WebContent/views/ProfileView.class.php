@@ -1,17 +1,17 @@
 <?php  
 class ProfileView {
 	
-  public static function show() {  	
+  public static function show($user) {  	
 ?> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
-<title>Fake Profile Page</title>
+<title><?php if (!is_null($user)) {echo $user->getUserName() . ' ';}?>Profile Page</title>
 </head>
 <body>
 <section>
-<h2>fakeuser's Profile</h2>
+<h2><?php if (!is_null($user)) {echo $user->getUserName();}?>'s Profile</h2>
 <img src="./resources/userpic.png" alt="User Picture Here">
 </section>
 <section>
@@ -33,19 +33,17 @@ Game: (29497)  fakeuser  	Bandit  	jamez 		(4518) +11		LogiTech=)  turtle  Q8bal
 <section>
 <h4>Contact information</h4>
 <ul>
-	<li><b>Email:</b> fakeuser@fakesite.com</li>
-	<li><b>URL:</b> <a href="http://google.com">http://google.com</a></li>
-	<li><b>Phone #:</b> 555-555-5555</li>
+	<li><b>Email:</b> <?php if (!is_null($user)) {echo $user->getEmail();}?></li>
+	<li><b>URL:</b> <a href="<?php if (!is_null($user)) {echo $user->getURL();}?>"><?php if (!is_null($user)) {echo $user->getURL();}?></a></li>
 </ul>
 </section>
 <section>
 <h4>Profile Stuff</h4>
 <table class="table">
 <tr><th>Question</th> <th>Answer</th></tr>
-<tr><td>Favorite Color: </td><td bgcolor="ff0000"></td>
-<tr><td>Birthday: </td><td>03/03/1990</td>
-<tr><td>Gender: </td><td>Male</td>
-<tr><td>Getting Notifications: </td><td>Yes</td>
+<tr><td>Favorite Color: </td><td bgcolor="FFCCDD"></td>
+<tr><td>Birthday: </td><td><?php if (!is_null($user)) {echo $user->getDOB();}?></td>
+<tr><td>Gender: </td><td><?php if (!is_null($user)) {echo $user->getGender();}?></td>
 </table>
 </section>
 </body>

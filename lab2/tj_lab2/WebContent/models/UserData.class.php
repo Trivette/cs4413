@@ -46,6 +46,22 @@ class UserData {
 		return $this->userName;
 	}
 	
+	public function getEmail() {
+		return $this->email;
+	}
+	
+	public function getDOB() {
+		return $this->dob;
+	}
+	
+	public function getURL(){
+		return $this->url;
+	}
+	
+	public function getGender(){
+		return $this->gender;
+	}
+	
 	public function getParameters() {
 		// Return data fields as an associative array
 		$paramArray = array("userName" => $this->userName); 
@@ -77,6 +93,11 @@ class UserData {
 		   $this->validateUserName();
 		   $this->validatePassword();
 		   $this->validateConfirmedPassword();
+		   $this->email = $this->extractForm('email');
+		   $this->dob = $this->extractForm('dob');
+		   $this->picture = $this->extractForm('picture');
+		   $this->url = $this->extractForm('url');
+		   $this->gender = $this->extractForm('gender');
 		}
 	}
 
