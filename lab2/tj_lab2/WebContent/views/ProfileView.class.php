@@ -41,7 +41,7 @@ Game: (29497)  fakeuser  	Bandit  	jamez 		(4518) +11		LogiTech=)  turtle  Q8bal
 <h4>Profile Stuff</h4>
 <table class="table">
 <tr><th>Question</th> <th>Answer</th></tr>
-<tr><td>Favorite Color: </td><td bgcolor="FFCCDD"></td>
+<tr><td>Favorite Color: </td><td bgcolor="<?php if (!is_null($user)) {echo $user->getColor();}?>"></td>
 <tr><td>Birthday: </td><td><?php if (!is_null($user)) {echo $user->getDOB();}?></td>
 <tr><td>Gender: </td><td><?php if (!is_null($user)) {echo $user->getGender();}?></td>
 </table>

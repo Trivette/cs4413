@@ -14,6 +14,7 @@ class UserData {
 	private $url;
 	private $picture;
 	private $hockUser;
+	private $color;
 	
 	public function __construct($formInput = null) {
 		$this->formInput = $formInput;
@@ -62,6 +63,10 @@ class UserData {
 		return $this->gender;
 	}
 	
+	public function getColor(){
+		return $this->color;
+	}
+	
 	public function getParameters() {
 		// Return data fields as an associative array
 		$paramArray = array("userName" => $this->userName); 
@@ -98,6 +103,7 @@ class UserData {
 		   $this->picture = $this->extractForm('picture');
 		   $this->url = $this->extractForm('url');
 		   $this->gender = $this->extractForm('gender');
+		   $this->color = $this->extractForm('color');
 		}
 	}
 
@@ -113,6 +119,7 @@ class UserData {
 	 	$this->url = "";
 	 	$this->picture = "";
 	 	$this->hockUser = "";
+	 	$this->color = "#000000";
 	}
 
 	private function validateUserName() {
