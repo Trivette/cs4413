@@ -20,6 +20,7 @@ class HomeView {
 	</nav>
 	<img src="resources/Drawing.png" alt="Banner">
 	</section>
+	Want to view a fake user profile page?  <a href="fakeuser">Sure!</a>
 	<section>
 		<header>
 		<p>This is a web site for Hock League in Uniball.  Here you will find a leaderboard and player statistics.  You will also have the ability to bet on games here.</p>
