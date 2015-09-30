@@ -34,3 +34,21 @@ if($test2 != "")
 $props = $s1->getParameters();
 print_r($props);
 ?>
+
+<h2>Here is an example of a bunch of bad input and all the errors it will throw</h2>
+<?php 
+$validTest = array("userName" => "as asdfioj $",
+                   "password" => "green",
+				   "confirmedpw" => "green123",
+	               "email" => "",
+				   "dob" => "",
+				   "hockUser" => "",
+				   "color" => "#00FF00",
+                   "gender" => "");
+$s1 = new UserData($validTest);
+$props = $s1->getParameters();
+print_r($props);
+echo "<br>";
+if($test2 != "")
+	echo implode("<br>", $s1->getErrors());
+?>

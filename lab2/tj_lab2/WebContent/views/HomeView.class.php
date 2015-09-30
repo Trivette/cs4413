@@ -16,7 +16,9 @@ class HomeView {
 		<a href="login">Login</a> |
 		<a href="http://imightbejosh.com/ranks.html">Leaderboard</a> |
 		<a href="bet">Betting</a> |
-		<a href="games.html">Recent Games</a>
+		<a href="games.html">Recent Games</a> |
+		<a href="tests.html">Tests</a> | 
+		<a href="validation.html">Validation</a>
 	</nav>
 	<img src="resources/Drawing.png" alt="Banner">
 	</section>

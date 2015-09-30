@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Hock League Validation</title>
+</head>
+<body>
+<h3>User and UserData</h3>
+<p>
+userName is required and validated in both user and UserData<br>
+Password is required and validated in both User and UserData.  It requires at least 8 characters and 1 each of capital, lowercase, and number.
+</p>
+<h3>UserData only</h3>
+<p>
+Password confirmation on registration is required and validated to match Password in UserData.<br>
+Email is required and validated by html5 email field for format.  Data object verifies that an email was supplied.<br>
+Gender is required and validated to not be empty in UserData.<br>
+picture is required and validated to not be empty in UserData<br>
+Acknowledgement is required, but isn't validated because html5 will not allow the user to proceed.<br>
+DOB is required and the user is validated to be 13 or older in UserData.<br>
+HockUser name is required and validated to not be empty in UserData.<br>
+</p>
+<br>
+url and color are not required and are not validated.<br>
+phone number was removed.<br>
+<br>
+During registration, if you enter any invalid information, you will be redirected back to the registration page with username, hock user name, email, gender, dob, color, and url filled in with previous information.
+<br>
+
+<h3>Bet Class</h3>
+Bet Amount is validated and must be between 1 and 10<br>
+Game is validated and must not be empty.  Right now it doesn't check to see if the game id supplied is valid, but it will in the future.  I could use fake data, but that is a waste.<br>
+Time is validated and must not be empty.  In the future it will check current time against game time and disallow bets that are 5 minutes after game has started.  Time is not validated because it is set when the object is created.<br>
+</body>
+</html>
