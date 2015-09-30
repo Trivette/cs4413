@@ -71,9 +71,16 @@ class UserData {
 		return $this->hockUser;
 	}
 	
+	public function getPicture(){
+		return $this->picture;
+	}
+	
 	public function getParameters() {
 		// Return data fields as an associative array
-		$paramArray = array("userName" => $this->userName); 
+		$paramArray = array("userName" => $this->userName, "password" => $this->password, "confirmedpw" => $this->confirmedpw, 
+				"email" => $this->email, "dob" => $this->dob, "color" => $this->color, "gender" => $this->gender, "hockUser" => $this->hockUser,
+				"picture" => $this->picture, "url" => $this->url
+		); 
 		return $paramArray;
 	}
 
@@ -102,12 +109,13 @@ class UserData {
 		   $this->validateUserName();
 		   $this->validatePassword();
 		   $this->validateConfirmedPassword();
-		   $this->email = $this->extractForm('email');
-		   $this->dob = $this->extractForm('dob');
-		   $this->picture = $this->extractForm('picture');
+		   $this->validateEmail();
+		   $this->validateDOB();
+		   $this->validatePicture();
 		   $this->url = $this->extractForm('url');
-		   $this->gender = $this->extractForm('gender');
+		   $this->validateGender();
 		   $this->color = $this->extractForm('color');
+		   $this->validateHockUser();
 		}
 	}
 
@@ -159,6 +167,55 @@ class UserData {
 		$this->confirmedpw = $this->extractForm('confirmedpw');
 		if($this->confirmedpw != $this->password)
 			$this->setError('confirmedpw', 'PASSWORD_MISMATCH');
+	}
+	
+	private function validateHockUser(){
+		//Valid hockUser will be forced by htlm5, this is just an empty check
+		$this->hockUser = $this->extractForm('hockUser');
+		if(empty($this->hockUser))
+			$this->setError('hockUser', 'HOCKUSER_EMPTY');
+	}
+	
+	private function validatePicture(){
+		$this->picture = $this->extractForm('picture');
+		if(empty($this->picture))
+			$this->setError('picture', 'NO_PICTURE');
+	}
+	
+	private function validateGender(){
+		//Valid gender will be forced by htlm5, this is just an empty check
+		$this->gender = $this->extractForm('gender');
+		if(empty($this->gender))
+			$this->setError('gender', 'NO_GENDER');
+	}
+	
+	private function validateDOB(){
+		//Validate user is 13 or older
+		$this->dob = $this->extractForm('dob');
+		if(empty($this->dob))
+			$this->setError('dob', 'NO_DOB');
+		else{
+			$dobarray = explode("-", $this->dob);
+			$year = intval($dobarray[0]);
+			$month = intval($dobarray[1]);
+			$day = intval($dobarray[2]);
+			//2015-13 = 2002. Enter anything less than that, that's an error.
+			if($year > intval(date("Y")) - 13)
+				$this->setError("dob", "DOB_ERROR");
+			//If year is equiv, but month is less than current month, user is still 12
+			elseif($year == intval(date("Y")) - 13 && $month < intval(date("m")))
+				$this->setError("dob", "DOB_ERROR");
+			//If year and month are equiv, but day is less than current day, user is still 12
+			elseif($year == intval(date("Y")) - 13 && $month == intval(date("m")) && $day < intval(date("d")))
+				$this->setError("dob", "DOB_ERROR");
+		}
+	}
+	
+	private function validateEmail(){
+		//Valid emails will be forced by html5, this is just an empty check
+		$this->email = $this->extractForm('email');
+		if(empty($this->email))
+			$this->setError('email', 'NO_EMAIL');
 	}
 }
 ?>

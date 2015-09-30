@@ -12,3 +12,9 @@ USER_NAME_HAS_INVALID_CHARS Your user name can only contain letters, numbers, da
 PASSWORD_EMPTY You must enter a password
 PASSWORD_REQUIREMENTS You must have an 8 character long password with a capital letter, lowercase letter, and number.
 PASSWORD_MISMATCH Passwords do not match
+HOCKUSER_EMPTY Must supply a hock user name!
+NO_PICTURE Must supply a profile picture!
+NO_GENDER How did you manage to not select a gender?!  Please select a gender.
+NO_DOB Please enter your date of birth!
+NO_EMAIL Please enter a valid email address
+DOB_ERROR You must be 13 or older to register for this site

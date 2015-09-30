@@ -29,30 +29,36 @@ class SignupView {
 	<?php  if (!is_null($userdata)) {echo $userdata->getError('confirmedpw');}?>
 	</span>
 	<br> <br>
-	Hock user name: <input type="text" name="hockUser" tabindex="4" required>
+	Hock user name: <input type="text" name="hockUser" tabindex="4" <?php if (!is_null($userdata)) {echo 'value = "'. $userdata->getHockUser() .'"';}?> required>
+	<span class="error">
+	<?php  if (!is_null($userdata)) {echo $userdata->getError('hockUser');}?>
+	</span>
 	<br>
-	Email: <input type="email" name="email" tabindex="5" required>
+	Email: <input type="email" name="email" tabindex="5" <?php if (!is_null($userdata)) {echo 'value = "'. $userdata->getEmail() .'"';}?> required>
+	<span class="error">
+	<?php  if (!is_null($userdata)) {echo $userdata->getError('email');}?>
+	</span>
 	<br> <br>
 	Gender: 
-	<input type="radio" name="gender" value="male" checked tabindex="6">Male 
-	<input type="radio" name="gender" value="female">Female
+	<input type="radio" name="gender" value="male" required <?php if (!is_null($userdata)) {if($userdata->getGender() == "male"){ echo 'checked';}}?> tabindex="6">Male 
+	<input type="radio" name="gender" value="female" <?php if (!is_null($userdata)) {if($userdata->getGender() == "female"){ echo 'checked';}}?>>Female
+	<span class="error">
+	<?php  if (!is_null($userdata)) {echo $userdata->getError('gender');}?>
+	</span>
 	<br>
-	Birthday: <input type="date" name="dob" tabindex="7">
-	<br>
-	Favorite Ship Color: <input type="color" name="color" tabindex="8">
-	<br>
-	Upload a profile picture: <input type="file" name="picture" tabindex="9" required>
-	<br>
-	URL: <input type="url" name="url" tabindex="10">
+	Birthday: <input type="date" name="dob" tabindex="7" required <?php if (!is_null($userdata)) {echo 'value = "'. $userdata->getDOB() .'"';}?>>
+	<span class="error">
+	<?php  if (!is_null($userdata)) {echo $userdata->getError('dob');}?>
+	</span>
 	<br> <br>
-	<fieldset>
-	<legend>Text Notifications</legend>
-	<input type="radio" name="textnotify" value="yes" tabindex="11" checked>Yes I want texts
+	Favorite Ship Color: <input type="color" name="color" tabindex="8" <?php if (!is_null($userdata)) {echo 'value = "'. $userdata->getColor() .'"';}?>>
 	<br>
-	<input type="radio" name="textnotify" value="no" tabindex="12">No I don't want texts
-	<br> <br>
-	Cell Number: <input type="tel" name="phone" tabindex="13">
-	</fieldset>
+	Upload a profile picture: <input type="file" name="picture" tabindex="9" required <?php if (!is_null($userdata)) {echo 'value = "'. $userdata->getPicture() .'"';}?>>
+	<span class="error">
+	<?php  if (!is_null($userdata)) {echo $userdata->getError('picture');}?>
+	</span>
+	<br>
+	URL: <input type="url" name="url" tabindex="10" <?php if (!is_null($userdata)) {echo 'value = "'. $userdata->getURL() .'"';}?>>
 	<br> <br>
 	<fieldset>
 	<legend>Acknowledgement:</legend>
