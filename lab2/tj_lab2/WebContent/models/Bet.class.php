@@ -1,6 +1,6 @@
 <?php
 include ("Messages.class.php");
-class User {
+class Bet {
 	private $errorCount;
 	private $errors;
 	private $formInput;
@@ -78,7 +78,7 @@ class User {
 		else{
 		   $this->validateBetAmount();
 		   $this->validateGame();
-		   $this->validateTime();
+		   $this->time = time();
 		}
 	}
 
@@ -104,12 +104,6 @@ class User {
 		$this->game = $this->extractForm('game');
 		if(empty($this->game))
 			$this->setError('password', 'NO_GAME');
-	}
-	
-	private function validateTime(){
-		$this->time = $this->extractForm('time');
-		if(empty($this->time))
-			$this->setError('password', 'NO_TIME');
 	}
 }
 ?>

@@ -20,6 +20,9 @@
 		case "profile":
 			ProfileController::run();
 			break;
+		case "bet":
+			BetController::run();
+			break;
 		default:
 			HomeView::show();
 	};

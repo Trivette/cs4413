@@ -6,7 +6,7 @@ class BetController {
  			if ($bet->getErrorCount() == 0) 
  				SimpleEchoView::show($bet);
  		    else
- 				LoginView::show($bet);
+ 				BetView::show($bet);
  		} else  // Initial link
 			BetView::show(null);
 	}
