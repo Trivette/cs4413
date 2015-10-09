@@ -203,7 +203,7 @@ class UserData {
 			if($year > intval(date("Y")) - 13)
 				$this->setError("dob", "DOB_ERROR");
 			//If year is equiv, but month is less than current month, user is still 12
-			elseif($year == intval(date("Y")) - 13 && $month < intval(date("m")))
+			elseif($year == intval(date("Y")) - 13 && $month > intval(date("m")))
 				$this->setError("dob", "DOB_ERROR");
 			//If year and month are equiv, but day is less than current day, user is still 12
 			elseif($year == intval(date("Y")) - 13 && $month == intval(date("m")) && $day < intval(date("d")))
