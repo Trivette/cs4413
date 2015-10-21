@@ -125,8 +125,13 @@ class WebUser {
 	}
 	
 	private function validatePassword() {
-		//Password requires 1 Capital 1 Lowercase and 1 number and 8 characters long
+		// Password should not be blank - for now
 		$this->password = $this->extractForm('password');
+		if (empty($this->password))
+			$this->setError('password', 'PASSWORD_EMPTY');
+		
+		//Password requires 1 Capital 1 Lowercase and 1 number and 8 characters long
+		/*$this->password = $this->extractForm('password');
 		$r1 = '/[A-Z]/'; //Uppercase
 		$r2 = '/[a-z]/'; //lowercase
 		$r3 = '/[0-9]/'; //number
@@ -139,7 +144,7 @@ class WebUser {
 		elseif(preg_match_all($r3,$this->password, $o)<1)
 			$this->setError('password', 'PASSWORD_REQUIREMENTS');
 		elseif(strlen($this->password)<8)
-			$this->setError('password', 'PASSWORD_REQUIREMENTS');
+			$this->setError('password', 'PASSWORD_REQUIREMENTS'); */
 	}
 	
 	private function validateConfirmedPassword(){
