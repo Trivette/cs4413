@@ -25,23 +25,19 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `userlogin`
+-- Table structure for table `webuser`
 --
 
-CREATE TABLE IF NOT EXISTS `userlogin` (
+CREATE TABLE IF NOT EXISTS `webuser` (
   `userId` int(11) NOT NULL,
-  `userName` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `hockName` varchar(40) CHARACTER SET utf8 NOT NULL,
-  `password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `userName` varchar(255)	COLLATE utf8_unicode_ci NOT NULL,
+  `hockName` varchar(40)  	CHARACTER SET utf8 NOT NULL,
+  `password` varchar(255) 	COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email`	 varchar(255)	COLLATE utf8_unicode_ci DEFAULT NULL,
+  `url`		 varchar(255)	COLLATE utf8_unicode_ci DEFAULT NULL,
+  `picture`	 varchar(255)	COLLATE utf8_unicode_ci DEFAULT NULL,
   `dateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `userlogin`
---
-
-INSERT INTO `userlogin` (`userId`, `userName`, `hockName`, `password`, `dateCreated`) VALUES
-(1, 'mop', 'mop', 'mop', '2015-10-08 17:10:43');
 
 --
 -- Indexes for dumped tables
@@ -50,7 +46,7 @@ INSERT INTO `userlogin` (`userId`, `userName`, `hockName`, `password`, `dateCrea
 --
 -- Indexes for table `userlogin`
 --
-ALTER TABLE `userlogin`
+ALTER TABLE `webuser`
   ADD PRIMARY KEY (`userId`), ADD UNIQUE KEY `userName` (`userName`);
 
 --
@@ -60,7 +56,7 @@ ALTER TABLE `userlogin`
 --
 -- AUTO_INCREMENT for table `userlogin`
 --
-ALTER TABLE `userlogin`
+ALTER TABLE `webuser`
   MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
