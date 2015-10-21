@@ -39,20 +39,6 @@ class SignupView {
 	<?php  if (!is_null($userdata)) {echo $userdata->getError('email');}?>
 	</span>
 	<br> <br>
-	Gender: 
-	<input type="radio" name="gender" value="male" required <?php if (!is_null($userdata)) {if($userdata->getGender() == "male"){ echo 'checked';}}?> tabindex="6">Male 
-	<input type="radio" name="gender" value="female" <?php if (!is_null($userdata)) {if($userdata->getGender() == "female"){ echo 'checked';}}?>>Female
-	<span class="error">
-	<?php  if (!is_null($userdata)) {echo $userdata->getError('gender');}?>
-	</span>
-	<br>
-	Birthday: <input type="date" name="dob" tabindex="7" required <?php if (!is_null($userdata)) {echo 'value = "'. $userdata->getDOB() .'"';}?>>
-	<span class="error">
-	<?php  if (!is_null($userdata)) {echo $userdata->getError('dob');}?>
-	</span>
-	<br> <br>
-	Favorite Ship Color: <input type="color" name="color" tabindex="8" <?php if (!is_null($userdata)) {echo 'value = "'. $userdata->getColor() .'"';}?>>
-	<br>
 	Upload a profile picture: <input type="file" name="picture" tabindex="9" required <?php if (!is_null($userdata)) {echo 'value = "'. $userdata->getPicture() .'"';}?>>
 	<span class="error">
 	<?php  if (!is_null($userdata)) {echo $userdata->getError('picture');}?>

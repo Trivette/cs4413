@@ -3,11 +3,11 @@ class SignupController {
 
 	public static function run() {
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
-			$userdata = new UserData($_POST);
-			if ($userdata->getErrorCount() == 0)
-				ProfileView::show($userdata);//HomeView::show();
+			$webuser = new WebUser($_POST);
+			if ($webuser->getErrorCount() == 0)
+				ProfileView::show($webuser);//HomeView::show();
 			else
-				SignupView::show($userdata);
+				SignupView::show($webuser);
 		} else  // Initial link
 			SignupView::show(null);
 	 }

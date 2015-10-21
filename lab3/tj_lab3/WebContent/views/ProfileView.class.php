@@ -37,15 +37,6 @@ Game: (29497)  fakeuser  	Bandit  	jamez 		(4518) +11		LogiTech=)  turtle  Q8bal
 	<li><b>URL:</b> <a href="<?php if (!is_null($user)) {echo $user->getURL();}?>"><?php if (!is_null($user)) {echo $user->getURL();}?></a></li>
 </ul>
 </section>
-<section>
-<h4>Profile Stuff</h4>
-<table class="table">
-<tr><th>Question</th> <th>Answer</th></tr>
-<tr><td>Favorite Color: </td><td bgcolor="<?php if (!is_null($user)) {echo $user->getColor();}?>"></td>
-<tr><td>Birthday: </td><td><?php if (!is_null($user)) {echo $user->getDOB();}?></td>
-<tr><td>Gender: </td><td><?php if (!is_null($user)) {echo $user->getGender();}?></td>
-</table>
-</section>
 </body>
 </html>
 
