@@ -6,6 +6,8 @@
 -- Generation Time: Oct 21, 2015 at 08:48 PM
 -- Server version: 5.5.43-37.2-log
 -- PHP Version: 5.5.24
+CREATE DATABASE  IF NOT EXISTS `uniball` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `uniball`;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
