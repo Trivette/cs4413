@@ -49,6 +49,5 @@ $s1 = new UserData($validTest);
 $props = $s1->getParameters();
 print_r($props);
 echo "<br>";
-if($test2 != "")
-	echo implode("<br>", $s1->getErrors());
+echo implode("<br>", $s1->getErrors());
 ?>
