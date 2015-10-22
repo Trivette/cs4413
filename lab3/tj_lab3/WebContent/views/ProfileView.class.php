@@ -1,17 +1,32 @@
 <?php  
 class ProfileView {
 	
-  public static function show($user) {  	
+	public static function show($user) {
+		if(!is_null($user)) 
+			$header = $user->getUserName() . ' Profile Page';
+		else 
+			$header = 'null Profile Page';
+		
+		$nav = 	"<nav>
+		<a href='signup'>Register</a> |
+		<a href='login'>Login</a> |
+		<a href='http://imightbejosh.com/ranks.html'>Leaderboard</a> |
+		<a href='bet'>Betting</a> |
+		<a href='games.html'>Recent Games</a> |
+		<a href='tests.html'>Tests</a> |
+		<a href='validation.html'>Validation</a>
+	</nav>";
+		
+		MasterView::showHeader($header);
+		MasterView::showNav($nav);
+		ProfileView::showDetails($user);
+		MasterView::showFooter(null);
+	}
+	
+  	public static function showDetails($user) {  	
 ?> 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title><?php if (!is_null($user)) {echo $user->getUserName() . ' ';}?>Profile Page</title>
-</head>
-<body>
 <section>
-<h2><?php if (!is_null($user)) {echo $user->getUserName();}?>'s Profile</h2>
+<h2><?php if (!is_null($user)) {echo $user->getHockUser();}?>'s Profile</h2>
 <img src="./resources/userpic.png" alt="User Picture Here">
 </section>
 <section>
@@ -37,8 +52,6 @@ Game: (29497)  fakeuser  	Bandit  	jamez 		(4518) +11		LogiTech=)  turtle  Q8bal
 	<li><b>URL:</b> <a href="<?php if (!is_null($user)) {echo $user->getURL();}?>"><?php if (!is_null($user)) {echo $user->getURL();}?></a></li>
 </ul>
 </section>
-</body>
-</html>
 
 <?php 
   }
