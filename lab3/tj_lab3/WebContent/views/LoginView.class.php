@@ -1,18 +1,28 @@
 <?php  
 class LoginView {
 	
-  public static function show($user) {  	
+	public static function show($user) {
+		$nav = 	"<nav>
+		<a href='signup'>Register</a> |
+		<a href='login'>Login</a> |
+		<a href='http://imightbejosh.com/ranks.html'>Leaderboard</a> |
+		<a href='bet'>Betting</a> |
+		<a href='games.html'>Recent Games</a> |
+		<a href='tests.html'>Tests</a> |
+		<a href='validation.html'>Validation</a>
+		</nav>
+		<section>
+		<a href='home'><img src='resources/Drawing.png' alt='Home'></a>
+		</section>";
+		
+		MasterView::showHeader("Login");
+		MasterView::showNav($nav);
+		LoginView::showDetails($user);
+		MasterView::showFooter(null);
+	}
+		
+		public static function showDetails($user) {
 ?> 
-
-	<!DOCTYPE html>
-	<html>
-	<head>
-	<meta charset="utf-8">
-	<title>Login</title>
-	<meta name= "keywords" content=" Hock League Login">
-	<meta name="description" content = "Login for Hock league">
-	</head>
-	<body>
 	<section>
 	<h3>Log in</h3>
 	<form action ="login" method="Post">
@@ -32,8 +42,6 @@ class LoginView {
 	</form>
 	<p>New user? <a href="register">Sign up here</a></p>
 	</section>
-	</body>
-	</html>
 <?php 
   }
 }

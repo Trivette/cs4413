@@ -15,7 +15,10 @@ class ProfileView {
 		<a href='games.html'>Recent Games</a> |
 		<a href='tests.html'>Tests</a> |
 		<a href='validation.html'>Validation</a>
-	</nav>";
+		</nav>
+		<section>
+		<a href='home'><img src='resources/Drawing.png' alt='Home'></a>
+		</section>";
 		
 		MasterView::showHeader($header);
 		MasterView::showNav($nav);

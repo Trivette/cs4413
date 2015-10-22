@@ -9,7 +9,10 @@ class HomeView {
 		<a href='games.html'>Recent Games</a> |
 		<a href='tests.html'>Tests</a> |
 		<a href='validation.html'>Validation</a>
-		</nav>";
+		</nav>
+  		<section>
+		<a href='home'><img src='resources/Drawing.png' alt='Home'></a>
+		</section>";
   		$footer = "Contact Information: <a href='mailto:joshuatrivette@gmail.com'>joshuatrivette@gmail.com</a>";
 	  	MasterView::showHeader("Hock League");
 	  	MasterView::showNav($nav);
@@ -20,9 +23,6 @@ class HomeView {
   public static function showDetails($user) {  
 		
 ?>
-	<section>
-	<img src="resources/Drawing.png" alt="Banner">
-	</section>
 	Want to view an empty user profile page?  <a href="profile">Sure!</a>
 	<section>
 		<header>
