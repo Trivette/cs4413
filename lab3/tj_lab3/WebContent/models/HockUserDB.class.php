@@ -1,23 +1,17 @@
 <?php
-class WebUserDB {
+class HockUserDB {
 	
 	public static function addUser($user) {
 		// Inserts the User object $user into the Users table and returns userId
-		$query = "INSERT INTO webuser (userName, password, hockName, email, url, picture)
-		                      VALUES(:userName, :password, :hockName, :email, :url, :picture)";
+		$query = "INSERT INTO users (name)
+		                      VALUES(:name)";
 		$returnId = 0;
 		try {
 			if (is_null($user) || $user->getErrorCount() > 0)
 				throw new PDOException("Invalid User object can't be inserted");
 			$db = Database::getDB ();
 			$statement = $db->prepare ($query);
-			$statement->bindValue(":userName", $user->getUserName());
-			$statement->bindValue(":password", $user->getPassword());
-			$statement->bindValue(":hockName", $user->getHockUser());
-			$statement->bindValue(":email", $user->getEmail());
-			$statement->bindValue(":url", $user->getURL());
-			$statement->bindValue(":picture", $user->getPicture())
-			$statement->execute ();
+			$statement->bindValue(":name", $user->getUserName());
 			$statement->closeCursor();
 			$returnId = $db->lastInsertId("userId");
 		} catch ( PDOException $e ) { // Not permanent error handling
@@ -27,7 +21,7 @@ class WebUserDB {
 	}
 
 	public static function getAllUsers() {
-	   $query = "SELECT * FROM webuser";
+	   $query = "SELECT * FROM users";
 	   $users = array();
 	   try {
 	      $db = Database::getDB();
@@ -43,12 +37,12 @@ class WebUserDB {
 	
 	public static function getUserBy($type, $value) {
 		// Returns a User object whose $type field has value $value
-		$allowed = ["userId", "userName"];
+		$allowed = ["id", "name", "alias"];
 		$user = NULL;
 		try {
 			if (!in_array($type, $allowed))
 				throw new PDOException("$type not an allowed search criterion for WebUser");
-			$query = "SELECT * FROM webuser WHERE ($type = :$type)";
+			$query = "SELECT * FROM users WHERE ($type = :$type)";
 			$db = Database::getDB ();
 			$statement = $db->prepare($query);
 			$statement->bindParam(":$type", $value);

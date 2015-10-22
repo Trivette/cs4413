@@ -1,5 +1,5 @@
 <?php
-include ("Messages.class.php");
+//include ("Messages.class.php");
 class WebUser {
 	private $errorCount;
 	private $errors;
@@ -58,6 +58,10 @@ class WebUser {
 	
 	public function getPicture(){
 		return $this->picture;
+	}
+	
+	public function getPassword(){
+		return $this->password;
 	}
 	
 	public function getParameters() {
@@ -154,10 +158,14 @@ class WebUser {
 	}
 	
 	private function validateHockUser(){
-		//Valid hockUser will be forced by htlm5, this is just an empty check
+		//Valid hockUser.  Non-empty and must be associated with a hockuser account by name
 		$this->hockUser = $this->extractForm('hockUser');
 		if(empty($this->hockUser))
 			$this->setError('hockUser', 'HOCKUSER_EMPTY');
+		elseif(is_null(HockUserDB::getUserBy('name', $this->hockUser)))
+			$this->setError('hockUser', 'HOCKUSER_DOESNOTEXIST');
+		elseif(!is_null(WebUserDB::getUserBy('hockName', $this->hockUser)))
+			$this->setError('hockUser', 'HOCKUSER_NAMECLAIMED');
 	}
 	
 	private function validatePicture(){

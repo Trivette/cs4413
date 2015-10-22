@@ -19,3 +19,6 @@ NO_BET Please enter a bet amount
 NO_GAME Please select a game to bet on
 INVALID_BET You can only bet from 1 to 10
 NO_TIME This error shouldn't happen, retry bet please!
+HOCKUSER_DOESNOTEXIST That hock user name does not exist.
+DBERROR_ADDWEBUSER Web User could not be created.  Please try again!
+HOCKUSER_NAMECLAIMED This Hock user name has already been registered on the website.  Contact the administrator if your name has been taken.
