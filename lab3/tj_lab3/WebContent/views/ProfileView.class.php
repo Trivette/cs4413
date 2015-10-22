@@ -1,9 +1,9 @@
 <?php  
 class ProfileView {
 	
-	public static function show($user) {
-		if(!is_null($user)) 
-			$header = $user->getUserName() . ' Profile Page';
+	public static function show($user, $hockuser) {
+		if(!is_null($hockuser)) 
+			$header = $hockuser->getUserName() . ' Profile Page';
 		else 
 			$header = 'null Profile Page';
 		
@@ -22,14 +22,14 @@ class ProfileView {
 		
 		MasterView::showHeader($header);
 		MasterView::showNav($nav);
-		ProfileView::showDetails($user);
+		ProfileView::showDetails($user, $hockuser);
 		MasterView::showFooter(null);
 	}
 	
-  	public static function showDetails($user) {  	
+  	public static function showDetails($user, $hockuser) {  	
 ?> 
 <section>
-<h2><?php if (!is_null($user)) {echo $user->getHockUser();}?>'s Profile</h2>
+<h2><?php if (!is_null($hockuser)) {echo $hockuser->getUserName();}?>'s Profile</h2>
 <img src="./resources/userpic.png" alt="User Picture Here">
 </section>
 <section>

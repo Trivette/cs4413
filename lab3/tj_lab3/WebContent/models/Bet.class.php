@@ -1,5 +1,5 @@
 <?php
-include ("Messages.class.php");
+//include ("Messages.class.php");
 class Bet {
 	private $errorCount;
 	private $errors;

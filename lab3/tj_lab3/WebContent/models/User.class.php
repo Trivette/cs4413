@@ -1,11 +1,41 @@
 <?php
-include ("Messages.class.php");
+//include ("Messages.class.php");
 class User {
 	private $errorCount;
 	private $errors;
 	private $formInput;
-	private $userName;
-	private $password;
+	
+	
+	private $name;
+	private $skill;
+	private $home;
+	private $alias;
+	private $color;
+	private $wins;
+	private $losses;
+	private $gameid;
+	private $teamid;
+	private $aliaschanges;
+	private $aliaspending;
+	private $bads;
+	private $streak;
+	private $report;
+	private $streakcolor;
+	private $awayskill;
+	private $goals;
+	private $assists;
+	private $owngoals;
+	private $cap;
+	private $wbets;
+	private $lbets;
+	private $changes;
+	private $numge;
+	private $gepoints;
+	private $wager;
+	private $wwager;
+	private $lwager;
+	private $wagerdiff;
+	private $wagerpoints;
 	
 	public function __construct($formInput = null) {
 		$this->formInput = $formInput;
@@ -35,21 +65,17 @@ class User {
 	}
 
 	public function getUserName() {
-		return $this->userName;
-	}
-	
-	public function getPassword() {
-		return $this->password;
+		return $this->name;
 	}
 	
 	public function getParameters() {
 		// Return data fields as an associative array
-		$paramArray = array("userName" => $this->userName, "password" => $this->password); 
+		$paramArray = array("userName" => $this->name); 
 		return $paramArray;
 	}
 
 	public function __toString() {
-		$str = "User name: ".$this->userName . " password: " . $this->password;
+		$str = "User name: ".$this->name;
 		return $str;
 	}
 	
@@ -71,7 +97,6 @@ class User {
 			$this->initializeEmpty();
 		else{
 		   $this->validateUserName();
-		   $this->validatePassword();
 		}
 	}
 
@@ -79,12 +104,11 @@ class User {
 		$this->errorCount = 0;
 		$errors = array();
 	 	$this->userName = "";
-	 	$this->password = "";
 	}
 
 	private function validateUserName() {
 		// Username should only contain letters, numbers, dashes and underscore
-		$this->userName = $this->extractForm('userName');
+		$this->name = $this->extractForm('name');
 		if (empty($this->userName)) 
 			$this->setError('userName', 'USER_NAME_EMPTY');
 		elseif (!filter_var($this->userName, FILTER_VALIDATE_REGEXP,
@@ -93,10 +117,13 @@ class User {
 		}
 	}
 	
-	private function validatePassword(){
-		$this->password = $this->extractForm('password');
-		if(empty($this->password))
-			$this->setError('password', 'PASSWORD_EMPTY');
+	private function validateUserName() {
+		// Username should only contain letters, numbers, dashes and underscore
+		$this->name = $this->extractForm('name');
+		if (empty($this->userName))
+			$this->setError('userName', 'USER_NAME_EMPTY');
 	}
+	
+	
 }
 ?>
