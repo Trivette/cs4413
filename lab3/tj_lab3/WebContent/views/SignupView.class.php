@@ -1,15 +1,27 @@
 <?php
 class SignupView {
-  public static function show($userdata) {  
-		
+	public static function show($userdata) {
+	  	$nav = 	"<nav>
+	  		<a href='signup'>Register</a> |
+			<a href='login'>Login</a> |
+			<a href='http://imightbejosh.com/ranks.html'>Leaderboard</a> |
+			<a href='bet'>Betting</a> |
+			<a href='games.html'>Recent Games</a> |
+			<a href='tests.html'>Tests</a> |
+			<a href='validation.html'>Validation</a>
+			</nav>
+	  		<section>
+			<a href='home'><img src='resources/Drawing.png' alt='Home'></a>
+			</section>";
+	  	
+	  	MasterView::showHeader("Register");
+	  	MasterView::showNav($nav);
+	  	SignupView::showDetails($userdata);
+	  	MasterView::showFooter(null);
+	}
+  	
+  	public static function showDetails($userdata) {
 ?>
-	<!DOCTYPE html>
-	<html>
-	<head>
-	<meta charset="utf-8">
-	<title>Register</title>
-	</head>
-	<body>
 	<section>
 	<h3>Register Account</h3>
 	<form action="signup" method="post">
@@ -54,8 +66,6 @@ class SignupView {
 	<input type="submit" value="Submit" tabindex="15">
 	</form>
 	</section>
-	</body>
-	</html>
 <?php 
   }
 }
