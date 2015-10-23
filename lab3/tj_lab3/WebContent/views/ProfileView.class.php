@@ -42,6 +42,9 @@ Wins: 5 Losses: 10 Streak: -3 Skill: 1450
 <section>
 <h4>Recent Games</h4>
 <p>
+<?php 
+	
+?>
 Game: (29507)  fakeuser		Thurgood	Prowler		(4572) +10		Ferocious	brood  	fiend 		(4579) -10	21m 18s<br>
 Game: (29504)  Ferocious  	Prowler  	fakeuser 	(4630) +8		Q8ball  	Bandit  fiend 		(4522) -8	31m 21s<br>
 Game: (29501)  fakeuser 	Bandit  	LogiTech=) 	(4589) +10		Q8ball  	turtle  Gamer 		(4584) -10	21m 32s<br>
