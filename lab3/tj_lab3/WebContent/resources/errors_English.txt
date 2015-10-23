@@ -27,3 +27,6 @@ WEBUSERDB_ERROR Database errored?
 HOCK_NAME_UNASSOCIATED_WITH_ACCOUNT There is no associated hock user name with this account...  Register a new account or talk an admin.
 USER_NAME_DOES_NOT_EXIST User does not exist
 SKILL_EMPTY Skill empty watda?
+GAME_DOES_NOT_EXIST Game does not exist
+GAME_COULD_NOT_BE_UPDATED Game update failure
+USER_COULD_NOT_BE_UPDATED User update failure
