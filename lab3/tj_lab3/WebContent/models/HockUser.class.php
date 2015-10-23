@@ -268,13 +268,6 @@ class HockUser {
 		}
 	}
 	
-	private function validateUserName() {
-		// Username should only contain letters, numbers, dashes and underscore
-		$this->name = $this->extractForm('name');
-		if (empty($this->userName))
-			$this->setError('userName', 'USER_NAME_EMPTY');
-	}
-	
 	//This is pulled from a database only, so none of these should have errors
 	private function validateSkill(){
 		$this->skill = $this->extractForm('skill');

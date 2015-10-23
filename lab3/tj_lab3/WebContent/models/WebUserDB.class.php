@@ -33,7 +33,7 @@ class WebUserDB {
 	      $db = Database::getDB();
 	      $statement = $db->prepare($query);
 	      $statement->execute();
-	      $users = UsersDB::getUsersArray ($statement->fetchAll(PDO::FETCH_ASSOC));
+	      $users = WebUserDB::getUsersArray ($statement->fetchAll(PDO::FETCH_ASSOC));
 	      $statement->closeCursor();
 		} catch (PDOException $e) { // Not permanent error handling
 			echo "<p>Error getting all users " . $e->getMessage () . "</p>";
@@ -70,7 +70,7 @@ class WebUserDB {
 		$users = array();
 		if (!empty($rowSets)) {
 			foreach ($rowSets as $userRow ) {
-				$user = new User($userRow);
+				$user = new WebUser($userRow);
 				//$user->setUserId($userRow['userId']);
 				array_push ($users, $user );
 			}
@@ -80,8 +80,8 @@ class WebUserDB {
 	
 	public static function getUsersBy($type=null, $value=null) {
 		// Returns User objects whose $type field has value $value
-		$userRows = UsersDB::getUserRowSetsBy($type, $value);
-		return UsersDB::getUsersArray($userRows);
+		$userRows = WebUserDB::getUserRowSetsBy($type, $value);
+		return WebUserDB::getUsersArray($userRows);
 	}
 	
 	public static function getUserValues($rowSets, $column) {
@@ -96,8 +96,8 @@ class WebUserDB {
 	
 	public static function getUserValuesBy($column, $type=null, $value=null) {
 		// Returns the $column of Users whose $type field has value $value
-		$userRows = UsersDB::getUserRowSetsBy($type, $value);
-		return UsersDB::getUserValues($userRows, $column);
+		$userRows = WebUserDB::getUserRowSetsBy($type, $value);
+		return WebUserDB::getUserValues($userRows, $column);
 	}
 	
 	public static function updateUser($user) {
@@ -106,7 +106,7 @@ class WebUserDB {
 			$db = Database::getDB ();
 			if (is_null($user) || $user->getErrorCount() > 0)
 				return $user;
-			$checkUser = UsersDB::getUsersBy('userId', $user->getUserId());
+			$checkUser = WebUserDB::getUsersBy('userId', $user->getUserId());
 			if (empty($checkUser))
 				$user->setError('userId', 'USER_DOES_NOT_EXIST');
 			if ($user->getErrorCount() > 0)

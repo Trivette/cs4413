@@ -11,7 +11,7 @@ class WebUser {
 	private $confirmedpw;
 	private $url;
 	private $picture;
-	private $hockUser;
+	private $hockName;
 	
 	public function __construct($formInput = null) {
 		$this->formInput = $formInput;
@@ -52,8 +52,8 @@ class WebUser {
 		return $this->url;
 	}
 	
-	public function getHockUser(){
-		return $this->hockUser;
+	public function getHockName(){
+		return $this->hockName;
 	}
 	
 	public function getPicture(){
@@ -67,14 +67,14 @@ class WebUser {
 	public function getParameters() {
 		// Return data fields as an associative array
 		$paramArray = array("userName" => $this->userName, "password" => $this->password, "confirmedpw" => $this->confirmedpw, 
-				"email" => $this->email, "hockUser" => $this->hockUser,
+				"email" => $this->email, "hockName" => $this->hockName,
 				"picture" => $this->picture, "url" => $this->url
 		); 
 		return $paramArray;
 	}
 
 	public function __toString() {
-		$str = "User name: ".$this->userName;
+		$str = "User name: ".$this->userName . " Hock name: " . $this->hockName;
 		return $str;
 	}
 	
@@ -101,7 +101,7 @@ class WebUser {
 		   $this->validateEmail();
 		   $this->validatePicture();
 		   $this->url = $this->extractForm('url');
-		   $this->validateHockUser();
+		   $this->validatehockName();
 		}
 	}
 
@@ -114,7 +114,7 @@ class WebUser {
 	 	$this->confirmedpw = "";
 	 	$this->url = "";
 	 	$this->picture = "";
-	 	$this->hockUser = "";
+	 	$this->hockName = "";
 	}
 
 	private function validateUserName() {
@@ -157,15 +157,15 @@ class WebUser {
 			$this->setError('confirmedpw', 'PASSWORD_MISMATCH');
 	}
 	
-	private function validateHockUser(){
-		//Valid hockUser.  Non-empty and must be associated with a hockuser account by name
-		$this->hockUser = $this->extractForm('hockUser');
-		if(empty($this->hockUser))
-			$this->setError('hockUser', 'HOCKUSER_EMPTY');
-		elseif(is_null(HockUserDB::getUsersBy('name', $this->hockUser)))
-			$this->setError('hockUser', 'HOCKUSER_DOESNOTEXIST');
-		elseif(!is_null(WebUserDB::getUsersBy('hockName', $this->hockUser)))
-			$this->setError('hockUser', 'HOCKUSER_NAMECLAIMED');
+	private function validatehockName(){
+		//Valid hockName.  Non-empty and must be associated with a hockName account by name
+		$this->hockName = $this->extractForm('hockName');
+		if(empty($this->hockName))
+			$this->setError('hockName', 'HOCKUSER_EMPTY');
+		elseif(empty(HockUserDB::getUsersBy('name', $this->hockName)))
+			$this->setError('hockName', 'HOCKUSER_DOESNOTEXIST');
+		//elseif(!empty(WebUserDB::getUsersBy('hockName', $this->hockName)))
+		//	$this->setError('hockName', 'HOCKUSER_NAMECLAIMED');
 	}
 	
 	private function validatePicture(){

@@ -41,9 +41,9 @@ class SignupView {
 	<?php  if (!is_null($userdata)) {echo $userdata->getError('confirmedpw');}?>
 	</span>
 	<br> <br>
-	Hock user name: <input type="text" name="hockUser" tabindex="4" <?php if (!is_null($userdata)) {echo 'value = "'. $userdata->getHockUser() .'"';}?> required>
+	Hock user name: <input type="text" name="hockName" tabindex="4" <?php if (!is_null($userdata)) {echo 'value = "'. $userdata->gethockName() .'"';}?> required>
 	<span class="error">
-	<?php  if (!is_null($userdata)) {echo $userdata->getError('hockUser');}?>
+	<?php  if (!is_null($userdata)) {echo $userdata->getError('hockName');}?>
 	</span>
 	<br>
 	Email: <input type="email" name="email" tabindex="5" <?php if (!is_null($userdata)) {echo 'value = "'. $userdata->getEmail() .'"';}?> required>
