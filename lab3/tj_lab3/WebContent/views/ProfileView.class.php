@@ -1,7 +1,7 @@
 <?php  
 class ProfileView {
 	
-	public static function show($user, $hockuser) {
+	public static function show($webuser, $hockuser) {
 		if(!is_null($hockuser)) 
 			$header = $hockuser->getUserName() . ' Profile Page';
 		else 
@@ -22,14 +22,15 @@ class ProfileView {
 		
 		MasterView::showHeader($header);
 		MasterView::showNav($nav);
-		ProfileView::showDetails($user, $hockuser);
+		ProfileView::showDetails($webuser, $hockuser);
 		MasterView::showFooter(null);
 	}
 	
-  	public static function showDetails($user, $hockuser) {  	
+  	public static function showDetails($webuser, $hockuser) {  	
 ?> 
 <section>
 <h2><?php if (!is_null($hockuser)) {echo $hockuser->getUserName();}?>'s Profile</h2>
+<p>Saved img name is: <?php if((!is_null($webuser))) {echo $webuser->getImage();}?></p>
 <img src="./resources/userpic.png" alt="User Picture Here">
 </section>
 <section>
@@ -51,8 +52,8 @@ Game: (29497)  fakeuser  	Bandit  	jamez 		(4518) +11		LogiTech=)  turtle  Q8bal
 <section>
 <h4>Contact information</h4>
 <ul>
-	<li><b>Email:</b> <?php if (!is_null($user)) {echo $user->getEmail();}?></li>
-	<li><b>URL:</b> <a href="<?php if (!is_null($user)) {echo $user->getURL();}?>"><?php if (!is_null($user)) {echo $user->getURL();}?></a></li>
+	<li><b>Email:</b> <?php if (!is_null($webuser)) {echo $webuser->getEmail();}?></li>
+	<li><b>URL:</b> <a href="<?php if (!is_null($webuser)) {echo $webuser->getURL();}?>"><?php if (!is_null($webuser)) {echo $webuser->getURL();}?></a></li>
 </ul>
 </section>
 

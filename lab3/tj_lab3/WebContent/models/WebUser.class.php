@@ -162,9 +162,9 @@ class WebUser {
 		$this->hockUser = $this->extractForm('hockUser');
 		if(empty($this->hockUser))
 			$this->setError('hockUser', 'HOCKUSER_EMPTY');
-		elseif(is_null(HockUserDB::getUserBy('name', $this->hockUser)))
+		elseif(is_null(HockUserDB::getUsersBy('name', $this->hockUser)))
 			$this->setError('hockUser', 'HOCKUSER_DOESNOTEXIST');
-		elseif(!is_null(WebUserDB::getUserBy('hockName', $this->hockUser)))
+		elseif(!is_null(WebUserDB::getUsersBy('hockName', $this->hockUser)))
 			$this->setError('hockUser', 'HOCKUSER_NAMECLAIMED');
 	}
 	

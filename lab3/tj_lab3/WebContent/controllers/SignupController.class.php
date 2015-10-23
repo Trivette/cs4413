@@ -9,8 +9,8 @@ class SignupController {
 				$id = WebUserDB::addUser($webuser);
 				if($id != 0){
 					//find the hockuser related to this dude
-					$hockuser = HockUserDB::getUserBy('name', $webuser->getUserName());
-					ProfileView::show($webuser, $hockuser);//HomeView::show();
+					$hockusers = HockUserDB::getUsersBy('name', $webuser->getHockUser());
+					ProfileView::show($webuser, $hockusers[0]);//HomeView::show();
 				}
 				else{
 					$webuser->setError('userName', 'DBERROR_ADDWEBUSER');
