@@ -47,7 +47,7 @@ class WebUserDB {
 		$userRowSets = array();
 		try {
 			$db = Database::getDB ();
-			$query = "SELECT userId, userName, password FROM Users";
+			$query = "SELECT * FROM webuser";
 			if (!is_null($type)) {
 				if (!in_array($type, $allowedTypes))
 					throw new PDOException("$type not an allowed search criterion for Users");
@@ -71,7 +71,7 @@ class WebUserDB {
 		if (!empty($rowSets)) {
 			foreach ($rowSets as $userRow ) {
 				$user = new User($userRow);
-				$user->setUserId($userRow['userId']);
+				//$user->setUserId($userRow['userId']);
 				array_push ($users, $user );
 			}
 		}
@@ -112,7 +112,7 @@ class WebUserDB {
 			if ($user->getErrorCount() > 0)
 				return $user;
 	
-			$query = "UPDATE Users SET userName = :userName, password = :password
+			$query = "UPDATE webuser SET userName = :userName, password = :password
 	    			                 WHERE userId = :userId";
 	
 			$statement = $db->prepare ($query);
