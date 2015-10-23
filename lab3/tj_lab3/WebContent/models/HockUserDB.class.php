@@ -27,7 +27,7 @@ class HockUserDB {
 	      $db = Database::getDB();
 	      $statement = $db->prepare($query);
 	      $statement->execute();
-	      $users = HockUsersDB::getUsersArray ($statement->fetchAll(PDO::FETCH_ASSOC));
+	      $users = HockUserDB::getUsersArray ($statement->fetchAll(PDO::FETCH_ASSOC));
 	      $statement->closeCursor();
 		} catch (PDOException $e) { // Not permanent error handling
 			echo "<p>Error getting all users " . $e->getMessage () . "</p>";
@@ -74,8 +74,8 @@ class HockUserDB {
 	
 	public static function getUsersBy($type=null, $value=null) {
 		// Returns User objects whose $type field has value $value
-		$userRows = HockUsersDB::getUserRowSetsBy($type, $value);
-		return HockUsersDB::getUsersArray($userRows);
+		$userRows = HockUserDB::getUserRowSetsBy($type, $value);
+		return HockUserDB::getUsersArray($userRows);
 	}
 	
 	public static function getUserValues($rowSets, $column) {
@@ -90,8 +90,8 @@ class HockUserDB {
 	
 	public static function getUserValuesBy($column, $type=null, $value=null) {
 		// Returns the $column of Users whose $type field has value $value
-		$userRows = HockUsersDB::getUserRowSetsBy($type, $value);
-		return HockUsersDB::getUserValues($userRows, $column);
+		$userRows = HockUserDB::getUserRowSetsBy($type, $value);
+		return HockUserDB::getUserValues($userRows, $column);
 	}
 	
 	public static function updateUser($user) {
@@ -100,7 +100,7 @@ class HockUserDB {
 			$db = Database::getDB ();
 			if (is_null($user) || $user->getErrorCount() > 0)
 				return $user;
-			$checkUser = HockUsersDB::getUsersBy('id', $user->getUserId());
+			$checkUser = HockUserDB::getUsersBy('id', $user->getUserId());
 			if (empty($checkUser))
 				$user->setError('id', 'USER_DOES_NOT_EXIST');
 			if ($user->getErrorCount() > 0)
