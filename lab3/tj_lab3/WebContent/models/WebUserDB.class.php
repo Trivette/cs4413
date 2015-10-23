@@ -13,7 +13,7 @@ class WebUserDB {
 			$statement = $db->prepare ($query);
 			$statement->bindValue(":userName", $user->getUserName());
 			$statement->bindValue(":password", $user->getPassword());
-			$statement->bindValue(":hockName", $user->getHockUser());
+			$statement->bindValue(":hockName", $user->getHockName());
 			$statement->bindValue(":email", $user->getEmail());
 			$statement->bindValue(":url", $user->getURL());
 			$statement->bindValue(":picture", $user->getPicture());

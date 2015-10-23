@@ -164,8 +164,13 @@ class WebUser {
 			$this->setError('hockName', 'HOCKUSER_EMPTY');
 		elseif(empty(HockUserDB::getUsersBy('name', $this->hockName)))
 			$this->setError('hockName', 'HOCKUSER_DOESNOTEXIST');
-		//elseif(!empty(WebUserDB::getUsersBy('hockName', $this->hockName)))
-		//	$this->setError('hockName', 'HOCKUSER_NAMECLAIMED');
+		/*$webusers = WebUserDB::getUsersBy('hockName', $this->hockName);
+		if(!empty($webusers)){
+			foreach($webusers as $webuser){
+				if(strcmp($webuser->getUserName, $this->userName) != 0)
+					$this->setError('hockName', 'HOCKUSER_NAMECLAIMED');
+			}
+		}*/
 	}
 	
 	private function validatePicture(){
