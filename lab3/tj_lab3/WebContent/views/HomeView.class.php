@@ -12,7 +12,6 @@ class HomeView {
   public static function showDetails($user) {  
 		
 ?>
-	Want to view an empty user profile page?  <a href="profile">Sure!</a>
 	<section>
 		<header>
 		<p>This is a web site for Hock League in Uniball.  Here you will find a leaderboard and player statistics.  You will also have the ability to bet on games here.</p>
