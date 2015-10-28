@@ -21,7 +21,7 @@ class HockUserDB {
 	}
 
 	public static function getAllUsers() {
-	   $query = "SELECT * FROM users";
+	   $query = "SELECT * FROM users ORDER BY skill DESC";
 	   $users = array();
 	   try {
 	      $db = Database::getDB();

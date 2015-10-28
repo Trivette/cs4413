@@ -6,32 +6,20 @@ class ProfileView {
 			$header = $hockuser->getUserName() . ' Profile Page';
 		else 
 			$header = 'null Profile Page';
-		
-		$nav = 	"<nav>
-		<a href='signup'>Register</a> |
-		<a href='login'>Login</a> |
-		<a href='http://imightbejosh.com/ranks.html'>Leaderboard</a> |
-		<a href='bet'>Betting</a> |
-		<a href='games.html'>Recent Games</a> |
-		<a href='tests.html'>Tests</a> |
-		<a href='validation.html'>Validation</a>
-		</nav>
-		<section>
-		<a href='home'><img src='resources/Drawing.png' alt='Home'></a>
-		</section>";
-		
+
 		MasterView::showHeader($header);
-		MasterView::showNav($nav);
+		MasterView::showNav(null);
 		ProfileView::showDetails($webuser, $hockuser);
 		MasterView::showFooter(null);
 	}
 	
   	public static function showDetails($webuser, $hockuser) {  	
+  		$base = (array_key_exists('base', $_SESSION))?$_SESSION['base']:"";
 ?> 
 <section>
 <h2><?php if (!is_null($hockuser)) {echo $hockuser->getUserName();}?>'s Profile</h2>
 <p>Saved img name is: <?php if((!is_null($webuser))) {echo $webuser->getPicture();}?></p>
-<img src="./resources/userpic.png" alt="User Picture Here">
+<img src="/resources/userpic.png" alt="User Picture Here">
 </section>
 <section>
 <h4>Stats</h4>

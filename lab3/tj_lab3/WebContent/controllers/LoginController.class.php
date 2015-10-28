@@ -33,14 +33,15 @@ class LoginController {
  			}
  		}
  			
- 		//$_SESSION['user'] = $user;
+ 		$_SESSION['user'] = $webuser;
  		if (is_null($webuser) || $user->getErrorCount() != 0)
  			LoginView::show($user);
  		else  {
  			//show profile
- 			ProfileView::show($webuser, $hockuser);
- 			//HomeView::show();
- 			//header('Location: /'.$_SESSION['base']);
+ 			//ProfileView::show($webuser, $hockuser);
+ 			//show home
+ 			HomeView::show();
+ 			header('Location: /'.$_SESSION['base']);
  		}
 	}
 }

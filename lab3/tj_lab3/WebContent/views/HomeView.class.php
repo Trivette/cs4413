@@ -1,21 +1,10 @@
 <?php
 class HomeView {
 	public static function show($user) {  
-  		$nav = 	"<nav>
-		<a href='signup'>Register</a> |
-		<a href='login'>Login</a> |
-		<a href='http://imightbejosh.com/ranks.html'>Leaderboard</a> |
-		<a href='bet'>Betting</a> |
-		<a href='games.html'>Recent Games</a> |
-		<a href='tests.html'>Tests</a> |
-		<a href='validation.html'>Validation</a>
-		</nav>
-  		<section>
-		<a href='home'><img src='resources/Drawing.png' alt='Home'></a>
-		</section>";
+		$base = $_SESSION['base'];
   		$footer = "Contact Information: <a href='mailto:joshuatrivette@gmail.com'>joshuatrivette@gmail.com</a>";
 	  	MasterView::showHeader("Hock League");
-	  	MasterView::showNav($nav);
+	  	MasterView::showNav(null);
 	  	HomeView::showDetails($user);
      	MasterView::showFooter($footer);
   }
