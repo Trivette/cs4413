@@ -19,7 +19,6 @@ class ProfileView {
 <section>
 <h2><?php if (!is_null($hockuser)) {echo $hockuser->getUserName();}?>'s Profile</h2>
 <p>Saved img name is: <?php if((!is_null($webuser))) {echo $webuser->getPicture();}?></p>
-<img src="/resources/userpic.png" alt="User Picture Here">
 </section>
 <section>
 <h4>Stats</h4>

@@ -36,13 +36,13 @@ class UserView {
 				$bgcolor = " bgcolor='ff6600'";
 			elseif($user->getStreak() <= -5)
 				$bgcolor = " bgcolor='33ccff'";
-			if(strcmp($user->getHome(), 'east'))
+			if(strcmp($user->getHome(), 'east') == 0)
 				$colorstyle = '"color:orange"';
-			elseif(strcmp($user->getHome(), 'uk'))
+			elseif(strcmp($user->getHome(), 'uk') == 0)
 				$colorstyle = '"color:blue"';
-			elseif(strcmp($user->getHome(), 'mw'))
+			elseif(strcmp($user->getHome(), 'mw') == 0)
 				$colorstyle = '"color:red"';
-			elseif(strcmp($user->getHome(), 'west'))
+			elseif(strcmp($user->getHome(), 'west') == 0)
 				$colorstyle = '"color:green"';
 			
 			echo '<tr' . $bgcolor . '>';

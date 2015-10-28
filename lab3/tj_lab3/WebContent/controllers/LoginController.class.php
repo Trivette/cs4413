@@ -38,10 +38,10 @@ class LoginController {
  			LoginView::show($user);
  		else  {
  			//show profile
- 			//ProfileView::show($webuser, $hockuser);
+ 			ProfileView::show($webuser, $hockuser);
  			//show home
- 			HomeView::show();
- 			header('Location: /'.$_SESSION['base']);
+ 			//HomeView::show();
+ 			//header('Location: /'.$_SESSION['base'].'/user/profile');
  		}
 	}
 }
