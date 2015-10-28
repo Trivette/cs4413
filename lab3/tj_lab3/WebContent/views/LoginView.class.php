@@ -16,7 +16,7 @@ class LoginView {
 		</section>";
 		
 		MasterView::showHeader("Login");
-		MasterView::showNav($nav);
+		MasterView::showNav(null);
 		LoginView::showDetails($user);
 		MasterView::showFooter(null);
 	}

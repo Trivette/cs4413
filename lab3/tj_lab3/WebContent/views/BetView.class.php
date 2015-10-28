@@ -15,7 +15,7 @@ class BetView {
 		</section>";
 		
 		MasterView::showHeader("Betting");
-		MasterView::showNav($nav);
+		MasterView::showNav(null);
 		BetView::showDetails($bet);
 		MasterView::showFooter(null);
 		}

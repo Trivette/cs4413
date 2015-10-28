@@ -15,7 +15,7 @@ class SignupView {
 			</section>";
 	  	
 	  	MasterView::showHeader("Register");
-	  	MasterView::showNav($nav);
+	  	MasterView::showNav(null);
 	  	SignupView::showDetails($userdata);
 	  	MasterView::showFooter(null);
 	}
