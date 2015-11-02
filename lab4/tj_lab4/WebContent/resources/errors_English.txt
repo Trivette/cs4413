@@ -1,0 +1,32 @@
+EMAIL_INVALID Your email is invalid
+FIRST_NAME_EMPTY Your first name can not be empty or only contain white space
+FIRST_NAME_HAS_INVALID_CHARS Your first name contains invalid characters
+LAST_NAME_EMPTY Your last name can not be empty or only contain white space
+LAST_NAME_HAS_INVALID_CHARS Your last name contains invalid characters
+LAST_NAME_TOO_SHORT Your last name is too short
+REVIEW_EMPTY You must provide an actual review
+SCORE_EMPTY You must provide a score between 1 and 5
+SUBMISSION_ID_EMPTY You indicate the ID of the item you are reviewing
+USER_NAME_EMPTY Your user name can not be empty or only contain white space
+USER_NAME_HAS_INVALID_CHARS Your user name can only contain letters, numbers, dashes and underscores
+PASSWORD_EMPTY You must enter a password
+PASSWORD_REQUIREMENTS You must have an 8 character long password with a capital letter, lowercase letter, and number.
+PASSWORD_MISMATCH Passwords do not match
+HOCKUSER_EMPTY Must supply a hock user name!
+NO_PICTURE Must supply a profile picture!
+NO_EMAIL Please enter a valid email address
+NO_BET Please enter a bet amount
+NO_GAME Please select a game to bet on
+INVALID_BET You can only bet from 1 to 10
+NO_TIME This error shouldn't happen, retry bet please!
+HOCKUSER_DOESNOTEXIST That hock user name does not exist.
+DBERROR_ADDWEBUSER Web User could not be created.  Please try again!
+HOCKUSER_NAMECLAIMED This Hock user name has already been registered on the website.  Contact the administrator if your name has been taken.
+PASSWORD_INVALID This password is incorrect for this user!
+WEBUSERDB_ERROR Database errored?
+HOCK_NAME_UNASSOCIATED_WITH_ACCOUNT There is no associated hock user name with this account...  Register a new account or talk an admin.
+USER_NAME_DOES_NOT_EXIST User does not exist
+SKILL_EMPTY Skill empty watda?
+GAME_DOES_NOT_EXIST Game does not exist
+GAME_COULD_NOT_BE_UPDATED Game update failure
+USER_COULD_NOT_BE_UPDATED User update failure
