@@ -37,8 +37,11 @@ class LoginController {
  		if (is_null($webuser) || $user->getErrorCount() != 0)
  			LoginView::show($user);
  		else  {
+ 			$_SESSION['authenticatedUser'] = $user;
+ 			HomeView::show();
+ 			header('Location: /'.$_SESSION['base']);
  			//show profile
- 			ProfileView::show($webuser, $hockuser);
+ 			//ProfileView::show($webuser, $hockuser);
  			//show home
  			//HomeView::show();
  			//header('Location: /'.$_SESSION['base'].'/user/profile');

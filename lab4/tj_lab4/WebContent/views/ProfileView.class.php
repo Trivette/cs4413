@@ -6,9 +6,12 @@ class ProfileView {
 			$header = $hockuser->getUserName() . ' Profile Page';
 		else 
 			$header = 'null Profile Page';
-
-		MasterView::showHeader($header);
-		MasterView::showNav(null);
+		
+		$_SESSION['headertitle'] = $header;
+		$_SESSION['styles'] = array('jumbotron.css');
+		
+		MasterView::showHeader();
+		MasterView::showNav();
 		ProfileView::showDetails($webuser, $hockuser);
 		MasterView::showFooter(null);
 	}

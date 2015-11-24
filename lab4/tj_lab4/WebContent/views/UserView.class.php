@@ -3,8 +3,10 @@ class UserView {
 
 	public static function showAll() {
 		// Show a table of users with links
-		MasterView::showHeader("Leaderboard");
-		MasterView::showNav(null);
+		$_SESSION['headertitle'] = "Leaderboard";
+		$_SESSION['styles'] = array('jumbotron.css');
+		MasterView::showHeader();
+		MasterView::showNav();
 		//if (array_key_exists('headertitle', $_SESSION)) {
 		//	MasterView::showHeader();
 		//	MasterView::showNav();

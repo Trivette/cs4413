@@ -1,16 +1,18 @@
 <?php
 class HomeView {
-	public static function show($user) {  
-		$base = $_SESSION['base'];
+	public static function show($user) {
+		$_SESSION['headertitle'] = "HockLeague Home Page";
+		$_SESSION['styles'] = array('jumbotron.css');
   		$footer = "Contact Information: <a href='mailto:joshuatrivette@gmail.com'>joshuatrivette@gmail.com</a>";
-	  	MasterView::showHeader("Hock League");
-	  	MasterView::showNav(null);
+	  	MasterView::showHeader();
+	  	MasterView::showNav();
 	  	HomeView::showDetails($user);
      	MasterView::showFooter($footer);
-  }
-  
-  public static function showDetails($user) {  
-		
+	}
+	
+	public static function showDetails($user) {  
+  	$base = $_SESSION['base'];
+  	
 ?>
 	<section>
 		<header>

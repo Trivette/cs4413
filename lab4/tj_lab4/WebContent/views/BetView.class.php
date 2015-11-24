@@ -1,21 +1,10 @@
 <?php
 class BetView {
 	public static function show($bet) {
-		$nav = 	"<nav>
-		<a href='signup'>Register</a> |
-		<a href='login'>Login</a> |
-		<a href='http://imightbejosh.com/ranks.html'>Leaderboard</a> |
-		<a href='bet'>Betting</a> |
-		<a href='games.html'>Recent Games</a> |
-		<a href='tests.html'>Tests</a> |
-		<a href='validation.html'>Validation</a>
-		</nav>
-		<section>
-		<a href='home'><img src='resources/Drawing.png' alt='Home'></a>
-		</section>";
-		
-		MasterView::showHeader("Betting");
-		MasterView::showNav(null);
+		$_SESSION['headertitle'] = "Betting";
+		$_SESSION['styles'] = array('jumbotron.css');
+		MasterView::showHeader();
+		MasterView::showNav();
 		BetView::showDetails($bet);
 		MasterView::showFooter(null);
 		}
