@@ -44,7 +44,7 @@ class MasterView {
      	echo '<div id="navbar" class="navbar-collapse collapse">';
      	echo '<ul class="nav navbar-nav">';
      	if (!is_null($authenticatedUser))
-     		echo '<li class="active"><a href="/'.$base.'/user/show/' . $authenticatedUser->getUserId().'">Dashboard</a></li>';
+     		echo '<li class="active"><a href="/'.$base.'/user/show/' . $authenticatedUser->getUserName().'">Profile</a></li>';
      	echo '<li><a href="/'.$base.'/user/leaderboard">Leaderboard</a></li>';
      	echo '<li><a href="/'.$base.'/bet">Betting</a></li>';
      	echo '</ul>';
@@ -96,13 +96,24 @@ class MasterView {
 
 <?php
      }
-     public static function showFooter($footer) {
-		if (!is_null($footer))
-			echo $footer;
-?>	 	
-    </body>
-    </html>
-<?php  
+     public static function showFooter() {
+		$footer = (array_key_exists('footertitle', $_SESSION))?
+		           $_SESSION['footertitle']: "";
+		echo '<footer>'.$footer.'</footer>';	
+     }
+     
+     public static function showHomeFooter() {
+     	echo '<footer>';
+     	echo '<p>&copy; Joshua Trivette, UTSA 2015</p>';
+     	echo '<p>Contact Information: <a href="mailto:joshuatrivette@gmail.com">joshuatrivette@gmail.com</a>';
+     	echo '</footer>';
+     }
+     
+     public static function showPageEnd() {
+     	echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>';
+     	echo '<script src="../../dist/js/bootstrap.min.js"></script>';
+     	echo '<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>';
+     	echo '</body></html>';
      }
 }
 ?>

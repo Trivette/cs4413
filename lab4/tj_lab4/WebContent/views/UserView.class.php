@@ -11,6 +11,13 @@ class UserView {
 		//	MasterView::showHeader();
 		//	MasterView::showNav();
 		//}
+		UserView::showLeaderboard();
+		if (array_key_exists('footertitle', $_SESSION))
+			MasterView::showFooter();
+		MasterView::showPageEnd();
+	}
+	
+	public static function showLeaderboard() {
 		$users = (array_key_exists('users', $_SESSION))?$_SESSION['users']:array();
 		$base = (array_key_exists('base', $_SESSION))?$_SESSION['base']:"";
 		
@@ -49,7 +56,7 @@ class UserView {
 			
 			echo '<tr' . $bgcolor . '>';
 			echo '<td style=' . $colorstyle . '> '. $ct .'</td>';
-			echo '<td><a href="/' . $base . '/user/' . $user->getUserName() . '">' . $user->getUserName() . '</td>';
+			echo '<td><a href="/' . $base . '/user/show/' . $user->getUserName() . '">' . $user->getUserName() . '</td>';
 			echo '<td>'.$user->getSkill().'</td>';
 			echo '<td>'.$wins.'</td>';
 			echo '<td>'.$losses.'</td>';
@@ -68,9 +75,6 @@ class UserView {
 		echo "</tbody>";
 		echo "</table>";
 		echo "</center>";
-		//if (array_key_exists('footertitle', $_SESSION))
-		//	MasterView::showFooter(null);
-		MasterView::showFooter(null);
 	}
 }
 ?>	

@@ -13,7 +13,7 @@ class ProfileView {
 		MasterView::showHeader();
 		MasterView::showNav();
 		ProfileView::showDetails($webuser, $hockuser);
-		MasterView::showFooter(null);
+		MasterView::showPageEnd();
 	}
 	
   	public static function showDetails($webuser, $hockuser) {  	

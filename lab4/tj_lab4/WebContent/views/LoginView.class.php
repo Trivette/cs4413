@@ -9,7 +9,7 @@ class LoginView {
 		MasterView::showHeader();
 		MasterView::showNav();
 		LoginView::showDetails($user);
-		MasterView::showFooter(null);
+		MasterView::showPageEnd();
 	}
 		
 		public static function showDetails($user) {

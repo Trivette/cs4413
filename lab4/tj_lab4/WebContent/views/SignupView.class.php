@@ -6,7 +6,7 @@ class SignupView {
 	  	MasterView::showHeader();
 	  	MasterView::showNav();
 	  	SignupView::showDetails($userdata);
-	  	MasterView::showFooter(null);
+	  	MasterView::showPageEnd();
 	}
   	
   	public static function showDetails($userdata) {
