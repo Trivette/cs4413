@@ -81,7 +81,7 @@ class UserView {
 		$_SESSION['headertitle'] = "Update user";
 		$_SESSION['styles'] = array('Jumbotron.css');
 		MasterView::showHeader();
-		MasterView::showNavbar();
+		MasterView::showNav();
 		self::showUpdateDetails();
 		$_SESSION['footertitle'] = "The user update footer";
 		MasterView::showFooter();
@@ -112,16 +112,57 @@ class UserView {
 	    }
 	    
 	    echo '<div class="form-group">'; // User name
-	    echo '<label for="userName">User name:';
+	    echo '<label for="userName">New User name:';
 	    echo '<span class="label label-danger">';
-	    if (!is_null($user))
-	    	echo $user->getError('userName');
+	    if (!is_null($webuser))
+	    	echo $webuser->getError('userName');
 	    echo '</span></label>';
 	    echo '<input type="text" class="form-control" id = "userName" name="userName"';
-	    if (!is_null($user))
-	    	echo 'value = "'. $user->getUserName() .'"';
+	    if (!is_null($webuser))
+	    	echo 'value = "'. $webuser->getUserName() .'"';
 	    echo 'required>';
 	    echo '</div>';
+	    
+	    echo '<div class="form-group">'; // Email
+	    echo '<label for="email">New email:';
+	    echo '<span class="label label-danger">';
+	    if (!is_null($webuser))
+	    	echo $webuser->getError('email');
+	    echo '</span></label>';
+	    echo '<input type="email" class="form-control" id = "email" name="email"';
+	    echo '>';
+	    echo '</div>';
+	    
+	    echo '<div class="form-group">'; // URL
+	    echo '<label for="url">New URL:';
+	    echo '<span class="label label-danger">';
+	    if (!is_null($webuser))
+	    	echo $webuser->getError('password');
+	    echo '</span></label>';
+	    echo '<input type="url" class="form-control" id = "url" name="url"';
+	    echo '>';
+	    echo '</div>';
+	    
+	    echo '<div class="form-group">'; // New Password
+	    echo '<label for="password">New Password:';
+	    echo '<span class="label label-danger">';
+	    if (!is_null($webuser))
+	    	echo $webuser->getError('password');
+	    echo '</span></label>';
+	    echo '<input type="password" class="form-control" id = "password" name="password"';
+	    echo '>';
+	    echo '</div>';
+	    
+	    echo '<div class="form-group">'; // Confirm New Password
+	    echo '<label for="confirmedpw">Confirm new password:';
+	    echo '<span class="label label-danger">';
+	    if (!is_null($webuser))
+	    	echo $webuser->getError('confirmedpw');
+	    echo '</span></label>';
+	    echo '<input type="password" class="form-control" id = "confirmedpw" name="confirmedpw"';
+	    echo '>';
+	    echo '</div>';
+	    
 	    
 	}
 }

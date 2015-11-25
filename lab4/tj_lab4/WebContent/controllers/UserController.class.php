@@ -46,14 +46,14 @@ class UserController {
 	public static function updateUser() {
 		// Process updating of user information
 		$authenticatedUser = (array_key_exists('authenticatedUser', $_SESSION))?$_SESSION['authenticatedUser']:null;
-		$users = UsersDB::getUsersBy('name', $_SESSION['arguments']);
+		$users = WebUserDB::getUsersBy('hockName', $_SESSION['arguments']);
 		if (empty($users)) {
 			UserController::showHome();
 		} elseif ($_SERVER["REQUEST_METHOD"] == "GET") {
-			$_SESSION['user'] = $users[0];
+			$_SESSION['webuser'] = $users[0];
 			$user = $users[0];
-			if(!is_null(authenticatedUser)){
-				if(strcmp($user->getUserName, $authenticatedUser->getUserName) == 0){
+			if(!is_null($authenticatedUser)){
+				if(strcmp($user->getUserName(), $authenticatedUser->getUserName()) == 0){
 					UserView::showUpdate();
 				} else {
 					UserController::showHome();
@@ -62,9 +62,11 @@ class UserController {
 				UserController::showHome();
 			}
 		} else {
-			if(!is_null(authenticatedUser)){
-				if(strcmp($user->getUserName, $authenticatedUser->getUserName) == 0){
+			if(!is_null($authenticatedUser)){
+				if(strcmp($user->getUserName(), $authenticatedUser->getUserName()) == 0){
+					//$oldpw = (array_key_exists('oldPassword', $_POST))?$_POST['oldPassword']:null;
 					$parms = $users[0]->getParameters();
+					//if(is_null($oldpw) || strcmp($oldpw, $parms['password'])
 					$parms['userName'] = (array_key_exists('userName', $_POST))?$_POST['userName']:$authenticatedUser->getUserName();
 					$parms['password'] = (array_key_exists('password', $_POST))?$_POST['password']:$authenticatedUser->getPassword();
 					$parms['confirmedpw'] = (array_key_exists('confirmedpw', $_POST))?$_POST['confirmedpw']:$authenticatedUser->getConfirmedPW();
@@ -72,10 +74,10 @@ class UserController {
 					$parms['url'] = (array_key_exists('url', $_POST))?$_POST['url']:$authenticatedUser->getURL();
 					$user = new WebUser($parms);
 					$user->setUserId($users[0]->getUserId());
-					$user = UsersDB::updateUser($user);
+					$user = WebUsersDB::updateUser($user);
 					
 					if ($user->getErrorCount() != 0) {
-						$_SESSION['user'] = $user;
+						$_SESSION['webuser'] = $user;
 						UserView::showUpdate();
 					} else {
 						UserController::showHome();
