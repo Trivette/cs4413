@@ -2,6 +2,7 @@
 class HockUserDB {
 	
 	public static function addUser($user) {
+		//Will probably never use this for HockUser on the website...
 		// Inserts the User object $user into the Users table and returns userId
 		$query = "INSERT INTO users (name)
 		                      VALUES(:name)";
