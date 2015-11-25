@@ -71,7 +71,9 @@ class WebUserDB {
 		if (!empty($rowSets)) {
 			foreach ($rowSets as $userRow ) {
 				$user = new WebUser($userRow);
-				//$user->setUserId($userRow['userId']);
+				$user->setUserId($userRow['userId']);
+				$user->setConfirmedPW($userRow['password']);
+				$user->clearError('confirmedpw');
 				array_push ($users, $user );
 			}
 		}

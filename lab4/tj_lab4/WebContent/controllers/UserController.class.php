@@ -62,24 +62,44 @@ class UserController {
 				UserController::showHome();
 			}
 		} else {
+			$user = $_SESSION['webuser'];
 			if(!is_null($authenticatedUser)){
 				if(strcmp($user->getUserName(), $authenticatedUser->getUserName()) == 0){
 					//$oldpw = (array_key_exists('oldPassword', $_POST))?$_POST['oldPassword']:null;
 					$parms = $users[0]->getParameters();
 					//if(is_null($oldpw) || strcmp($oldpw, $parms['password'])
-					$parms['userName'] = (array_key_exists('userName', $_POST))?$_POST['userName']:$authenticatedUser->getUserName();
-					$parms['password'] = (array_key_exists('password', $_POST))?$_POST['password']:$authenticatedUser->getPassword();
-					$parms['confirmedpw'] = (array_key_exists('confirmedpw', $_POST))?$_POST['confirmedpw']:$authenticatedUser->getConfirmedPW();
-					$parms['email'] = (array_key_exists('email', $_POST))?$_POST['email']:$authenticatedUser->getEmail();
-					$parms['url'] = (array_key_exists('url', $_POST))?$_POST['url']:$authenticatedUser->getURL();
+					//This is set up so that any empty parameters in update will be ignored.  
+					//Only things entered will actually be updated
+					//username
+					$parms['userName'] = (array_key_exists('userName', $_POST))?
+						(empty($_POST['userName']))?$authenticatedUser->getUserName():$_POST['userName']
+						:$authenticatedUser->getUserName();
+					//password
+					$parms['password'] = (array_key_exists('password', $_POST))?
+						(empty($_POST['password']))?$authenticatedUser->getPassword():$_POST['password']
+						:$authenticatedUser->getPassword();
+					//confirmedpw
+					$parms['confirmedpw'] = (array_key_exists('confirmedpw', $_POST))?
+						(empty($_POST['confirmedpw']))?$authenticatedUser->getConfirmedPW():$_POST['confirmedpw']
+						:$authenticatedUser->getConfirmedPW();
+					//email
+					$parms['email'] = (array_key_exists('email', $_POST))?
+						(empty($_POST['email']))?$authenticatedUser->getEmail():$_POST['email']
+						:$authenticatedUser->getEmail();
+					//url
+					$parms['url'] = (array_key_exists('url', $_POST))?
+						(empty($_POST['url']))?$authenticatedUser->getURL():$_POST['url']
+						:$authenticatedUser->getURL();
+					
 					$user = new WebUser($parms);
 					$user->setUserId($users[0]->getUserId());
-					$user = WebUsersDB::updateUser($user);
+					$user = WebUserDB::updateUser($user);
 					
 					if ($user->getErrorCount() != 0) {
 						$_SESSION['webuser'] = $user;
 						UserView::showUpdate();
 					} else {
+						$_SESSION['authenticatedUser'] = $user;
 						UserController::showHome();
 					}
 				} else

@@ -33,11 +33,11 @@ class LoginController {
  			}
  		}
  			
- 		$_SESSION['user'] = $webuser;
- 		if (is_null($webuser) || $user->getErrorCount() != 0)
+ 		//$_SESSION['user'] = $webuser;
+ 		if (is_null($user) || is_null($webuser) || $user->getErrorCount() != 0)
  			LoginView::show($user);
  		else  {
- 			$_SESSION['authenticatedUser'] = $user;
+ 			$_SESSION['authenticatedUser'] = $webuser;
  			HomeView::show();
  			header('Location: /'.$_SESSION['base']);
  			//show profile

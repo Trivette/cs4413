@@ -137,7 +137,7 @@ class UserView {
 	    echo '<label for="url">New URL:';
 	    echo '<span class="label label-danger">';
 	    if (!is_null($webuser))
-	    	echo $webuser->getError('password');
+	    	echo $webuser->getError('url');
 	    echo '</span></label>';
 	    echo '<input type="url" class="form-control" id = "url" name="url"';
 	    echo '>';
@@ -162,8 +162,13 @@ class UserView {
 	    echo '<input type="password" class="form-control" id = "confirmedpw" name="confirmedpw"';
 	    echo '>';
 	    echo '</div>';
-	    
-	    
+	    //submit button
+	    echo '<button type="submit" class="btn btn-default">Submit</button>';
+	    echo '</form>';
+	    echo '</div>';
+	    echo '<div class="col-md-3 col-sm-2 col-xs-1"></div>';
+	    echo '</div>';
+	    echo '</div>';
 	}
 }
 ?>	

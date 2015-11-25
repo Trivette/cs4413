@@ -5,6 +5,8 @@ class WebUser {
 	private $errors;
 	private $formInput;
 	
+	private $userId;
+	
 	private $userName;
 	private $email;
 	private $password;
@@ -30,6 +32,14 @@ class WebUser {
 		// Sets a particular error value and increments error count
 		$this->errors[$errorName] =  Messages::getError($errorValue);
 		$this->errorCount ++;
+	}
+	
+	public function clearError($errorName){
+		if (isset($this->errors[$errorName])){
+			$this->errors[$errorName] = "";
+			$this->errorCount --;
+		}
+		
 	}
 
 	public function getErrorCount() {
@@ -68,11 +78,23 @@ class WebUser {
 		return $this->confirmedpw;
 	}
 	
+	public function setConfirmedPW($pw){
+		$this->confirmedpw = $pw;
+	}
+	
+	public function setUserID($ID){
+		$this->userId = $ID;
+	}
+	
+	public function getUserId(){
+		return $this->userId;
+	}
+	
 	public function getParameters() {
 		// Return data fields as an associative array
 		$paramArray = array("userName" => $this->userName, "password" => $this->password, "confirmedpw" => $this->confirmedpw, 
 				"email" => $this->email, "hockName" => $this->hockName,
-				"picture" => $this->picture, "url" => $this->url
+				"picture" => $this->picture, "url" => $this->url, "userId" => $this->userId
 		); 
 		return $paramArray;
 	}
