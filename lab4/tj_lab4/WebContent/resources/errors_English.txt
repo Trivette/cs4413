@@ -30,3 +30,7 @@ SKILL_EMPTY Skill empty watda?
 GAME_DOES_NOT_EXIST Game does not exist
 GAME_COULD_NOT_BE_UPDATED Game update failure
 USER_COULD_NOT_BE_UPDATED User update failure
+USER_ID1_ERROR Error with UID1 for team
+USER_ID2_ERROR Error with UID2 for team
+USER_ID3_ERROR Error with UID3 for team
+NO_GAMEID Invalid game ID supplied
