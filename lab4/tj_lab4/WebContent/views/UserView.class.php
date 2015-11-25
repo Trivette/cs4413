@@ -76,5 +76,53 @@ class UserView {
 		echo "</table>";
 		echo "</center>";
 	}
+	
+	public static function showUpdate() {
+		$_SESSION['headertitle'] = "Update user";
+		$_SESSION['styles'] = array('Jumbotron.css');
+		MasterView::showHeader();
+		MasterView::showNavbar();
+		self::showUpdateDetails();
+		$_SESSION['footertitle'] = "The user update footer";
+		MasterView::showFooter();
+	}
+	
+	public static function showUpdateDetails() {
+		$webuser = (array_key_exists('webuser', $_SESSION))?$_SESSION['webuser']:null;
+		$base = (array_key_exists('base', $_SESSION))?$_SESSION['base']:"";
+		
+		echo '<div class="container-fluid">';
+	    echo '<div class="row">';
+	    echo '<div class="col-md-3 col-sm-2 col-xs-1"></div>';
+	    echo '<div class="col-md-6 col-sm-8 col-xs-10">';
+	    echo '<h1>'.$_SESSION['headertitle'].'</h1>';
+   	    if (is_null($webuser)) {
+	       echo '<section>User does not exist</section>';
+		   return;
+	    }
+	    
+	    echo '<form role="form" method="Post" action ="/'.$base. '/user/update/'.$webuser->getUserName().'">';
+	    
+	    // Error at the top of the form
+	    if (!is_null($webuser) && !empty($webuser->getError('userName'))) {
+	    	echo  '<div class="form-group">';
+	    	echo  '<label><span class="label label-danger">';
+	    	echo  $webuser->getError('userName');
+	    	echo '</span></label></div>';
+	    }
+	    
+	    echo '<div class="form-group">'; // User name
+	    echo '<label for="userName">User name:';
+	    echo '<span class="label label-danger">';
+	    if (!is_null($user))
+	    	echo $user->getError('userName');
+	    echo '</span></label>';
+	    echo '<input type="text" class="form-control" id = "userName" name="userName"';
+	    if (!is_null($user))
+	    	echo 'value = "'. $user->getUserName() .'"';
+	    echo 'required>';
+	    echo '</div>';
+	    
+	}
 }
 ?>	

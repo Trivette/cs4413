@@ -64,6 +64,10 @@ class WebUser {
 		return $this->password;
 	}
 	
+	public function getConfirmedPW(){
+		return $this->confirmedpw;
+	}
+	
 	public function getParameters() {
 		// Return data fields as an associative array
 		$paramArray = array("userName" => $this->userName, "password" => $this->password, "confirmedpw" => $this->confirmedpw, 

@@ -45,31 +45,51 @@ class UserController {
 	
 	public static function updateUser() {
 		// Process updating of user information
-		$users = UsersDB::getUsersBy('userId', $_SESSION['arguments']);
+		$authenticatedUser = (array_key_exists('authenticatedUser', $_SESSION))?$_SESSION['authenticatedUser']:null;
+		$users = UsersDB::getUsersBy('name', $_SESSION['arguments']);
 		if (empty($users)) {
-			HomeView::show();
-			header('Location: /'.$_SESSION['base']);
+			UserController::showHome();
 		} elseif ($_SERVER["REQUEST_METHOD"] == "GET") {
 			$_SESSION['user'] = $users[0];
-			UserView::showUpdate();
-		} else {
-			$parms = $users[0]->getParameters();
-			$parms['userName'] = (array_key_exists('userName', $_POST))?
-			$_POST['userName']:"";
-			$parms['password'] = (array_key_exists('password', $_POST))?
-			$_POST['password']:"";
-			$user = new User($parms);
-			$user->setUserId($users[0]->getUserId());
-			$user = UsersDB::updateUser($user);
-	
-			if ($user->getErrorCount() != 0) {
-				$_SESSION['user'] = $user;
-				UserView::showUpdate();
+			$user = $users[0];
+			if(!is_null(authenticatedUser)){
+				if(strcmp($user->getUserName, $authenticatedUser->getUserName) == 0){
+					UserView::showUpdate();
+				} else {
+					UserController::showHome();
+				}
 			} else {
-				HomeView::show();
-				header('Location: /'.$_SESSION['base']);
+				UserController::showHome();
 			}
+		} else {
+			if(!is_null(authenticatedUser)){
+				if(strcmp($user->getUserName, $authenticatedUser->getUserName) == 0){
+					$parms = $users[0]->getParameters();
+					$parms['userName'] = (array_key_exists('userName', $_POST))?$_POST['userName']:$authenticatedUser->getUserName();
+					$parms['password'] = (array_key_exists('password', $_POST))?$_POST['password']:$authenticatedUser->getPassword();
+					$parms['confirmedpw'] = (array_key_exists('confirmedpw', $_POST))?$_POST['confirmedpw']:$authenticatedUser->getConfirmedPW();
+					$parms['email'] = (array_key_exists('email', $_POST))?$_POST['email']:$authenticatedUser->getEmail();
+					$parms['url'] = (array_key_exists('url', $_POST))?$_POST['url']:$authenticatedUser->getURL();
+					$user = new WebUser($parms);
+					$user->setUserId($users[0]->getUserId());
+					$user = UsersDB::updateUser($user);
+					
+					if ($user->getErrorCount() != 0) {
+						$_SESSION['user'] = $user;
+						UserView::showUpdate();
+					} else {
+						UserController::showHome();
+					}
+				} else
+					UserController::showHome();
+			} else
+				UserController::showHome();
 		}
+	}
+	
+	public static function showHome() {
+		HomeView::show();
+		header('Location: /'.$_SESSION['base']);
 	}
 }
 ?>

@@ -101,7 +101,7 @@ class WebUserDB {
 	}
 	
 	public static function updateUser($user) {
-		// Update a user
+		// Update a webuser
 		try {
 			$db = Database::getDB ();
 			if (is_null($user) || $user->getErrorCount() > 0)
@@ -112,12 +112,15 @@ class WebUserDB {
 			if ($user->getErrorCount() > 0)
 				return $user;
 	
-			$query = "UPDATE webuser SET userName = :userName, password = :password
+			$query = "UPDATE webuser SET userName = :userName, password = :password, email = :email, url = :url, hockName = :hockName
 	    			                 WHERE userId = :userId";
 	
 			$statement = $db->prepare ($query);
 			$statement->bindValue(":userName", $user->getUserName());
 			$statement->bindValue(":password", $user->getPassword());
+			$statement->bindValue(":email", $user->getEmail());
+			$statement->bindValue(":url", $user->getURL());
+			$statement->bindValue(":hockName", $user->getHockName());
 			$statement->bindValue(":userId", $user->getUserId());
 			$statement->execute ();
 			$statement->closeCursor();
