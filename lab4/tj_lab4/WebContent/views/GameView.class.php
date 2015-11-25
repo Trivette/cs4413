@@ -14,7 +14,7 @@ class GameView {
 		$base = $_SESSION['base'];
 		$games = (array_key_exists('games', $_SESSION))?$_SESSION['games']:array();
 		echo '<div class="container">';
-		echo '<h1>All Season Games</h1>';
+		echo '<h1>All Games This Season</h1>';
 		
 		echo '<div class="table-responsive">';
 		echo '<table class="table">';
@@ -87,8 +87,13 @@ class GameView {
 			$user5 = $user5[0];
 			$user6 = $user6[0];
 			
+			$start = new DateTime($game->getStart());
+			$end = new DateTime($game->getEnd());
+			$length = $start->diff($end);
+			
+			
 			echo '<tr>';
-			echo '<td>'.$game->getID().'</td>';
+			echo '<td class="'.$game->getServer().'">'.$game->getID().'</td>';
 			echo '<td class="'.$user1->getHome().'">'.$user1->getUserName().'</td>';
 			echo '<td class="'.$user2->getHome().'">'.$user2->getUserName().'</td>';
 			echo '<td class="'.$user3->getHome().'">'.$user3->getUserName().'</td>';
@@ -99,7 +104,7 @@ class GameView {
 			echo '<td class="'.$user6->getHome().'">'.$user6->getUserName().'</td>';
 			echo '<td>'.$loserskill.'</td>';
 			echo '<td>-10</td>';
-			echo '<td></td>';
+			echo '<td>'.$length->i.'m '.$length->s.'s</td>';
 			echo '</tr>';
 			
 		}
