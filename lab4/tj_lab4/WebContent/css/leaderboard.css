@@ -1,0 +1,24 @@
+td.east {
+	color: orange;
+}
+
+td.west {
+	color: green;
+}
+
+td.mw {
+	color: red;
+}
+
+td.uk {
+	color: blue;
+}
+
+td.edge {
+	border-right-style: groove;
+}
+
+[class="1"] { background: rgba(0, 255, 0, .2); }
+tr.hot { background: rgba(255, 0, 0, .5); }
+[class="3"] { background: rgba(255, 165, 0, .2); }
+tr.cold { background: rgba(0, 0, 255, .5); }

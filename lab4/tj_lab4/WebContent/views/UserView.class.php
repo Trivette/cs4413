@@ -4,7 +4,7 @@ class UserView {
 	public static function showAll() {
 		// Show a table of users with links
 		$_SESSION['headertitle'] = "Leaderboard";
-		$_SESSION['styles'] = array('jumbotron.css');
+		$_SESSION['styles'] = array('jumbotron.css', 'leaderboard.css');
 		MasterView::showHeader();
 		MasterView::showNav();
 		//if (array_key_exists('headertitle', $_SESSION)) {
@@ -21,9 +21,10 @@ class UserView {
 		$users = (array_key_exists('users', $_SESSION))?$_SESSION['users']:array();
 		$base = (array_key_exists('base', $_SESSION))?$_SESSION['base']:"";
 		
-		echo "<center>";
+		echo '<div class="container">';
 		echo "<h1>Hock League Ranks</h1>";
-		echo "<table border='1'>";
+		echo '<div class="table-responsive">';
+		echo '<table class="table" border="1">';
 		echo "<thead>";
 		echo "<tr><TH>Rank</th><th>Name</th><th>Skill</th><th>Wins</th><th>Losses</th><th>Total Games</th><th>Goals</th><th>Assists</th><th>Own Goals</th><th>GPG</th><th>APG</th><th>OGPG</th><TH>Bads</th><TH>Streak</th><th>Alias</th></tr>";
 		echo "</thead>";
@@ -42,20 +43,20 @@ class UserView {
 			$bgcolor = '';
 			$colorstyle = '';
 			if($user->getStreak() >= 5)
-				$bgcolor = " bgcolor='ff6600'";
+				$bgcolor = "hot";
 			elseif($user->getStreak() <= -5)
-				$bgcolor = " bgcolor='33ccff'";
+				$bgcolor = "cold";
 			if(strcmp($user->getHome(), 'east') == 0)
-				$colorstyle = '"color:orange"';
+				$colorstyle = '"east"';
 			elseif(strcmp($user->getHome(), 'uk') == 0)
-				$colorstyle = '"color:blue"';
+				$colorstyle = '"uk"';
 			elseif(strcmp($user->getHome(), 'mw') == 0)
-				$colorstyle = '"color:red"';
+				$colorstyle = '"mw"';
 			elseif(strcmp($user->getHome(), 'west') == 0)
-				$colorstyle = '"color:green"';
+				$colorstyle = '"west"';
 			
-			echo '<tr' . $bgcolor . '>';
-			echo '<td style=' . $colorstyle . '> '. $ct .'</td>';
+			echo '<tr class="' . $bgcolor . '">';
+			echo '<td class=' . $colorstyle . '> '. $ct .'</td>';
 			echo '<td><a href="/' . $base . '/user/show/' . $user->getUserName() . '">' . $user->getUserName() . '</td>';
 			echo '<td>'.$user->getSkill().'</td>';
 			echo '<td>'.$wins.'</td>';
@@ -74,7 +75,8 @@ class UserView {
 		}
 		echo "</tbody>";
 		echo "</table>";
-		echo "</center>";
+		echo "</div>";
+		echo "</div>";
 	}
 	
 	public static function showUpdate() {
