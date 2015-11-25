@@ -13,6 +13,14 @@ class ProfileView {
 		MasterView::showHeader();
 		MasterView::showNav();
 		ProfileView::showDetails($webuser, $hockuser);
+		if(array_key_exists('authenticatedUser', $_SESSION)){
+			$authenticatedUser = $_SESSION['authenticatedUser'];
+			if(!is_null($authenticatedUser)){
+				if(strcmp($authenticatedUser->getHockName(), $hockuser->getUserName()) == 0){
+					ProfileView::showUpdateButton();
+				}
+			}
+		}
 		MasterView::showPageEnd();
 	}
 	
@@ -27,10 +35,10 @@ class ProfileView {
 <h4>Stats</h4>
 <p>
 <?php
-	if(!is_null($hockuser))
-		echo "Wins: " . $hockuser->getWins() . " Losses: " . $hockuser->getLosses() . " Streak: " . $hockuser->getStreak() . " ELO: " . $hockuser->getSkill();
-	else
-		echo "No stats to display for this non existent user";
+		if(!is_null($hockuser))
+			echo "Wins: " . $hockuser->getWins() . " Losses: " . $hockuser->getLosses() . " Streak: " . $hockuser->getStreak() . " ELO: " . $hockuser->getSkill();
+		else
+			echo "No stats to display for this non existent user";
 ?>
 </p>
 </section>
@@ -55,6 +63,12 @@ Game: (29497)  fakeuser  	Bandit  	jamez 		(4518) +11		LogiTech=)  turtle  Q8bal
 </section>
 
 <?php 
-  }
+  	}
+  	
+  	public static function showUpdateButton(){
+  		$base = (array_key_exists('base', $_SESSION))?$_SESSION['base']:"";
+  		$authenticatedUser = $_SESSION['authenticatedUser'];
+  		echo '<a href="/' . $base . '/user/update/' . $authenticatedUser->getUserName() .'" class="button">Update Profile</a>';
+  	}
 }
 ?>
