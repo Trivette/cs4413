@@ -29,6 +29,9 @@
 		case "user" :
 			UserController::run ();
 			break;
+		case "game" :
+			GameController::run ();
+			break;
 		default:
 			HomeView::show(null);
 	};
