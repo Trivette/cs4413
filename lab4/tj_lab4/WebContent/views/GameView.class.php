@@ -2,7 +2,7 @@
 class GameView {
 	public static function showAll() {
 		$_SESSION['headertitle'] = "Games";
-		$_SESSION['styles'] = array('jumbotron.css');
+		$_SESSION['styles'] = array('jumbotron.css', 'games.css');
 		MasterView::showHeader();
 		MasterView::showNav();
 		GameView::showAllDetails();
@@ -92,13 +92,13 @@ class GameView {
 			$length = $start->diff($end);
 			
 			
-			echo '<tr>';
+			echo '<tr class="'.$game->getServer().'">';
 			echo '<td class="'.$game->getServer().'">'.$game->getID().'</td>';
 			echo '<td class="'.$user1->getHome().'">'.$user1->getUserName().'</td>';
 			echo '<td class="'.$user2->getHome().'">'.$user2->getUserName().'</td>';
 			echo '<td class="'.$user3->getHome().'">'.$user3->getUserName().'</td>';
 			echo '<td>'.$winnerskill.'</td>';
-			echo '<td>+10</td>';
+			echo '<td class="edge">+10</td>';
 			echo '<td class="'.$user4->getHome().'">'.$user4->getUserName().'</td>';
 			echo '<td class="'.$user5->getHome().'">'.$user5->getUserName().'</td>';
 			echo '<td class="'.$user6->getHome().'">'.$user6->getUserName().'</td>';
