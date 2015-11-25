@@ -1,20 +1,20 @@
-td.east {
+td.east a {
 	color: orange;
 }
 
-td.west {
+td.west a {
 	color: green;
 }
 
-td.mw {
+td.mw a {
 	color: red;
 }
 
-td.uk {
+td.uk a {
 	color: blue;
 }
 
-td.edge {
+td.edge a {
 	border-right-style: groove;
 }
 
