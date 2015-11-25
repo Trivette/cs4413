@@ -1,5 +1,5 @@
 <?php
-class GameUserDB {
+class GameDB {
 	
 	public static function addGame($game) {
 		// Inserts the User object $user into the Users table and returns userId
