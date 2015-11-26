@@ -41,6 +41,21 @@ class WebUserDB {
 		return $users;
 	}
 	
+	public static function getLastUsers(){
+		$query = "SELECT * FROM webuser ORDER BY userId DESC LIMIT 0 , 3";
+		$users = array();
+		try {
+			$db = Database::getDB();
+			$statement = $db->prepare($query);
+			$statement->execute();
+			$users = WebUserDB::getUsersArray ($statement->fetchAll(PDO::FETCH_ASSOC));
+			$statement->closeCursor();
+		} catch (PDOException $e) { // Not permanent error handling
+			echo "<p>Error getting last 3 users " . $e->getMessage () . "</p>";
+		}
+		return $users;
+	}
+	
 	public static function getUserRowSetsBy($type = null, $value = null) {
 		// Returns the rows of Users whose $type field has value $value
 		$allowedTypes = ["userId", "userName", "hockName"];

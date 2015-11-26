@@ -100,8 +100,9 @@ class WebUser {
 	}
 
 	public function __toString() {
-		$str = "User name: ".$this->userName . " Hock name: " . $this->hockName;
-		return $str;
+		return $this->userName;
+		//$str = "User name: ".$this->userName . " Hock name: " . $this->hockName;
+		//return $str;
 	}
 	
 	private function extractForm($valueName) {

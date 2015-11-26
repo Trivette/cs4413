@@ -20,6 +20,15 @@ class HomeView {
 	<p>This is a web site for Hock League in Uniball.  Here you will find a leaderboard and player statistics.</p>
 	</div>
 	</div>
+	<?php 
+		$webusers = WebUserDB::getLastUsers();
+		if(!empty($webusers)){
+			echo '<div class="container">';
+			echo '<h3>Welcome Our 3 Newest Users</h3>';
+			echo '<p>'.implode(", ",$webusers).'</p>';
+			echo '</div>';
+		}
+	?>
 	<hr>
 	<section>
 		<aside>

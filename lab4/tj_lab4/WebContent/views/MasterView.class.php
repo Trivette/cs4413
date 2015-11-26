@@ -44,7 +44,7 @@ class MasterView {
      	echo '<div id="navbar" class="navbar-collapse collapse">';
      	echo '<ul class="nav navbar-nav">';
      	if (!is_null($authenticatedUser))
-     		echo '<li class="active"><a href="/'.$base.'/user/show/' . $authenticatedUser->getUserName().'">Profile</a></li>';
+     		echo '<li class="active"><a href="/'.$base.'/user/show/' . $authenticatedUser->getHockName().'">Profile</a></li>';
      	echo '<li><a href="/'.$base.'/user/leaderboard">Leaderboard</a></li>';
      	echo '<li><a href="/'.$base.'/game/all">All Games</a></li>';
      	echo '<li><a href="/'.$base.'/bet">Betting</a></li>';
