@@ -12,9 +12,12 @@ class SignupController {
 					//create a webuser in db
 					$id = WebUserDB::addUser($webuser);
 					if($id != 0){
+						$base = (array_key_exists('base', $_SESSION))? $_SESSION['base']: "";
 						//find the hockuser related to this dude
-						$hockusers = HockUserDB::getUsersBy('name', $webuser->getHockName());
-						ProfileView::show($webuser, $hockusers[0]);//HomeView::show();
+						//$hockusers = HockUserDB::getUsersBy('name', $webuser->getHockName());
+						header("Location: /".$base."/user/show/".$webuser->getHockName());
+						UserController::show();
+						//ProfileView::show($webuser, $hockusers[0]);//HomeView::show();
 					}
 					else{
 						$webuser->setError('userName', 'DBERROR_ADDWEBUSER');
