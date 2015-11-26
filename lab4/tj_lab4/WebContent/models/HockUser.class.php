@@ -64,8 +64,13 @@ class HockUser {
 		return $this->errors;
 	}
 	
+	public function setUserId($i) {
+		// Set the value of the userId to $id
+		$this->id = $i;
+	}
+	
 	public function getUserId(){
-		return $id;
+		return $this->id;
 	}
 	
 	public function getUserName() {

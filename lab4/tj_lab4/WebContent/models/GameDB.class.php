@@ -48,7 +48,7 @@ class GameDB {
 	
 	public static function getGameRowSetsBy($type = null, $value = null) {
 		// Returns the rows of Users whose $type field has value $value
-		$allowedTypes = ["id", "pending", "server"];
+		$allowedTypes = ["id", "pending", "server", "teamid1", "teamid2"];
 		$gameRowSets = array();
 		try {
 			$db = Database::getDB ();

@@ -50,9 +50,14 @@ class GameView {
 			$team2 = $teams[0];
 			if(is_null($team1) || is_null($team2))
 				break;
+			
+			$worth = GameController::calcWorth($game->getTeamSkill1(), $game->getTeamSkill2());
+			$plusminus = 0;
+			
 			//Put all winning teams on left side of table
 			if(strcmp($game->getWinReports(), 'team1') == 0){
 				//team1 won
+				$plusminus = $worth[0];
 				//team1
 				$user1 = HockUserDB::getUsersBy('id', $team1->getUID1());
 				$user2 = HockUserDB::getUsersBy('id', $team1->getUID2());
@@ -65,6 +70,7 @@ class GameView {
 				$loserskill = $game->getTeamSkill2();
 			} else {
 				//team2 won
+				$plusminus = $worth[1];
 				//team1
 				$user4 = HockUserDB::getUsersBy('id', $team1->getUID1());
 				$user5 = HockUserDB::getUsersBy('id', $team1->getUID2());
@@ -98,12 +104,12 @@ class GameView {
 			echo '<td class="'.$user2->getHome().'"><a href="/' . $base . '/user/show/' . $user2->getUserName() . '">'.$user2->getUserName().'</td>';
 			echo '<td class="'.$user3->getHome().'"><a href="/' . $base . '/user/show/' . $user3->getUserName() . '">'.$user3->getUserName().'</td>';
 			echo '<td>'.$winnerskill.'</td>';
-			echo '<td class="edge">+10</td>';
+			echo '<td class="plus">+'.$plusminus.'</td>';
 			echo '<td class="'.$user4->getHome().'"><a href="/' . $base . '/user/show/' . $user4->getUserName() . '">'.$user4->getUserName().'</td>';
 			echo '<td class="'.$user5->getHome().'"><a href="/' . $base . '/user/show/' . $user5->getUserName() . '">'.$user5->getUserName().'</td>';
 			echo '<td class="'.$user6->getHome().'"><a href="/' . $base . '/user/show/' . $user6->getUserName() . '">'.$user6->getUserName().'</td>';
 			echo '<td>'.$loserskill.'</td>';
-			echo '<td>-10</td>';
+			echo '<td class="minus">-'.$plusminus.'</td>';
 			echo '<td>'.$length->i.'m '.$length->s.'s</td>';
 			echo '</tr>';
 			

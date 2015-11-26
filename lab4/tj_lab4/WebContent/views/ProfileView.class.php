@@ -8,7 +8,7 @@ class ProfileView {
 			$header = 'null Profile Page';
 		
 		$_SESSION['headertitle'] = $header;
-		$_SESSION['styles'] = array('jumbotron.css');
+		$_SESSION['styles'] = array('jumbotron.css', 'profile.css');
 		
 		MasterView::showHeader();
 		MasterView::showNav();
@@ -27,32 +27,147 @@ class ProfileView {
   	public static function showDetails($webuser, $hockuser) {  	
   		$base = (array_key_exists('base', $_SESSION))?$_SESSION['base']:"";
 ?> 
-<section>
+<div class="container-fluid">
 <h2><?php if (!is_null($hockuser)) {echo $hockuser->getUserName();}?>'s Profile</h2>
 <p>Saved img name is: <?php if((!is_null($webuser))) {echo $webuser->getPicture();}?></p>
-</section>
+</div>
 <section>
-<h4>Stats</h4>
-<p>
-<?php
-		if(!is_null($hockuser))
-			echo "Wins: " . $hockuser->getWins() . " Losses: " . $hockuser->getLosses() . " Streak: " . $hockuser->getStreak() . " ELO: " . $hockuser->getSkill();
-		else
+<?php		
+		if(!is_null($hockuser)){
+			echo '<div class="container-fluid">';
+			echo '<h4>Stats</h4>';
+			echo '<div class="table">';
+			echo '<table class="table" id="stats1">';
+			echo '<thead>';
+			echo '<tr>';
+			echo '<th>Wins</th>';
+			echo '<th>Losses</th>';
+			echo '<th>Streak</th>';
+			echo '<th>ELO</th>';
+			echo '</tr>';
+			echo '</thead>';
+			echo '<tbody>';
+			echo '<tr>';
+			echo '<td>'.$hockuser->getWins().'</td>';
+			echo '<td>'.$hockuser->getLosses().'</td>';
+			echo '<td>'.$hockuser->getStreak().'</td>';
+			echo '<td>'.$hockuser->getSkill().'</td>';
+			echo '</tr>';
+			echo '</tbody>';
+			echo '</table>';
+			echo '</div>'; //end table
+			echo '</div>'; //end container
+		} else
 			echo "No stats to display for this non existent user";
 ?>
-</p>
 </section>
 <section>
-<h4>Recent Games</h4>
-<p>
-These are fake at the moment
-<br>
-Game: (29507)  fakeuser		Thurgood	Prowler		(4572) +10		Ferocious	brood  	fiend 		(4579) -10	21m 18s<br>
-Game: (29504)  Ferocious  	Prowler  	fakeuser 	(4630) +8		Q8ball  	Bandit  fiend 		(4522) -8	31m 21s<br>
-Game: (29501)  fakeuser 	Bandit  	LogiTech=) 	(4589) +10		Q8ball  	turtle  Gamer 		(4584) -10	21m 32s<br>
-Game: (29498)  fakeuser  	Bandit  	turtle 		(4502) +12		Gamer  		fiend  	Thurgood 	(4553) -12	29m 37s<br>
-Game: (29497)  fakeuser  	Bandit  	jamez 		(4518) +11		LogiTech=)  turtle  Q8ball 		(4549) -11	17m 57s<br>
-</p>
+<?php 
+		$allgames = (array_key_exists('allgames', $_SESSION))?$_SESSION['allgames']:null;
+		if(!empty($allgames)){
+			
+			echo '<div class="container-fluid">';
+			echo '<h4>Recent Games</h4>';
+			echo '<div class="table-responsive">';
+			echo '<table class="game" border="1">';
+			echo '<thead>';
+			echo '<tr>';
+			echo '<th>GameID</th>';
+			echo '<th>User1</th>';
+			echo '<th>User2</th>';
+			echo '<th>User3</th>';
+			echo '<th>TeamSkill</th>';
+			echo '<th>+/-</th>';
+			echo '<th>User4</th>';
+			echo '<th>User5</th>';
+			echo '<th>User6</th>';
+			echo '<th>TeamSkill</th>';
+			echo '<th>+/-</th>';
+			echo '<th>Length</th>';
+			echo '</tr>';
+			echo '</thead>';
+			echo '<tbody>';
+			foreach($allgames as $game){
+				//If the game is not finished or had a bad/cancel don't show here
+				if($game->getPending() != 0)
+					continue;
+				$teams = TeamDB::getTeamsBy('id', $game->getTeamID1());
+				if(empty($teams))
+					break;
+				$team1 = $teams[0];
+				$teams = TeamDB::getTeamsBy('id', $game->getTeamID2());
+				if(empty($teams))
+					break;
+				$team2 = $teams[0];
+				if(is_null($team1) || is_null($team2))
+					break;
+				//Put all winning teams on left side of table
+				$worth = GameController::calcWorth($game->getTeamSkill1(), $game->getTeamSkill2());
+				$plusminus = 0;
+				if(strcmp($game->getWinReports(), 'team1') == 0){
+					//team1 won
+					//team1
+					$plusminus = $worth[0];
+					$user1 = HockUserDB::getUsersBy('id', $team1->getUID1());
+					$user2 = HockUserDB::getUsersBy('id', $team1->getUID2());
+					$user3 = HockUserDB::getUsersBy('id', $team1->getUID3());
+					//team2
+					$user4 = HockUserDB::getUsersBy('id', $team2->getUID1());
+					$user5 = HockUserDB::getUsersBy('id', $team2->getUID2());
+					$user6 = HockUserDB::getUsersBy('id', $team2->getUID3());
+					$winnerskill = $game->getTeamSkill1();
+					$loserskill = $game->getTeamSkill2();
+				} else {
+					//team2 won
+					//team1
+					$user4 = HockUserDB::getUsersBy('id', $team1->getUID1());
+					$user5 = HockUserDB::getUsersBy('id', $team1->getUID2());
+					$user6 = HockUserDB::getUsersBy('id', $team1->getUID3());
+					//team2
+					$user1 = HockUserDB::getUsersBy('id', $team2->getUID1());
+					$user2 = HockUserDB::getUsersBy('id', $team2->getUID2());
+					$user3 = HockUserDB::getUsersBy('id', $team2->getUID3());
+					$winnerskill = $game->getTeamSkill2();
+					$loserskill = $game->getTeamSkill1();
+					$plusminus = $worth[1];
+				}
+					
+				if(empty($user1) || empty($user2) || empty($user3) || empty($user4) || empty($user5) || empty($user6))
+					break;
+					
+				$user1 = $user1[0];
+				$user2 = $user2[0];
+				$user3 = $user3[0];
+				$user4 = $user4[0];
+				$user5 = $user5[0];
+				$user6 = $user6[0];
+					
+				$start = new DateTime($game->getStart());
+				$end = new DateTime($game->getEnd());
+				$length = $start->diff($end);
+					
+				echo '<tr class="'.$game->getServer().'">';
+				echo '<td class="'.$game->getServer().'">'.$game->getID().'</td>';
+				echo '<td class="'.$user1->getHome().'"><a href="/' . $base . '/user/show/' . $user1->getUserName() . '">'.$user1->getUserName().'</td>';
+				echo '<td class="'.$user2->getHome().'"><a href="/' . $base . '/user/show/' . $user2->getUserName() . '">'.$user2->getUserName().'</td>';
+				echo '<td class="'.$user3->getHome().'"><a href="/' . $base . '/user/show/' . $user3->getUserName() . '">'.$user3->getUserName().'</td>';
+				echo '<td>'.$winnerskill.'</td>';
+				echo '<td class="edge">+'.$plusminus.'</td>';
+				echo '<td class="'.$user4->getHome().'"><a href="/' . $base . '/user/show/' . $user4->getUserName() . '">'.$user4->getUserName().'</td>';
+				echo '<td class="'.$user5->getHome().'"><a href="/' . $base . '/user/show/' . $user5->getUserName() . '">'.$user5->getUserName().'</td>';
+				echo '<td class="'.$user6->getHome().'"><a href="/' . $base . '/user/show/' . $user6->getUserName() . '">'.$user6->getUserName().'</td>';
+				echo '<td>'.$loserskill.'</td>';
+				echo '<td>-'.$plusminus.'</td>';
+				echo '<td>'.$length->i.'m '.$length->s.'s</td>';
+				echo '</tr>';
+			}
+			echo '</tbody>';
+			echo '</table>';
+			echo '</div>'; //end table
+			echo '</div>'; //end container
+		}
+		
+?>
 </section>
 <section>
 <h4>Contact information</h4>

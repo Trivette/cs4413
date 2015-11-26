@@ -38,9 +38,32 @@ class UserController {
 		}
 		
 		if (!is_null($hockuser)) {
+			$teams1 = TeamDB::getTeamsBy('uid1', $hockuser->getUserId());
+			$teams2 = TeamDB::getTeamsBy('uid2', $hockuser->getUserId());
+			$teams3 = TeamDB::getTeamsBy('uid3', $hockuser->getUserId());
+			$allteams = array_merge($teams1, $teams2, $teams3);
+			if(!is_null($allteams)){
+				$allgames = array();
+				foreach($allteams as $team){
+					$game = GameDB::getGamesBy('teamid1', $team->getteamId());
+					$game2 = GameDB::getGamesBy('teamid2', $team->getteamId());
+					if(!empty($game))
+						array_push($allgames, $game[0]);
+					if(!empty($game2))
+						array_push($allgames, $game2[0]);
+				}
+				if(empty($allgames)){
+					echo '<p>All games is empty</p>';
+					$_SESSION['allgames'] = null;
+				}
+				else 
+					$_SESSION['allgames'] = $allgames;
+			}
 		    ProfileView::show($webuser, $hockuser);
-		} else
+		} else{
+			$_SESSION['allgames'] = null;
 			ProfileView::show(null, null);
+		}
 	}
 	
 	public static function updateUser() {

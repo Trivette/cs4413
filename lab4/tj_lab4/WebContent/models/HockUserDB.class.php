@@ -66,7 +66,7 @@ class HockUserDB {
 		if (!empty($rowSets)) {
 			foreach ($rowSets as $userRow ) {
 				$user = new HockUser($userRow);
-				//$user->setUserId($userRow['userId']);
+				$user->setUserId($userRow['id']);
 				array_push ($users, $user );
 			}
 		}

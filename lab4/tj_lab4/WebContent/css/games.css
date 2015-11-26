@@ -14,8 +14,13 @@ td.uk a {
 	color: blue;
 }
 
-td.edge {
+td.plus {
 	border-right-style: groove;
+	color: rgb(0, 204, 0)
+}
+
+td.minus {
+	color: rgb(204, 0, 0);
 }
 
 [class="1"] { background: rgba(0, 255, 0, .2); }
