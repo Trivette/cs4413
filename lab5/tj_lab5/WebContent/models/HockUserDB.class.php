@@ -36,6 +36,21 @@ class HockUserDB {
 		return $users;
 	}
 	
+	public static function getAllUsersNotInGame() {
+		$query = "SELECT * FROM users WHERE gameid = 0";
+		$users = array();
+		try {
+			$db = Database::getDB();
+			$statement = $db->prepare($query);
+			$statement->execute();
+			$users = HockUserDB::getUsersArray ($statement->fetchAll(PDO::FETCH_ASSOC));
+			$statement->closeCursor();
+		} catch (PDOException $e) { // Not permanent error handling
+			echo "<p>Error getting all users not in game " . $e->getMessage () . "</p>";
+		}
+		return $users;
+	}
+	
 	public static function getUserRowSetsBy($type = null, $value = null) {
 		// Returns the rows of Users whose $type field has value $value
 		$allowedTypes = ["id", "name", "alias"];

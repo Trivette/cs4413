@@ -68,7 +68,7 @@ class GameView {
 				$user6 = HockUserDB::getUsersBy('id', $team2->getUID3());
 				$winnerskill = $game->getTeamSkill1();
 				$loserskill = $game->getTeamSkill2();
-			} else {
+			} elseif(strcmp($game->getWinReports(), 'team2') == 0) {
 				//team2 won
 				$plusminus = $worth[1];
 				//team1
@@ -81,7 +81,7 @@ class GameView {
 				$user3 = HockUserDB::getUsersBy('id', $team2->getUID3());
 				$winnerskill = $game->getTeamSkill2();
 				$loserskill = $game->getTeamSkill1();
-			}
+			} else continue;
 			
 			if(empty($user1) || empty($user2) || empty($user3) || empty($user4) || empty($user5) || empty($user6))
 				break;

@@ -11,6 +11,69 @@ class GameController {
 			default:
 		}
 	}
+	/*
+	 * This function will generate a new game randomly.
+	 * It will create 2 teams of 3 randomly selected users
+	 * It will add their skill together and put the current time as start time.
+	 * It will make sure not to pick users who are already in a pending game
+	 */
+	public static function generateNewGame(){
+		$users = HockUserDB::getAllUsersNotInGame();
+		if(empty($users)) return;
+		if(count($users) < 6){
+			echo "<p>Error getting enough users not in a game... " . $e->getMessage () . "</p>";
+			return;
+		}
+		
+		//get random users for game
+		shuffle($users);
+		$user1 = array_pop($users);
+		$user2 = array_pop($users);
+		$user3 = array_pop($users);
+		$user4 = array_pop($users);
+		$user5 = array_pop($users);
+		$user6 = array_pop($users);
+		
+		//calculate each team's skill
+		$skill1 = $user1->getSkill() + $user2->getSkill() + $user3->getSkill();
+		$skill2 = $user4->getSkill() + $user5->getSkill() + $user6->getSkill();
+		
+		//create new game
+		$game = new Game();
+		$gameparms = $game->getParameters();
+		$gameparms['teamskill1'] = $skill1;
+		$gameparms['teamskill2'] = $skill2;
+		$gameparms['pending'] = 1;
+		$gameparms['start'] = date("Y-m-d H:i:s");
+		$gameparms['type'] = 'random';
+		$gameparms['server'] = 1;
+		$gameid = GameDB::addGame($game);
+		$game->setGameId($gameid);
+		
+		//create team1 
+		$team1 = new Team();
+		$parms = $team1->getParameters();
+		$parms['uid1'] = $user1->getUserId();
+		$parms['uid2'] = $user2->getUserId();
+		$parms['uid3'] = $user3->getUserId();
+		$parms['gameid'] = $game->getID();
+		$teamid = TeamDB::addTeam($team1);
+		$team1->setteamId($teamid);
+		
+		//create team2
+		$team2 = new Team();
+		$parms = $team2->getParameters();
+		$parms['uid1'] = $user4->getUserId();
+		$parms['uid2'] = $user5->getUserId();
+		$parms['uid3'] = $user6->getUserId();
+		$parms['gameid'] = $game->getID();
+		$teamid = TeamDB::addTeam($team2);
+		$team2->setteamId($teamid);
+		
+		//update game with teamid's
+		$gameparms['teamid1'] = $team1->getteamId();
+		$gameparms['teamid2'] = $team2->getteamId();
+	}
 	
 	public static function calcWorth($team1, $team2){
 		if ($team1 < $team2){
@@ -55,5 +118,7 @@ class GameController {
 				return array(6, 18);
 		}
 	}
+	
+	
 }
 ?>

@@ -4,7 +4,7 @@ class Game {
 	private $errors;
 	private $formInput;
 	
-	private $id;
+	private $gameId;
 	private $teamid1;
 	private $teamid2;
 	private $pending;
@@ -42,7 +42,7 @@ class Game {
 	}
 	
 	public function getID() {
-		return $this->id;
+		return $this->gameId;
 	}
 	
 	public function getTeamID1() {
@@ -107,9 +107,9 @@ class Game {
 		}
 	}
 	
-	public function setUserId($id) {
+	public function setGameId($id) {
 		// Set the value of the userId to $id
-		$this->userId = $id;
+		$this->gameId = $id;
 	}
 
 	public function __toString() {
@@ -139,7 +139,7 @@ class Game {
 		if (is_null($this->formInput)) {
 			$this->initializeEmpty();
 		} else  {	 
-			$this->id = $this->extractForm('id');
+			$this->gameId = $this->extractForm('id');
 			$this->teamid1 = $this->extractForm('teamid1');
 			$this->teamid2 = $this->extractForm('teamid2');
 			$this->pending = $this->extractForm('pending');
