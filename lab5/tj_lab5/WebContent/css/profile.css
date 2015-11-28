@@ -2,3 +2,8 @@ table.table#stats1 {
 	width: 100px;
 	margin-left: 0px;
 }
+
+table.table#games {
+	width: 0;
+	margin-bottom: 0;
+}

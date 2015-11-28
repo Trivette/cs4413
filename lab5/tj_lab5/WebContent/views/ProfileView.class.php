@@ -8,7 +8,7 @@ class ProfileView {
 			$header = 'null Profile Page';
 		
 		$_SESSION['headertitle'] = $header;
-		$_SESSION['styles'] = array('jumbotron.css', 'profile.css');
+		$_SESSION['styles'] = array('jumbotron.css', 'profile.css', 'games.css');
 		
 		MasterView::showHeader();
 		MasterView::showNav();
@@ -69,7 +69,7 @@ class ProfileView {
 			echo '<div class="container-fluid">';
 			echo '<h4>Recent Games</h4>';
 			echo '<div class="table-responsive">';
-			echo '<table class="game" border="1">';
+			echo '<table class="table" id="games">';
 			echo '<thead>';
 			echo '<tr>';
 			echo '<th>GameID</th>';
@@ -152,12 +152,12 @@ class ProfileView {
 				echo '<td class="'.$user2->getHome().'"><a href="/' . $base . '/user/show/' . $user2->getUserName() . '">'.$user2->getUserName().'</td>';
 				echo '<td class="'.$user3->getHome().'"><a href="/' . $base . '/user/show/' . $user3->getUserName() . '">'.$user3->getUserName().'</td>';
 				echo '<td>'.$winnerskill.'</td>';
-				echo '<td class="edge">+'.$plusminus.'</td>';
+				echo '<td class="plus">+'.$plusminus.'</td>';
 				echo '<td class="'.$user4->getHome().'"><a href="/' . $base . '/user/show/' . $user4->getUserName() . '">'.$user4->getUserName().'</td>';
 				echo '<td class="'.$user5->getHome().'"><a href="/' . $base . '/user/show/' . $user5->getUserName() . '">'.$user5->getUserName().'</td>';
 				echo '<td class="'.$user6->getHome().'"><a href="/' . $base . '/user/show/' . $user6->getUserName() . '">'.$user6->getUserName().'</td>';
 				echo '<td>'.$loserskill.'</td>';
-				echo '<td>-'.$plusminus.'</td>';
+				echo '<td class="minus">-'.$plusminus.'</td>';
 				echo '<td>'.$length->i.'m '.$length->s.'s</td>';
 				echo '</tr>';
 			}
