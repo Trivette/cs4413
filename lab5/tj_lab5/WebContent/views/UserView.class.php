@@ -20,7 +20,7 @@ class UserView {
 	public static function showLeaderboard() {
 		$users = (array_key_exists('users', $_SESSION))?$_SESSION['users']:array();
 		$base = (array_key_exists('base', $_SESSION))?$_SESSION['base']:"";
-		
+		echo '<script src="/'.$base.'/js/sorttable.js"></script>';
 		echo '<div class="container">';
 		echo "<h1>Hock League Ranks</h1>";
 		echo '<div class="table-responsive">';

@@ -13,6 +13,7 @@ class GameView {
 	public static function showAllDetails() {
 		$base = $_SESSION['base'];
 		$games = (array_key_exists('games', $_SESSION))?$_SESSION['games']:array();
+		echo '<script src="/'.$base.'/js/sorttable.js"></script>';
 		echo '<div class="container">';
 		echo '<h1>All Games This Season</h1>';
 		
