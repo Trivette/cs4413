@@ -54,36 +54,15 @@ class BetView {
 					break;
 					
 				$worth = GameController::calcWorth($game->getTeamSkill1(), $game->getTeamSkill2());
-				$plusminus = 0;
-					
-				//Put all winning teams on left side of table
-				if(strcmp($game->getWinReports(), 'team1') == 0){
-					//team1 won
-					$plusminus = $worth[0];
-					//team1
-					$user1 = HockUserDB::getUsersBy('id', $team1->getUID1());
-					$user2 = HockUserDB::getUsersBy('id', $team1->getUID2());
-					$user3 = HockUserDB::getUsersBy('id', $team1->getUID3());
-					//team2
-					$user4 = HockUserDB::getUsersBy('id', $team2->getUID1());
-					$user5 = HockUserDB::getUsersBy('id', $team2->getUID2());
-					$user6 = HockUserDB::getUsersBy('id', $team2->getUID3());
-					$winnerskill = $game->getTeamSkill1();
-					$loserskill = $game->getTeamSkill2();
-				} else {
-					//team2 won
-					$plusminus = $worth[1];
-					//team1
-					$user4 = HockUserDB::getUsersBy('id', $team1->getUID1());
-					$user5 = HockUserDB::getUsersBy('id', $team1->getUID2());
-					$user6 = HockUserDB::getUsersBy('id', $team1->getUID3());
-					//team2
-					$user1 = HockUserDB::getUsersBy('id', $team2->getUID1());
-					$user2 = HockUserDB::getUsersBy('id', $team2->getUID2());
-					$user3 = HockUserDB::getUsersBy('id', $team2->getUID3());
-					$winnerskill = $game->getTeamSkill2();
-					$loserskill = $game->getTeamSkill1();
-				}
+				
+				//team1
+				$user1 = HockUserDB::getUsersBy('id', $team1->getUID1());
+				$user2 = HockUserDB::getUsersBy('id', $team1->getUID2());
+				$user3 = HockUserDB::getUsersBy('id', $team1->getUID3());
+				//team2
+				$user4 = HockUserDB::getUsersBy('id', $team2->getUID1());
+				$user5 = HockUserDB::getUsersBy('id', $team2->getUID2());
+				$user6 = HockUserDB::getUsersBy('id', $team2->getUID3());
 					
 				if(empty($user1) || empty($user2) || empty($user3) || empty($user4) || empty($user5) || empty($user6))
 					break;
@@ -96,7 +75,7 @@ class BetView {
 				$user6 = $user6[0];
 					
 				$start = new DateTime($game->getStart());
-				$end = new DateTime($game->getEnd());
+				$end = date("Y-m-d H:i:s");
 				$length = $start->diff($end);
 					
 					
@@ -105,13 +84,13 @@ class BetView {
 				echo '<td class="'.$user1->getHome().'"><a href="/' . $base . '/user/show/' . $user1->getUserName() . '">'.$user1->getUserName().'</td>';
 				echo '<td class="'.$user2->getHome().'"><a href="/' . $base . '/user/show/' . $user2->getUserName() . '">'.$user2->getUserName().'</td>';
 				echo '<td class="'.$user3->getHome().'"><a href="/' . $base . '/user/show/' . $user3->getUserName() . '">'.$user3->getUserName().'</td>';
-				echo '<td>'.$winnerskill.'</td>';
-				echo '<td class="plus">+'.$plusminus.'</td>';
+				echo '<td>'.$game->getTeamSkill1().'</td>';
+				echo '<td class="plus">+'.$worth[0].'/-'.$worth[1].'</td>';
 				echo '<td class="'.$user4->getHome().'"><a href="/' . $base . '/user/show/' . $user4->getUserName() . '">'.$user4->getUserName().'</td>';
 				echo '<td class="'.$user5->getHome().'"><a href="/' . $base . '/user/show/' . $user5->getUserName() . '">'.$user5->getUserName().'</td>';
 				echo '<td class="'.$user6->getHome().'"><a href="/' . $base . '/user/show/' . $user6->getUserName() . '">'.$user6->getUserName().'</td>';
-				echo '<td>'.$loserskill.'</td>';
-				echo '<td class="minus">-'.$plusminus.'</td>';
+				echo '<td>'.$game->getTeamSkill2().'</td>';
+				echo '<td class="minus">+'.$worth[1].'/-'.$worth[0].'</td>';
 				echo '<td>'.$length->i.'m '.$length->s.'s</td>';
 				echo '</tr>';
 					

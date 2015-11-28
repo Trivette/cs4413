@@ -73,6 +73,30 @@ class GameController {
 		//update game with teamid's
 		$gameparms['teamid1'] = $team1->getteamId();
 		$gameparms['teamid2'] = $team2->getteamId();
+		
+		//update users to show they are in game
+		$users1 = array($user1, $user2, $user3);
+		$users2 = array($user4, $user5, $user6);
+		foreach($users1 as $user){
+			$parms = $user->getParameters();
+			$parms['teamid'] = $team1->getteamId();
+			$parms['gameid'] = $game->getID();
+			HockUserDB::updateUser($user);
+			if($user1->getErrors() != 0)
+				echo "<p>" .$user->getError('id'). "</p>";
+		}
+		
+		foreach($users2 as $user){
+			$parms = $user->getParameters();
+			$parms['teamid'] = $team2->getteamId();
+			$parms['gameid'] = $game->getID();
+			HockUserDB::updateUser($user);
+			if($user1->getErrors() != 0)
+				echo "<p>" .$user->getError('id'). "</p>";
+		}
+		
+		//Game and teams created and users update...  Done!
+		
 	}
 	
 	public static function calcWorth($team1, $team2){

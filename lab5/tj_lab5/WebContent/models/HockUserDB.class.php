@@ -122,10 +122,11 @@ class HockUserDB {
 			if ($user->getErrorCount() > 0)
 				return $user;
 	
-			$query = "UPDATE users SET name = :name WHERE id = :id";
+			$query = "UPDATE users SET gameid = :gameid, teamid = :teamid WHERE id = :id";
 	
 			$statement = $db->prepare ($query);
-			$statement->bindValue(":name", $user->getUserName());
+			$statement->bindValue(":gameid", $user->getGameID());
+			$statement->bindValue(":teamid", $user->getTeamID());
 			$statement->bindValue(":id", $user->getUserId());
 			$statement->execute ();
 			$statement->closeCursor();
