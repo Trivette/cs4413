@@ -69,6 +69,14 @@ class HockUser {
 		$this->id = $i;
 	}
 	
+	public function setGameId($i){
+		$this->gameid = $i;
+	}
+	
+	public function setTeamId($i){
+		$this->teamid = $i;
+	}
+	
 	public function getUserId(){
 		return $this->id;
 	}
@@ -177,7 +185,17 @@ class HockUser {
 	
 	public function getParameters() {
 		// Return data fields as an associative array
-		$paramArray = array("userName" => $this->name); 
+		$paramArray = array(
+				"userId" => $this->id,
+				"name" => $this->name,
+				"skill" => $this->skill,
+				"home" => $this->home,
+				"alias" => $this->alias,
+				"gameid" => $this->gameid, 
+				"teamid" => $this->teamid
+				
+				
+		); 
 		return $paramArray;
 	}
 

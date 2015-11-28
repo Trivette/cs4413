@@ -9,7 +9,7 @@ class Team {
 	private $uid1;
 	private $uid2;
 	private $uid3;
-	private $gameid;
+	private $gameId;
 
 	
 	public function __construct($formInput = null) {
@@ -116,14 +116,14 @@ class Team {
 	}
 
 	private function validateGameId() {
-		// Username should only contain letters, numbers, dashes and underscore
-		$this->gameId = $this->extractForm('gameid');
+		
+		$this->gameId = $this->extractForm('gameId');
 		if (empty($this->gameId)) 
 			$this->setError('gameId', 'NO_GAMEID');
 	}
 	
 	private function validateUIDs() {
-		// Password should not be blank
+		
 		$this->uid1 = $this->extractForm('uid1');
 		if (empty($this->uid1))
 			$this->setError('uid1', 'USER_ID1_ERROR');

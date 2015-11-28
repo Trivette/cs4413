@@ -34,6 +34,16 @@ class GameController {
 		$user5 = array_pop($users);
 		$user6 = array_pop($users);
 		
+		$users1 = array($user1, $user2, $user3);
+		$users2 = array($user4, $user5, $user6);
+		if(empty($users1)){
+			echo '<p>Error getting users1</p>';
+			return;
+		}
+		if(empty($users2)){
+			echo '<p>Error getting users2</p>';
+			return;
+		}
 		//calculate each team's skill
 		$skill1 = $user1->getSkill() + $user2->getSkill() + $user3->getSkill();
 		$skill2 = $user4->getSkill() + $user5->getSkill() + $user6->getSkill();
@@ -47,6 +57,7 @@ class GameController {
 		$gameparms['start'] = date("Y-m-d H:i:s");
 		$gameparms['type'] = 'random';
 		$gameparms['server'] = 1;
+		$game = new Game($gameparms);
 		$gameid = GameDB::addGame($game);
 		$game->setGameId($gameid);
 		
@@ -56,9 +67,10 @@ class GameController {
 		$parms['uid1'] = $user1->getUserId();
 		$parms['uid2'] = $user2->getUserId();
 		$parms['uid3'] = $user3->getUserId();
-		$parms['gameid'] = $game->getID();
-		$teamid = TeamDB::addTeam($team1);
-		$team1->setteamId($teamid);
+		$parms['gameId'] = $game->getID();
+		$team1 = new Team($parms);
+		$teamid1 = TeamDB::addTeam($team1);
+		$team1->setteamId($teamid1);
 		
 		//create team2
 		$team2 = new Team();
@@ -66,33 +78,28 @@ class GameController {
 		$parms['uid1'] = $user4->getUserId();
 		$parms['uid2'] = $user5->getUserId();
 		$parms['uid3'] = $user6->getUserId();
-		$parms['gameid'] = $game->getID();
-		$teamid = TeamDB::addTeam($team2);
-		$team2->setteamId($teamid);
+		$parms['gameId'] = $game->getID();
+		$team2 = new Team($parms);
+		$teamid2 = TeamDB::addTeam($team2);
+		$team2->setteamId($teamid2);
 		
 		//update game with teamid's
-		$gameparms['teamid1'] = $team1->getteamId();
-		$gameparms['teamid2'] = $team2->getteamId();
+		$game->setTeamId1($team1->getteamId());
+		$game->setTeamId2($team2->getteamId());
+		
+		$gameupdate = GameDB::updateGame($game);
 		
 		//update users to show they are in game
-		$users1 = array($user1, $user2, $user3);
-		$users2 = array($user4, $user5, $user6);
 		foreach($users1 as $user){
-			$parms = $user->getParameters();
-			$parms['teamid'] = $team1->getteamId();
-			$parms['gameid'] = $game->getID();
+			$user->setGameId($game->getID());
+			$user->setTeamId($team1->getteamId());
 			HockUserDB::updateUser($user);
-			if($user1->getErrors() != 0)
-				echo "<p>" .$user->getError('id'). "</p>";
 		}
 		
 		foreach($users2 as $user){
-			$parms = $user->getParameters();
-			$parms['teamid'] = $team2->getteamId();
-			$parms['gameid'] = $game->getID();
+			$user->setGameId($game->getID());
+			$user->setTeamId($team1->getteamId());
 			HockUserDB::updateUser($user);
-			if($user1->getErrors() != 0)
-				echo "<p>" .$user->getError('id'). "</p>";
 		}
 		
 		//Game and teams created and users update...  Done!

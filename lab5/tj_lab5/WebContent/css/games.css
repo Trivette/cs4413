@@ -19,6 +19,10 @@ td.plus {
 	color: rgb(0, 204, 0)
 }
 
+td.edge {
+	border-right-style: groove;
+}
+
 td.minus {
 	color: rgb(204, 0, 0);
 }

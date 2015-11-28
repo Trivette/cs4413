@@ -117,15 +117,23 @@ class GameDB {
 			if ($game->getErrorCount() > 0)
 				return $game;
 	
-			$query = "UPDATE games SET pending = :pending, losereport = :losereport, winreport = :winreport, end = :end
-	    			                 WHERE id = :id";
+			$query = "UPDATE games SET 
+					pending = :pending, 
+					losereports = :losereport, 
+					winreports = :winreport, 
+					end = :end, 
+					teamid1 = :teamid1, 
+					teamid2 = :teamid2 
+	    			WHERE id = :id";
 	
 			$statement = $db->prepare ($query);
 			$statement->bindValue(":id", $game->getID());
 			$statement->bindValue(":pending", $game->getPending());
-			$statement->bindValue(":losereport", $game->getLoseReport());
-			$statement->bindValue(":winreport", $game->getWinReport());
+			$statement->bindValue(":losereport", $game->getLoseReports());
+			$statement->bindValue(":winreport", $game->getWinReports());
 			$statement->bindValue(":end", $game->getEnd());
+			$statement->bindValue(":teamid1", $game->getTeamId1());
+			$statement->bindValue(":teamid2", $game->getTeamId2());
 			$statement->execute ();
 			$statement->closeCursor();
 		} catch (Exception $e) { // Not permanent error handling

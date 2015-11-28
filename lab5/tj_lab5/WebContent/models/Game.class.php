@@ -92,9 +92,18 @@ class Game {
 
 	public function getParameters() {
 		// Return data fields as an associative array
-		$paramArray = array("userName" => $this->userName,
-				            "password" => $this->password,
-				            "userId" => $this->userId
+		$paramArray = array("teamid1" => $this->teamid1,
+				            "teamid2" => $this->teamid2,
+				            "pending" => $this->pending,
+							"teamskill1" => $this->teamskill1,
+							"teamskill2" => $this->teamskill2,
+							"winreports" => $this->winreports,
+							"losereports" => $this->losereports,
+							"server" => $this->server,
+							"start" => $this->start,
+							"end" => $this->end,
+							"type" => $this->type,
+							"gameId" => $this->gameId
 		); 
 		return $paramArray;
 	}
@@ -110,6 +119,14 @@ class Game {
 	public function setGameId($id) {
 		// Set the value of the userId to $id
 		$this->gameId = $id;
+	}
+	
+	public function setTeamId1($id){
+		$this->teamid1 = $id;
+	}
+	
+	public function setTeamId2($id){
+		$this->teamid2 = $id;
 	}
 
 	public function __toString() {

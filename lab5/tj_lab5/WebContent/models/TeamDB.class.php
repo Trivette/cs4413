@@ -15,8 +15,9 @@ class TeamDB {
 			$statement->bindValue(":uid2", $team->getUID2());
 			$statement->bindValue(":uid3", $team->getUID3());
 			$statement->bindValue(":gameid", $team->getGameId());
+			$statement->execute ();
 			$statement->closeCursor();
-			$returnId = $db->lastInsertId("teamid");
+			$returnId = $db->lastInsertId("id");
 		} catch ( PDOException $e ) { // Not permanent error handling
 			echo "<p>Error adding team to Teams ".$e->getMessage()."</p>";
 		}
@@ -24,7 +25,7 @@ class TeamDB {
 	}
 
 	public static function getAllTeams() {
-	   $query = "SELECT * FROM users ORDER BY skill DESC";
+	   $query = "SELECT * FROM teams";
 	   $teams = array();
 	   try {
 	      $db = Database::getDB();
@@ -33,7 +34,7 @@ class TeamDB {
 	      $teams = TeamDB::getTeamsArray ($statement->fetchAll(PDO::FETCH_ASSOC));
 	      $statement->closeCursor();
 		} catch (PDOException $e) { // Not permanent error handling
-			echo "<p>Error getting all users " . $e->getMessage () . "</p>";
+			echo "<p>Error getting all teams " . $e->getMessage () . "</p>";
 		}
 		return $teams;
 	}
