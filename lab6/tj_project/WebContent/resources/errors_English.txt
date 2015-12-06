@@ -34,3 +34,5 @@ USER_ID1_ERROR Error with UID1 for team
 USER_ID2_ERROR Error with UID2 for team
 USER_ID3_ERROR Error with UID3 for team
 NO_GAMEID Invalid game ID supplied
+LATE_BET It is too late to bet on that game
+GAME_NOT_PENDING That game is already finished!
