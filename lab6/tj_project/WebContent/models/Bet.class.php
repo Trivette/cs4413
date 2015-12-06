@@ -51,6 +51,22 @@ class Bet {
 		return $this->time;
 	}
 	
+	public function getBetID(){
+		return $this->id;
+	}
+	
+	public function getUser(){
+		return $this->user;
+	}
+	
+	public function getTeam(){
+		return $this->team;
+	}
+	
+	public function setBetID($betid){
+		$this->id = $betid;
+	}
+	
 	public function getParameters() {
 		// Return data fields as an associative array
 		$paramArray = array("amount" => $this->amount, "game" => $this->game, "time" => $this->time); 
