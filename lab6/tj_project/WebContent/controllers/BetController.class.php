@@ -21,14 +21,14 @@ class BetController {
 				//game exists check
 				$games = GameDB::getGamesBy('id', $bet->getGameID());
 				if(empty($games)){
-					$bet->setError('gameID', 'NO_GAMEID');
+					$bet->setError('game', 'NO_GAMEID');
 					BetView::show($bet);
 					return;
 				}
 				//pending check
 				$game = $games[0];
 				if($game->getPending() != 1){
-					$bet->setError('gameID', 'GAME_NOT_PENDING');
+					$bet->setError('game', 'GAME_NOT_PENDING');
 					BetView::show($bet);
 					return;
 				}
@@ -36,7 +36,7 @@ class BetController {
 				$start = new DateTime($game->getStart());
 				$diff = $start->diff($bet->getTime());
 				if($diff->m != 0 || $diff->d != 0 || $diff->h != 0 || $diff->m > 5){
-					$bet->setError('gameID', 'LATE_BET');
+					$bet->setError('game', 'LATE_BET');
 					BetView::show($bet);
 					return;
 				}

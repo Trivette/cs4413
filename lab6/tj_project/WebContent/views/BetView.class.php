@@ -24,16 +24,19 @@ class BetView {
 		if(!is_null($authenticatedUser)){
 			?>
 			<form action="bet" method="post">
-			Game ID: <input type="number" name="gameID" required></input>
+			Game ID: <input type="number" name="game" required></input>
 			<span class="error">
-		   	<?php if (!is_null($bet)) {echo $bet->getError('gameID');}?>
+		   	<?php if (!is_null($bet)) {echo $bet->getError('game');}?>
 			</span>
-			<br>Amount: <input type="number" name="amount" min="1" max="10" required></input>
+			<br>Amount: <input type="number" name="wager" min="1" max="10" required></input>
 			<span class="error">
-		   	<?php if (!is_null($bet)) {echo $bet->getError('amount');}?>
+		   	<?php if (!is_null($bet)) {echo $bet->getError('wager');}?>
 			</span>
-			<br><input type="radio" name="team" value="team1" required>Left Team
-			<input type="radio" name="team" value="team2">Right Team
+			<br><input type="radio" name="team" value="team1" required></input>Left Team
+			<input type="radio" name="team" value="team2"></input>Right Team
+			<span class="error">
+		   	<?php if (!is_null($bet)) {echo $bet->getError('team');}?>
+			</span>
 			<br><input type="submit" value="Submit">
 			</form>
 			<?php 

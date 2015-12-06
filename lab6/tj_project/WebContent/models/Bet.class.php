@@ -99,26 +99,25 @@ class Bet {
 	}
 
 	private function validateBetAmount() {
-		// Username should only contain letters, numbers, dashes and underscore
 		$this->amount = $this->extractForm('wager');
 		if (empty($this->amount)) 
-			$this->setError('amount', 'NO_BET');
+			$this->setError('wager', 'NO_BET');
 		elseif (intval($this->amount) < 1 || intval($this->amount) > 10){
-			$this->setError('amount', 'INVALID_BET');
+			$this->setError('wager', 'INVALID_BET');
 		}
 	}
 	
 	private function validateGame(){
 		$this->game = $this->extractForm('game');
 		if(empty($this->game))
-			$this->setError('gameID', 'NO_GAME');
+			$this->setError('game', 'NO_GAME');
 	}
 	
 	private function validateTeam(){
 		$this->team = $this->extractForm('team');
 		if(empty($this->team))
 			$this->setError('team', 'NO_TEAM');
-		elseif($this->team != 'team1' && $this->team != 'team2')
+		elseif(strcmp($this->team,'team1') != 0 && strcmp($this->team,'team2') != 0)
 			$this->setError('team', 'INVALID_TEAM');
 	}
 }
