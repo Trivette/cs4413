@@ -20,6 +20,13 @@ class BetView {
 	public static function showDetails($bet){
 		$base = (array_key_exists('base', $_SESSION))?$_SESSION['base']:"";
 		echo '</span>';
+		?>
+		<form action="placebet" method="post">
+		Game ID: <input type="number" name="gameID" required></input>
+		<br>Amount: <input type="number" name="amount" min="1" max="10" required></input>
+		<br><input type="submit" value="Submit">
+		</form>
+		<?php 
 		echo '<h3>Generate a new game randomly to test</h3>';
 		echo '<button type="button">Generate New Game</button>';
 		echo '</div>'; //end container
