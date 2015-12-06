@@ -38,3 +38,5 @@ LATE_BET It is too late to bet on that game
 GAME_NOT_PENDING That game is already finished!
 NO_TEAM No team supplied
 INVALID_TEAM Selected Team1 or Team2
+USER_NOT_AUTH You must log in to bet
+BET_ALREADY You have bet on this game already

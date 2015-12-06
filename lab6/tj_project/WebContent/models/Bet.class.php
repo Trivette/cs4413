@@ -67,6 +67,10 @@ class Bet {
 		$this->id = $betid;
 	}
 	
+	public function setUser($who){
+		$this->user = $who;
+	}
+	
 	public function getParameters() {
 		// Return data fields as an associative array
 		$paramArray = array("amount" => $this->amount, "game" => $this->game, "time" => $this->time); 

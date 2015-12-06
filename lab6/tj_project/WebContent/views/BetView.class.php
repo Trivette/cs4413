@@ -32,12 +32,19 @@ class BetView {
 			<span class="error">
 		   	<?php if (!is_null($bet)) {echo $bet->getError('wager');}?>
 			</span>
-			<br><input type="radio" name="team" value="team1" required></input>Left Team
-			<input type="radio" name="team" value="team2"></input>Right Team
+			<br><input type="radio" name="team" value="team1" required></input> Left Team
+			<input type="radio" name="team" value="team2"></input> Right Team
 			<span class="error">
 		   	<?php if (!is_null($bet)) {echo $bet->getError('team');}?>
 			</span>
 			<br><input type="submit" value="Submit">
+			<span class="error">
+		   	<?php if (!is_null($bet)) {echo $bet->getError('user');}?>
+			</span>
+			<br>
+			<span class="success">
+		   	<?php if (!is_null($bet) && $bet->getErrorCount() == 0 && $bet->getBetID() != 0) {echo "Bet Recorded!";}?>
+			</span>
 			</form>
 			<?php 
 		}

@@ -81,7 +81,7 @@ class UserView {
 	
 	public static function showUpdate() {
 		$_SESSION['headertitle'] = "Update user";
-		$_SESSION['styles'] = array('Jumbotron.css');
+		$_SESSION['styles'] = array('jumbotron.css');
 		MasterView::showHeader();
 		MasterView::showNav();
 		self::showUpdateDetails();
