@@ -8,6 +8,9 @@ class Bet {
 	private $amount;
 	private $game;
 	private $time;
+	private $id;
+	private $user;
+	private $team;
 	
 	public function __construct($formInput = null) {
 		$this->formInput = $formInput;
@@ -79,6 +82,9 @@ class Bet {
 		   $this->validateBetAmount();
 		   $this->validateGame();
 		   $this->time = new DateTime(date("Y-m-d H:i:s"));
+		   $this->user = $this->extractForm('who');
+		   $this->validateTeam();
+		   $this->id = $this->extractForm('id');
 		}
 	}
 
@@ -88,11 +94,13 @@ class Bet {
 	 	$this->amount = "";
 	 	$this->game = "";
 	 	$this->time = "";
+	 	$this->team = "";
+	 	$this->user = "";
 	}
 
 	private function validateBetAmount() {
 		// Username should only contain letters, numbers, dashes and underscore
-		$this->amount = $this->extractForm('amount');
+		$this->amount = $this->extractForm('wager');
 		if (empty($this->amount)) 
 			$this->setError('amount', 'NO_BET');
 		elseif (intval($this->amount) < 1 || intval($this->amount) > 10){
@@ -101,9 +109,17 @@ class Bet {
 	}
 	
 	private function validateGame(){
-		$this->game = $this->extractForm('gameID');
+		$this->game = $this->extractForm('game');
 		if(empty($this->game))
 			$this->setError('gameID', 'NO_GAME');
+	}
+	
+	private function validateTeam(){
+		$this->team = $this->extractForm('team');
+		if(empty($this->team))
+			$this->setError('team', 'NO_TEAM');
+		elseif($this->team != 'team1' && $this->team != 'team2')
+			$this->setError('team', 'INVALID_TEAM');
 	}
 }
 ?>

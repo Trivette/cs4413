@@ -32,6 +32,8 @@ class BetView {
 			<span class="error">
 		   	<?php if (!is_null($bet)) {echo $bet->getError('amount');}?>
 			</span>
+			<br><input type="radio" name="team" value="team1" required>Left Team
+			<input type="radio" name="team" value="team2">Right Team
 			<br><input type="submit" value="Submit">
 			</form>
 			<?php 
