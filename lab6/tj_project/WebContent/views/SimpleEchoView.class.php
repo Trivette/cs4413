@@ -1,6 +1,6 @@
 <?php
 class SimpleEchoView {
-  public static function show() {  
+  public static function show($variable) {  
 		
 ?>
 <!DOCTYPE html >
@@ -13,6 +13,7 @@ class SimpleEchoView {
 <h1>Echo of a form submission</h1>
 <?php
 print_r($_POST);
+echo "<br>".$variable;
 ?>
 </body>
 </html>

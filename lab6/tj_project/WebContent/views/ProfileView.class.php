@@ -144,8 +144,17 @@ class ProfileView {
 					
 				$start = new DateTime($game->getStart());
 				$end = new DateTime($game->getEnd());
+				
 				$length = $start->diff($end);
+				$timestr = "";
+				if($length->m != 0)
+					$timestr = $timestr.$length->m."mo ";
+				if($length->d != 0)
+					$timestr = $timestr.$length->d."d ";
+				if($length->h != 0)
+					$timestr = $timestr.$length->h."h ";
 					
+				$timestr = $timestr.$length->i."m ".$length->s."s";
 				echo '<tr class="'.$game->getServer().'">';
 				echo '<td class="'.$game->getServer().'">'.$game->getID().'</td>';
 				echo '<td class="'.$user1->getHome().'"><a href="/' . $base . '/user/show/' . $user1->getUserName() . '">'.$user1->getUserName().'</td>';
@@ -158,7 +167,7 @@ class ProfileView {
 				echo '<td class="'.$user6->getHome().'"><a href="/' . $base . '/user/show/' . $user6->getUserName() . '">'.$user6->getUserName().'</td>';
 				echo '<td>'.$loserskill.'</td>';
 				echo '<td class="minus">-'.$plusminus.'</td>';
-				echo '<td>'.$length->i.'m '.$length->s.'s</td>';
+				echo '<td>'.$timestr.'</td>';
 				echo '</tr>';
 			}
 			echo '</tbody>';

@@ -5,7 +5,7 @@ class Bet {
 	private $errors;
 	private $formInput;
 	
-	private $betAmount;
+	private $amount;
 	private $game;
 	private $time;
 	
@@ -37,10 +37,10 @@ class Bet {
 	}
 
 	public function getBetAmount() {
-		return $this->betAmount;
+		return $this->amount;
 	}
 	
-	public function getGame() {
+	public function getGameID() {
 		return $this->game;
 	}
 	
@@ -50,12 +50,12 @@ class Bet {
 	
 	public function getParameters() {
 		// Return data fields as an associative array
-		$paramArray = array("betAmount" => $this->betAmount, "game" => $this->game, "time" => $this->time); 
+		$paramArray = array("amount" => $this->amount, "game" => $this->game, "time" => $this->time); 
 		return $paramArray;
 	}
 
 	public function __toString() {
-		$str = "Bet Amount: ".$this->betAmount . " game: " . $this->game . " time: " . $this->time;
+		$str = "Bet Amount: ".$this->amount . " game: " . $this->game . " time: " . $this->time->format("Y-m-d H:i:s");
 		return $str;
 	}
 	
@@ -78,32 +78,32 @@ class Bet {
 		else{
 		   $this->validateBetAmount();
 		   $this->validateGame();
-		   $this->time = time();
+		   $this->time = new DateTime(date("Y-m-d H:i:s"));
 		}
 	}
 
 	private function initializeEmpty() {
 		$this->errorCount = 0;
 		$errors = array();
-	 	$this->betAmount = "";
+	 	$this->amount = "";
 	 	$this->game = "";
 	 	$this->time = "";
 	}
 
 	private function validateBetAmount() {
 		// Username should only contain letters, numbers, dashes and underscore
-		$this->betAmount = $this->extractForm('betAmount');
-		if (empty($this->betAmount)) 
-			$this->setError('betAmount', 'NO_BET');
-		elseif (intval($this->betAmount) < 1 || intval($this->betAmount) > 10){
-			$this->setError('betAmount', 'INVALID_BET');
+		$this->amount = $this->extractForm('amount');
+		if (empty($this->amount)) 
+			$this->setError('amount', 'NO_BET');
+		elseif (intval($this->amount) < 1 || intval($this->amount) > 10){
+			$this->setError('amount', 'INVALID_BET');
 		}
 	}
 	
 	private function validateGame(){
-		$this->game = $this->extractForm('game');
+		$this->game = $this->extractForm('gameID');
 		if(empty($this->game))
-			$this->setError('password', 'NO_GAME');
+			$this->setError('gameID', 'NO_GAME');
 	}
 }
 ?>

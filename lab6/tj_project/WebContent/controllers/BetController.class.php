@@ -17,8 +17,15 @@ class BetController {
 	public static function show(){
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$bet = new Bet($_POST);
-			if ($bet->getErrorCount() == 0)
-				SimpleEchoView::show($bet);
+			if ($bet->getErrorCount() == 0){
+				$games = GameDB::getGamesBy('id', $bet->getGameID());
+				if(empty($games)){
+					$bet->setError('gameID', 'NO_GAMEID');
+					BetView::show($bet);
+				} else {
+					SimpleEchoView::show($bet);
+				}
+			}
 			else
 				BetView::show($bet);
 		} else  // Initial link

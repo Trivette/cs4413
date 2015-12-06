@@ -20,13 +20,22 @@ class BetView {
 	public static function showDetails($bet){
 		$base = (array_key_exists('base', $_SESSION))?$_SESSION['base']:"";
 		echo '</span>';
-		?>
-		<form action="placebet" method="post">
-		Game ID: <input type="number" name="gameID" required></input>
-		<br>Amount: <input type="number" name="amount" min="1" max="10" required></input>
-		<br><input type="submit" value="Submit">
-		</form>
-		<?php 
+		$authenticatedUser = (array_key_exists('authenticatedUser', $_SESSION))?$_SESSION['authenticatedUser']:null;
+		if(!is_null($authenticatedUser)){
+			?>
+			<form action="bet" method="post">
+			Game ID: <input type="number" name="gameID" required></input>
+			<span class="error">
+		   	<?php if (!is_null($bet)) {echo $bet->getError('gameID');}?>
+			</span>
+			<br>Amount: <input type="number" name="amount" min="1" max="10" required></input>
+			<span class="error">
+		   	<?php if (!is_null($bet)) {echo $bet->getError('amount');}?>
+			</span>
+			<br><input type="submit" value="Submit">
+			</form>
+			<?php 
+		}
 		echo '<h3>Generate a new game randomly to test</h3>';
 		echo '<button type="button">Generate New Game</button>';
 		echo '</div>'; //end container
@@ -116,7 +125,15 @@ class BetView {
 			$end = new DateTime(date("Y-m-d H:i:s"));
 			
 			$length = $start->diff($end);
-				
+			$timestr = "";
+			if($length->m != 0)
+				$timestr = $timestr.$length->m."mo ";
+			if($length->d != 0)
+				$timestr = $timestr.$length->d."d ";
+			if($length->h != 0)
+				$timestr = $timestr.$length->h."h ";
+			
+			$timestr = $timestr.$length->i."m ".$length->s."s";
 				
 			echo '<tr class="'.$game->getServer().'">';
 			echo '<td class="'.$game->getServer().'">'.$game->getID().'</td>';
@@ -130,7 +147,7 @@ class BetView {
 			echo '<td class="'.$user6->getHome().'"><a href="/' . $base . '/user/show/' . $user6->getUserName() . '">'.$user6->getUserName().'</td>';
 			echo '<td>'.$game->getTeamSkill2().'</td>';
 			echo '<td>+'.$worth[1].'/-'.$worth[0].'</td>';
-			echo '<td>'.$length->i.'m '.$length->s.'s</td>';
+			echo '<td>'.$timestr.'</td>';
 			echo '</tr>';
 				
 		}
