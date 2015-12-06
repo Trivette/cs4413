@@ -29,13 +29,13 @@ class ProfileView {
 ?> 
 <div class="container-fluid">
 <h2><?php if (!is_null($hockuser)) {echo $hockuser->getUserName();}?>'s Profile</h2>
-<p>Saved img name is: <?php if((!is_null($webuser))) {echo $webuser->getPicture();}?></p>
 </div>
 <section>
 <?php		
+		//<p>Saved img name is: <?php if((!is_null($webuser))) {echo $webuser->getPicture();}</p>
 		if(!is_null($hockuser)){
 			echo '<div class="container-fluid">';
-			echo '<h4>Stats</h4>';
+			echo '<h4>Game Stats</h4>';
 			echo '<div class="table">';
 			echo '<table class="table" id="stats1">';
 			echo '<thead>';
@@ -56,7 +56,30 @@ class ProfileView {
 			echo '</tbody>';
 			echo '</table>';
 			echo '</div>'; //end table
+			echo '<h4>Bet Stats</h4>';
+			echo '<div class="table">';
+			echo '<table class="table" id="stats1">';
+			echo '<thead>';
+			echo '<tr>';
+			echo '<th>Total</th>';
+			echo '<th>Correct</th>';
+			echo '<th>Incorrect</th>';
+			echo '<th>Gain</th>';
+			echo '</tr>';
+			echo '</thead>';
+			echo '<tbody>';
+			echo '<tr>';
+			echo '<td>'.($hockuser->getWBets() + $hockuser->getLBets()).'</td>';
+			echo '<td>'.$hockuser->getWBets().'</td>';
+			echo '<td>'.$hockuser->getLBets().'</td>';
+			echo '<td>'.$hockuser->getChanges().'</td>';
+			echo '</tr>';
+			echo '</tbody>';
+			echo '</table>';
+			echo '</div>'; //end table
 			echo '</div>'; //end container
+			
+			
 		} else
 			echo "No stats to display for this non existent user";
 ?>
