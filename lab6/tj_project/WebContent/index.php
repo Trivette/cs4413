@@ -20,6 +20,7 @@
 			break;
 		case "logout" :
 			LogoutController::run ();
+			break;
 		case "bet" :
 			BetController::run ();
 			break;

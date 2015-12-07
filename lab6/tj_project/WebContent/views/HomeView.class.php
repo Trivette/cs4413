@@ -32,9 +32,9 @@ class HomeView {
 	<hr>
 	<section>
 		<aside>
-			<h1>Uniball</h1>
+			<h4>Uniball</h4>
 			<p>Uniball is an online multi-player space hockey video game.  Click <a href="http://uniballhq.com">here</a> for more information.</p>
-			<h1>Hock League</h1>
+			<h4>Hock League</h4>
 			<p>Hock League is the name of the premier Uniball league dedicated to competitive 3v3 games on the Hockey map.</p>
 		</aside>
 	</section>
