@@ -45,7 +45,7 @@ class BetView {
 			</span>
 			<br>
 			<span class="success">
-		   	<?php if (!is_null($bet) && $bet->getErrorCount() == 0 && $bet->getBetID() != 0) {echo "Bet Recorded!";}?>
+		   	<?php if (!is_null($bet) && $bet->getErrorCount() == 0 && $bet->getBetID() != 0) {echo "Success!  Bet Recorded!";}?>
 			</span>
 			</form>
 			<?php 
@@ -77,8 +77,8 @@ class BetView {
 			return;
 		}
 		$games = array();
-		foreach($bets as $bet){
-			$game = GameDB::getGamesBy('id', $bet->getGameID());
+		foreach($bets as $b){
+			$game = GameDB::getGamesBy('id', $b->getGameID());
 			if(empty($game))
 				continue;
 			$g = $game[0];
@@ -105,6 +105,8 @@ class BetView {
 		echo '<th>TeamSkill</th>';
 		echo '<th>+/-</th>';
 		echo '<th>Length</th>';
+		echo '<th>Bet</th>';
+		echo '<th>Amount</th>';
 		echo '</tr>';
 		echo '</thead>';
 		echo '<tbody>';
@@ -159,7 +161,14 @@ class BetView {
 				$timestr = $timestr.$length->h."h ";
 				
 			$timestr = $timestr.$length->i."m ".$length->s."s";
-			//$bets = BetDB::findBet($game->getID(), )
+			$bets = BetDB::findBet($game->getID(), $authenticatedUser->getHockName());
+			$selected = "";
+			$amount = "";
+			if(!empty($bets)){
+				$b = $bets[0];
+				$selected = $b->getTeam();
+				$amount = $b->getBetAmount();
+			}
 			echo '<tr class="'.$game->getServer().'">';
 			echo '<td class="'.$game->getServer().'">'.$game->getID().'</td>';
 			echo '<td class="'.$user1->getHome().'"><a href="/' . $base . '/user/show/' . $user1->getUserName() . '">'.$user1->getUserName().'</td>';
@@ -172,7 +181,9 @@ class BetView {
 			echo '<td class="'.$user6->getHome().'"><a href="/' . $base . '/user/show/' . $user6->getUserName() . '">'.$user6->getUserName().'</td>';
 			echo '<td>'.$game->getTeamSkill2().'</td>';
 			echo '<td>+'.$worth[1].'/-'.$worth[0].'</td>';
-			echo '<td>'.$timestr.'</td>';
+			echo '<td class="edge">'.$timestr.'</td>';
+			echo '<td>'.$selected.'</td>';
+			echo '<td>$'.$amount.'</td>';
 			echo '</tr>';
 		
 		}
@@ -210,7 +221,7 @@ class BetView {
 		echo '</tr>';
 		echo '</thead>';
 		echo '<tbody>';
-		
+		$authenticatedUser = (array_key_exists('authenticatedUser', $_SESSION))?$_SESSION['authenticatedUser']:null;
 		//iterate through all games
 		foreach($games as $game){
 			//If the game is not finished or had a bad/cancel don't show here
@@ -226,7 +237,13 @@ class BetView {
 			$team2 = $teams[0];
 			if(is_null($team1) || is_null($team2))
 				break;
-				
+			if(!is_null($authenticatedUser)){
+				$bets = BetDB::findBet($game->getID(), $authenticatedUser->getHockName());
+				if(!empty($bets)){
+					continue;
+				}
+			}
+			
 			$worth = GameController::calcWorth($game->getTeamSkill1(), $game->getTeamSkill2());
 			
 			//team1

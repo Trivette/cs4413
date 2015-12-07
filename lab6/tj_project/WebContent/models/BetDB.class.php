@@ -40,7 +40,7 @@ class BetDB {
 	}
 	
 	public static function findBet($gameid, $user) {
-		$query = "SELECT * FROM bets where who = :who and gameid = :gameid";
+		$query = "SELECT * FROM bets where who = :who and game = :gameid";
 		$bets = array();
 		try {
 			$db = Database::getDB();
