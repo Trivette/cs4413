@@ -51,13 +51,13 @@ class BetView {
 			<?php 
 		}
 		echo '<h3>Generate a new game randomly to test</h3>';
-		echo '<button type="button">Generate New Game</button>';
+		echo '<button type="button" class="generate">Generate New Game</button>';
 		echo '</div>'; //end container
 		?>
 			<script>
 			$(document).ready(
 				function(){
-			       $("button").click(
+			       $("button.generate").click(
 			    	   function(){
 			              $.ajax({url:<?php echo '"/'.$base.'/bet/generate"'; ?>, 
 			    	      success: function(result){$("#games").html(result);}
