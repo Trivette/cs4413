@@ -39,6 +39,23 @@ class BetDB {
 		return $bets;
 	}
 	
+	public static function findBet($gameid, $user) {
+		$query = "SELECT * FROM bets where who = :who and gameid = :gameid";
+		$bets = array();
+		try {
+			$db = Database::getDB();
+			$statement = $db->prepare($query);
+			$statement->bindValue(":who", strtolower($user));
+			$statement->bindValue(":gameid", $gameid);
+			$statement->execute();
+			$bets = BetDB::getBetsArray ($statement->fetchAll(PDO::FETCH_ASSOC));
+			$statement->closeCursor();
+		} catch (PDOException $e) { // Not permanent error handling
+			echo "<p>Error getting bet by who and gameid " . $e->getMessage () . "</p>";
+		}
+		return $bets;
+	}
+	
 	public static function getBetRowSetsBy($type = null, $value = null) {
 		// Returns the rows of bets whose $type field has value $value
 		$allowedTypes = ["id", "who", "game"];

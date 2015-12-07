@@ -65,6 +65,7 @@ class ProfileView {
 			echo '<th>Correct</th>';
 			echo '<th>Incorrect</th>';
 			echo '<th>Gain</th>';
+			echo '<th>Cash</th>';
 			echo '</tr>';
 			echo '</thead>';
 			echo '<tbody>';
@@ -73,6 +74,7 @@ class ProfileView {
 			echo '<td>'.$hockuser->getWBets().'</td>';
 			echo '<td>'.$hockuser->getLBets().'</td>';
 			echo '<td>'.$hockuser->getChanges().'</td>';
+			echo '<td>$'.$hockuser->getWagerPoints().'</td>';
 			echo '</tr>';
 			echo '</tbody>';
 			echo '</table>';
