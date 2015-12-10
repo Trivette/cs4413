@@ -105,8 +105,8 @@ class MasterView {
      
      public static function showHomeFooter() {
      	echo '<footer>';
-     	echo '<p>&copy; Joshua Trivette, UTSA 2015</p>';
-     	echo '<p>Contact Information: <a href="mailto:joshuatrivette@gmail.com">joshuatrivette@gmail.com</a>';
+     	echo '<p>&copy; JT, UTSA 2015</p>';
+     	echo '<p>Contact Information: Removed';
      	echo '</footer>';
      }
      
