@@ -5,7 +5,7 @@ class GameController {
 		$arguments = $_SESSION['arguments'];
 		switch ($action) {
 			case "all":
-				$_SESSION['games'] = GameDB::getAllGames();
+				$_SESSION['games'] = GameDB::getAllGamesDesc();
 				GameView::showAll();
 				break;
 			default:

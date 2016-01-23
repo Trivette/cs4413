@@ -26,6 +26,7 @@ class ProfileView {
 	
   	public static function showDetails($webuser, $hockuser) {  	
   		$base = (array_key_exists('base', $_SESSION))?$_SESSION['base']:"";
+  		$arguments = (array_key_exists('arguments', $_SESSION))?$_SESSION['arguments']:"";
 ?> 
 <div class="container-fluid">
 <h2><?php if (!is_null($hockuser)) {echo $hockuser->getUserName();}?>'s Profile</h2>
@@ -166,6 +167,40 @@ class ProfileView {
 				$user4 = $user4[0];
 				$user5 = $user5[0];
 				$user6 = $user6[0];
+				
+				$u1 = $u2 = $u3 = $u4 = $u5 = $u6 = "";
+				switch ($arguments){
+					case $user1->getUserName():
+						$u1 = "user";
+						break;
+					case $user2->getUserName():
+						$tmp = $user1;
+						$user1 = $user2;
+						$user2 = $tmp;
+						$u1 = "user";
+						break;
+					case $user3->getUserName():
+						$tmp = $user1;
+						$user1 = $user3;
+						$user3 = $tmp;
+						$u1 = "user";
+						break;
+					case $user4->getUserName():
+						$u4 = "user";
+						break;
+					case $user5->getUserName() :
+						$tmp = $user4;
+						$user4 = $user5;
+						$user5 = $tmp;
+						$u4 = "user";
+						break;
+					case $user6->getUserName() :
+						$tmp = $user4;
+						$user4 = $user6;
+						$user6 = $tmp;
+						$u4 = "user";
+						break;
+				}
 					
 				$start = new DateTime($game->getStart());
 				$end = new DateTime($game->getEnd());
@@ -182,14 +217,14 @@ class ProfileView {
 				$timestr = $timestr.$length->i."m ".$length->s."s";
 				echo '<tr class="'.$game->getServer().'">';
 				echo '<td class="'.$game->getServer().'">'.$game->getID().'</td>';
-				echo '<td class="'.$user1->getHome().'"><a href="/' . $base . '/user/show/' . $user1->getUserName() . '">'.$user1->getUserName().'</td>';
-				echo '<td class="'.$user2->getHome().'"><a href="/' . $base . '/user/show/' . $user2->getUserName() . '">'.$user2->getUserName().'</td>';
-				echo '<td class="'.$user3->getHome().'"><a href="/' . $base . '/user/show/' . $user3->getUserName() . '">'.$user3->getUserName().'</td>';
+				echo '<td class="'.$user1->getHome().$u1.'"><a href="' . $base . '/user/show/' . $user1->getUserName() . '">'.$user1->getUserName().'</td>';
+				echo '<td class="'.$user2->getHome().$u2.'"><a href="' . $base . '/user/show/' . $user2->getUserName() . '">'.$user2->getUserName().'</td>';
+				echo '<td class="'.$user3->getHome().$u3.'"><a href="' . $base . '/user/show/' . $user3->getUserName() . '">'.$user3->getUserName().'</td>';
 				echo '<td>'.$winnerskill.'</td>';
 				echo '<td class="plus">+'.$plusminus.'</td>';
-				echo '<td class="'.$user4->getHome().'"><a href="/' . $base . '/user/show/' . $user4->getUserName() . '">'.$user4->getUserName().'</td>';
-				echo '<td class="'.$user5->getHome().'"><a href="/' . $base . '/user/show/' . $user5->getUserName() . '">'.$user5->getUserName().'</td>';
-				echo '<td class="'.$user6->getHome().'"><a href="/' . $base . '/user/show/' . $user6->getUserName() . '">'.$user6->getUserName().'</td>';
+				echo '<td class="'.$user4->getHome().$u4.'"><a href="' . $base . '/user/show/' . $user4->getUserName() . '">'.$user4->getUserName().'</td>';
+				echo '<td class="'.$user5->getHome().$u5.'"><a href="' . $base . '/user/show/' . $user5->getUserName() . '">'.$user5->getUserName().'</td>';
+				echo '<td class="'.$user6->getHome().$u6.'"><a href="' . $base . '/user/show/' . $user6->getUserName() . '">'.$user6->getUserName().'</td>';
 				echo '<td>'.$loserskill.'</td>';
 				echo '<td class="minus">-'.$plusminus.'</td>';
 				echo '<td>'.$timestr.'</td>';
@@ -217,7 +252,7 @@ class ProfileView {
   	public static function showUpdateButton(){
   		$base = (array_key_exists('base', $_SESSION))?$_SESSION['base']:"";
   		$authenticatedUser = $_SESSION['authenticatedUser'];
-  		echo '<a href="/' . $base . '/user/update/' . $authenticatedUser->getUserName() .'" class="button">Update Profile</a>';
+  		echo '<a href="' . $base . '/user/update/' . $authenticatedUser->getUserName() .'" class="button">Update Profile</a>';
   	}
 }
 ?>

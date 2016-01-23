@@ -6,8 +6,8 @@
 	$url = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 	list($fill, $base, $control, $action, $arguments) =
 			explode('/', $url, 5) + array("", "", "", "", null);
-	$_SESSION['base'] = $base;
-	$_SESSION['control'] = $control; 
+	$_SESSION['base'] = "http://localhost/tj_project";
+	$_SESSION['control'] = $control;
 	$_SESSION['action'] = $action;
 	$_SESSION['arguments'] = $arguments;
 	

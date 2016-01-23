@@ -56,8 +56,10 @@ class UserController {
 					echo '<p>All games is empty</p>';
 					$_SESSION['allgames'] = null;
 				}
-				else 
+				else{
+					usort($allgames, "UserController::cmp");
 					$_SESSION['allgames'] = $allgames;
+				}
 			}
 		    ProfileView::show($webuser, $hockuser);
 		} else{
@@ -135,6 +137,10 @@ class UserController {
 	public static function showHome() {
 		HomeView::show();
 		header('Location: /'.$_SESSION['base']);
+	}
+	
+	private static function cmp($a, $b){
+		return strcmp($b->getID(), $a->getID());
 	}
 }
 ?>

@@ -16,7 +16,7 @@ class MasterView {
 	     $styles = (array_key_exists('styles', $_SESSION))? $_SESSION['styles']: array();
 	     $base = (array_key_exists('base', $_SESSION))? $_SESSION['base']: "";
 	     foreach ($styles as $style )
-	     	echo '<link href="/'.$base.'/css/'.$style. '" rel="stylesheet">';
+	     	echo '<link href="'.$base.'/css/'.$style. '" rel="stylesheet">';
 	     $title = (array_key_exists('headertitle', $_SESSION))? $_SESSION['headertitle']: "";
      ?>
      <title><?php echo $title; ?></title>
@@ -39,19 +39,19 @@ class MasterView {
      	echo '<span class="icon-bar"></span>';
      	echo '<span class="icon-bar"></span>';
      	echo '</button>';
-     	echo '<a class="navbar-brand" href="/'.$base.'/">HockLeague</a>';
+     	echo '<a class="navbar-brand" href="'.$base.'/">HockLeague</a>';
      	echo '</div>';
      	echo '<div id="navbar" class="navbar-collapse collapse">';
      	echo '<ul class="nav navbar-nav">';
      	if (!is_null($authenticatedUser))
      		echo '<li class="active"><a href="/'.$base.'/user/show/' . $authenticatedUser->getHockName().'">Profile</a></li>';
-     	echo '<li><a href="/'.$base.'/user/leaderboard">Leaderboard</a></li>';
-     	echo '<li><a href="/'.$base.'/game/all">All Games</a></li>';
-     	echo '<li><a href="/'.$base.'/bet">Betting</a></li>';
+     	echo '<li><a href="'.$base.'/user/leaderboard">Leaderboard</a></li>';
+     	echo '<li><a href="'.$base.'/game/all">All Games</a></li>';
+     	echo '<li><a href="'.$base.'/bet">Betting</a></li>';
      	echo '</ul>';
      	if (!is_null($authenticatedUser)) {
      		echo '<form class="navbar-form navbar-right"
-    			    method="post" action="/'.$base.'/logout">';
+    			    method="post" action="'.$base.'/logout">';
      		echo '<div class="form-group">';
      		echo '<span class="label label-default">Hi '.
      				$authenticatedUser->getUserName().'</span>&nbsp; &nbsp;';
@@ -60,7 +60,7 @@ class MasterView {
      		echo '</form>';
      	} else {
      		echo '<form class="navbar-form navbar-right"
-	    			    method="post" action="/'.$base.'/login">';
+	    			    method="post" action="'.$base.'/login">';
      		echo '<div class="form-group">';
      		echo '<input type="text" placeholder="User name" class="form-control" name ="userName" ';
      		if (!is_null($user))
@@ -71,7 +71,7 @@ class MasterView {
 	    			      class="form-control" name ="password">';
      		echo '</div>';
      		echo '<button type="submit" class="btn btn-success">Sign in</button>';
-     		echo '<a class="btn btn-primary" href="/'.$base.'/signup" role="button">Register</a></p>';
+     		echo '<a class="btn btn-primary" href="'.$base.'/signup" role="button">Register</a></p>';
      		echo '</form>';
      	}
      	
@@ -106,7 +106,7 @@ class MasterView {
      public static function showHomeFooter() {
      	echo '<footer>';
      	echo '<p>&copy; JT, UTSA 2015</p>';
-     	echo '<p>Contact Information: Removed';
+     	echo '<p>Contact Information: moppwns@gmail.com';
      	echo '</footer>';
      }
      

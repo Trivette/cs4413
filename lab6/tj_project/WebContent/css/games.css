@@ -27,10 +27,10 @@ td.minus {
 	color: rgb(204, 0, 0);
 }
 
-[class="1"] { background: rgba(0, 255, 0, .2); }
-[class="2"] { background: rgba(255, 0, 0, .2); }
-[class="3"] { background: rgba(255, 165, 0, .2); }
-[class="4"] { background: rgba(0, 0, 255, .2); }
+[class="1"] { background: rgba(0, 255, 0, .15); }
+[class="2"] { background: rgba(255, 0, 0, .15); }
+[class="3"] { background: rgba(255, 165, 0, .15); }
+[class="4"] { background: rgba(0, 0, 255, .15); }
 
 span.success {
 	color: green;
@@ -38,4 +38,28 @@ span.success {
 
 span.error {
 	color: red;
+}
+
+td.eastuser a {
+	color: orange;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+td.westuser a {
+	color: green;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+td.mwuser a {
+	color: red;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+td.ukuser a {
+	color: blue;
+	font-weight: bold;
+	text-decoration: underline;
 }

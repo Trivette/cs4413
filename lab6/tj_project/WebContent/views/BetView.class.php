@@ -50,8 +50,8 @@ class BetView {
 			</form>
 			<?php 
 		}
-		echo '<h3>Generate a new game randomly to test</h3>';
-		echo '<button type="button" class="generate">Generate New Game</button>';
+		#echo '<h3>Generate a new game randomly to test</h3>';
+		#echo '<button type="button" class="generate">Generate New Game</button>';
 		echo '</div>'; //end container
 		?>
 			<script>
@@ -59,7 +59,7 @@ class BetView {
 				function(){
 			       $("button.generate").click(
 			    	   function(){
-			              $.ajax({url:<?php echo '"/'.$base.'/bet/generate"'; ?>, 
+			              $.ajax({url:<?php echo '"'.$base.'/bet/generate"'; ?>, 
 			    	      success: function(result){$("#games").html(result);}
 			            });
 			     });
@@ -171,14 +171,14 @@ class BetView {
 			}
 			echo '<tr class="'.$game->getServer().'">';
 			echo '<td class="'.$game->getServer().'">'.$game->getID().'</td>';
-			echo '<td class="'.$user1->getHome().'"><a href="/' . $base . '/user/show/' . $user1->getUserName() . '">'.$user1->getUserName().'</td>';
-			echo '<td class="'.$user2->getHome().'"><a href="/' . $base . '/user/show/' . $user2->getUserName() . '">'.$user2->getUserName().'</td>';
-			echo '<td class="'.$user3->getHome().'"><a href="/' . $base . '/user/show/' . $user3->getUserName() . '">'.$user3->getUserName().'</td>';
+			echo '<td class="'.$user1->getHome().'"><a href="' . $base . '/user/show/' . $user1->getUserName() . '">'.$user1->getUserName().'</td>';
+			echo '<td class="'.$user2->getHome().'"><a href="' . $base . '/user/show/' . $user2->getUserName() . '">'.$user2->getUserName().'</td>';
+			echo '<td class="'.$user3->getHome().'"><a href="' . $base . '/user/show/' . $user3->getUserName() . '">'.$user3->getUserName().'</td>';
 			echo '<td>'.$game->getTeamSkill1().'</td>';
 			echo '<td class="edge">+'.$worth[0].'/-'.$worth[1].'</td>';
-			echo '<td class="'.$user4->getHome().'"><a href="/' . $base . '/user/show/' . $user4->getUserName() . '">'.$user4->getUserName().'</td>';
-			echo '<td class="'.$user5->getHome().'"><a href="/' . $base . '/user/show/' . $user5->getUserName() . '">'.$user5->getUserName().'</td>';
-			echo '<td class="'.$user6->getHome().'"><a href="/' . $base . '/user/show/' . $user6->getUserName() . '">'.$user6->getUserName().'</td>';
+			echo '<td class="'.$user4->getHome().'"><a href="' . $base . '/user/show/' . $user4->getUserName() . '">'.$user4->getUserName().'</td>';
+			echo '<td class="'.$user5->getHome().'"><a href="' . $base . '/user/show/' . $user5->getUserName() . '">'.$user5->getUserName().'</td>';
+			echo '<td class="'.$user6->getHome().'"><a href="' . $base . '/user/show/' . $user6->getUserName() . '">'.$user6->getUserName().'</td>';
 			echo '<td>'.$game->getTeamSkill2().'</td>';
 			echo '<td>+'.$worth[1].'/-'.$worth[0].'</td>';
 			echo '<td class="edge">'.$timestr.'</td>';
@@ -281,14 +281,14 @@ class BetView {
 				
 			echo '<tr class="'.$game->getServer().'">';
 			echo '<td class="'.$game->getServer().'">'.$game->getID().'</td>';
-			echo '<td class="'.$user1->getHome().'"><a href="/' . $base . '/user/show/' . $user1->getUserName() . '">'.$user1->getUserName().'</td>';
-			echo '<td class="'.$user2->getHome().'"><a href="/' . $base . '/user/show/' . $user2->getUserName() . '">'.$user2->getUserName().'</td>';
-			echo '<td class="'.$user3->getHome().'"><a href="/' . $base . '/user/show/' . $user3->getUserName() . '">'.$user3->getUserName().'</td>';
+			echo '<td class="'.$user1->getHome().'"><a href="' . $base . '/user/show/' . $user1->getUserName() . '">'.$user1->getUserName().'</td>';
+			echo '<td class="'.$user2->getHome().'"><a href="' . $base . '/user/show/' . $user2->getUserName() . '">'.$user2->getUserName().'</td>';
+			echo '<td class="'.$user3->getHome().'"><a href="' . $base . '/user/show/' . $user3->getUserName() . '">'.$user3->getUserName().'</td>';
 			echo '<td>'.$game->getTeamSkill1().'</td>';
 			echo '<td class="edge">+'.$worth[0].'/-'.$worth[1].'</td>';
-			echo '<td class="'.$user4->getHome().'"><a href="/' . $base . '/user/show/' . $user4->getUserName() . '">'.$user4->getUserName().'</td>';
-			echo '<td class="'.$user5->getHome().'"><a href="/' . $base . '/user/show/' . $user5->getUserName() . '">'.$user5->getUserName().'</td>';
-			echo '<td class="'.$user6->getHome().'"><a href="/' . $base . '/user/show/' . $user6->getUserName() . '">'.$user6->getUserName().'</td>';
+			echo '<td class="'.$user4->getHome().'"><a href="' . $base . '/user/show/' . $user4->getUserName() . '">'.$user4->getUserName().'</td>';
+			echo '<td class="'.$user5->getHome().'"><a href="' . $base . '/user/show/' . $user5->getUserName() . '">'.$user5->getUserName().'</td>';
+			echo '<td class="'.$user6->getHome().'"><a href="' . $base . '/user/show/' . $user6->getUserName() . '">'.$user6->getUserName().'</td>';
 			echo '<td>'.$game->getTeamSkill2().'</td>';
 			echo '<td>+'.$worth[1].'/-'.$worth[0].'</td>';
 			echo '<td>'.$timestr.'</td>';

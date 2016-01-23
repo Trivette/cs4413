@@ -13,7 +13,7 @@ class GameView {
 	public static function showAllDetails() {
 		$base = $_SESSION['base'];
 		$games = (array_key_exists('games', $_SESSION))?$_SESSION['games']:array();
-		echo '<script src="/'.$base.'/js/sorttable.js"></script>';
+		echo '<script src="'.$base.'/js/sorttable.js"></script>';
 		echo '<div class="container">';
 		echo '<h1>All Games This Season</h1>';
 		
@@ -111,14 +111,14 @@ class GameView {
 			
 			echo '<tr class="'.$game->getServer().'">';
 			echo '<td class="'.$game->getServer().'">'.$game->getID().'</td>';
-			echo '<td class="'.$user1->getHome().'"><a href="/' . $base . '/user/show/' . $user1->getUserName() . '">'.$user1->getUserName().'</td>';
-			echo '<td class="'.$user2->getHome().'"><a href="/' . $base . '/user/show/' . $user2->getUserName() . '">'.$user2->getUserName().'</td>';
-			echo '<td class="'.$user3->getHome().'"><a href="/' . $base . '/user/show/' . $user3->getUserName() . '">'.$user3->getUserName().'</td>';
+			echo '<td class="'.$user1->getHome().'"><a href="' . $base . '/user/show/' . $user1->getUserName() . '">'.$user1->getUserName().'</td>';
+			echo '<td class="'.$user2->getHome().'"><a href="' . $base . '/user/show/' . $user2->getUserName() . '">'.$user2->getUserName().'</td>';
+			echo '<td class="'.$user3->getHome().'"><a href="' . $base . '/user/show/' . $user3->getUserName() . '">'.$user3->getUserName().'</td>';
 			echo '<td>'.$winnerskill.'</td>';
 			echo '<td class="plus">+'.$plusminus.'</td>';
-			echo '<td class="'.$user4->getHome().'"><a href="/' . $base . '/user/show/' . $user4->getUserName() . '">'.$user4->getUserName().'</td>';
-			echo '<td class="'.$user5->getHome().'"><a href="/' . $base . '/user/show/' . $user5->getUserName() . '">'.$user5->getUserName().'</td>';
-			echo '<td class="'.$user6->getHome().'"><a href="/' . $base . '/user/show/' . $user6->getUserName() . '">'.$user6->getUserName().'</td>';
+			echo '<td class="'.$user4->getHome().'"><a href="' . $base . '/user/show/' . $user4->getUserName() . '">'.$user4->getUserName().'</td>';
+			echo '<td class="'.$user5->getHome().'"><a href="' . $base . '/user/show/' . $user5->getUserName() . '">'.$user5->getUserName().'</td>';
+			echo '<td class="'.$user6->getHome().'"><a href="' . $base . '/user/show/' . $user6->getUserName() . '">'.$user6->getUserName().'</td>';
 			echo '<td>'.$loserskill.'</td>';
 			echo '<td class="minus">-'.$plusminus.'</td>';
 			echo '<td>'.$timestr.'</td>';

@@ -46,6 +46,21 @@ class GameDB {
 		return $games;
 	}
 	
+	public static function getAllGamesDesc() {
+		$query = "SELECT * FROM games ORDER BY id DESC";
+		$games = array();
+		try {
+			$db = Database::getDB();
+			$statement = $db->prepare($query);
+			$statement->execute();
+			$games = GameDB::getGamesArray ($statement->fetchAll(PDO::FETCH_ASSOC));
+			$statement->closeCursor();
+		} catch (PDOException $e) { // Not permanent error handling
+			echo "<p>Error getting all games " . $e->getMessage () . "</p>";
+		}
+		return $games;
+	}
+	
 	public static function getGameRowSetsBy($type = null, $value = null) {
 		// Returns the rows of Users whose $type field has value $value
 		$allowedTypes = ["id", "pending", "server", "teamid1", "teamid2"];

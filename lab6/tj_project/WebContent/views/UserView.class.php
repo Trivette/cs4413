@@ -20,7 +20,7 @@ class UserView {
 	public static function showLeaderboard() {
 		$users = (array_key_exists('users', $_SESSION))?$_SESSION['users']:array();
 		$base = (array_key_exists('base', $_SESSION))?$_SESSION['base']:"";
-		echo '<script src="/'.$base.'/js/sorttable.js"></script>';
+		echo '<script src="'.$base.'/js/sorttable.js"></script>';
 		echo '<div class="container">';
 		echo "<h1>Hock League Ranks</h1>";
 		echo '<div class="table-responsive">';
@@ -36,7 +36,7 @@ class UserView {
 			$numgames = $wins + $losses;
 			//In the future these people will be left off the leaderboard
 			if($numgames == 0)
-				$numgames = 1;
+				continue;
 			
 			
 			$ct += 1;
@@ -57,7 +57,7 @@ class UserView {
 			
 			echo '<tr class="' . $bgcolor . '">';
 			echo '<td class=' . $colorstyle . '> '. $ct .'</td>';
-			echo '<td><a href="/' . $base . '/user/show/' . $user->getUserName() . '">' . $user->getUserName() . '</td>';
+			echo '<td class="'.$user->getHome().'"><a href="' . $base . '/user/show/' . $user->getUserName() . '">' . $user->getUserName() . '</td>';
 			echo '<td>'.$user->getSkill().'</td>';
 			echo '<td>'.$wins.'</td>';
 			echo '<td>'.$losses.'</td>';
@@ -103,7 +103,7 @@ class UserView {
 		   return;
 	    }
 	    
-	    echo '<form role="form" method="Post" action ="/'.$base. '/user/update/'.$webuser->getUserName().'">';
+	    echo '<form role="form" method="Post" action ="'.$base. '/user/update/'.$webuser->getUserName().'">';
 	    
 	    // Error at the top of the form
 	    if (!is_null($webuser) && !empty($webuser->getError('userName'))) {

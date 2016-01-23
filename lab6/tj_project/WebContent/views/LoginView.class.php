@@ -32,7 +32,7 @@ class LoginView {
 				</p>
 				<p><input type="submit" value="Submit"></p>
 				</form>
-				<p>New user? <a href="<?php echo '/'.$base.'/signup';?>">Sign up here</a></p>
+				<p>New user? <a href="<?php echo ''.$base.'/signup';?>">Sign up here</a></p>
 				</section>
 			<?php 
   }
