@@ -247,13 +247,13 @@ class BetView {
 			$worth = GameController::calcWorth($game->getTeamSkill1(), $game->getTeamSkill2());
 			
 			//team1
-			$user1 = HockUserDB::getUsersBy('id', $team1->getUID1());
-			$user2 = HockUserDB::getUsersBy('id', $team1->getUID2());
-			$user3 = HockUserDB::getUsersBy('id', $team1->getUID3());
+			$user1 = HockUserDB::getUserByID_NameAndHome($team1->getUID1());
+			$user2 = HockUserDB::getUserByID_NameAndHome($team1->getUID2());
+			$user3 = HockUserDB::getUserByID_NameAndHome($team1->getUID3());
 			//team2
-			$user4 = HockUserDB::getUsersBy('id', $team2->getUID1());
-			$user5 = HockUserDB::getUsersBy('id', $team2->getUID2());
-			$user6 = HockUserDB::getUsersBy('id', $team2->getUID3());
+			$user4 = HockUserDB::getUserByID_NameAndHome($team2->getUID1());
+			$user5 = HockUserDB::getUserByID_NameAndHome($team2->getUID2());
+			$user6 = HockUserDB::getUserByID_NameAndHome($team2->getUID3());
 				
 			if(empty($user1) || empty($user2) || empty($user3) || empty($user4) || empty($user5) || empty($user6))
 				break;

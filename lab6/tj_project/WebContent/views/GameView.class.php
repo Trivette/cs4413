@@ -60,26 +60,26 @@ class GameView {
 				//team1 won
 				$plusminus = $worth[0];
 				//team1
-				$user1 = HockUserDB::getUsersBy('id', $team1->getUID1());
-				$user2 = HockUserDB::getUsersBy('id', $team1->getUID2());
-				$user3 = HockUserDB::getUsersBy('id', $team1->getUID3());
+				$user1 = HockUserDB::getUserByID_NameAndHome($team1->getUID1());
+				$user2 = HockUserDB::getUserByID_NameAndHome($team1->getUID2());
+				$user3 = HockUserDB::getUserByID_NameAndHome($team1->getUID3());
 				//team2
-				$user4 = HockUserDB::getUsersBy('id', $team2->getUID1());
-				$user5 = HockUserDB::getUsersBy('id', $team2->getUID2());
-				$user6 = HockUserDB::getUsersBy('id', $team2->getUID3());
+				$user4 = HockUserDB::getUserByID_NameAndHome($team2->getUID1());
+				$user5 = HockUserDB::getUserByID_NameAndHome($team2->getUID2());
+				$user6 = HockUserDB::getUserByID_NameAndHome($team2->getUID3());
 				$winnerskill = $game->getTeamSkill1();
 				$loserskill = $game->getTeamSkill2();
 			} elseif(strcmp($game->getWinReports(), 'team2') == 0) {
 				//team2 won
 				$plusminus = $worth[1];
 				//team1
-				$user4 = HockUserDB::getUsersBy('id', $team1->getUID1());
-				$user5 = HockUserDB::getUsersBy('id', $team1->getUID2());
-				$user6 = HockUserDB::getUsersBy('id', $team1->getUID3());
+				$user4 = HockUserDB::getUserByID_NameAndHome($team1->getUID1());
+				$user5 = HockUserDB::getUserByID_NameAndHome($team1->getUID2());
+				$user6 = HockUserDB::getUserByID_NameAndHome($team1->getUID3());
 				//team2
-				$user1 = HockUserDB::getUsersBy('id', $team2->getUID1());
-				$user2 = HockUserDB::getUsersBy('id', $team2->getUID2());
-				$user3 = HockUserDB::getUsersBy('id', $team2->getUID3());
+				$user1 = HockUserDB::getUserByID_NameAndHome($team2->getUID1());
+				$user2 = HockUserDB::getUserByID_NameAndHome($team2->getUID2());
+				$user3 = HockUserDB::getUserByID_NameAndHome($team2->getUID3());
 				$winnerskill = $game->getTeamSkill2();
 				$loserskill = $game->getTeamSkill1();
 			} else continue;

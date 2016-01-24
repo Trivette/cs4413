@@ -134,25 +134,26 @@ class ProfileView {
 					//team1 won
 					//team1
 					$plusminus = $worth[0];
-					$user1 = HockUserDB::getUsersBy('id', $team1->getUID1());
-					$user2 = HockUserDB::getUsersBy('id', $team1->getUID2());
-					$user3 = HockUserDB::getUsersBy('id', $team1->getUID3());
+					$user1 = HockUserDB::getUserByID_NameAndHome($team1->getUID1());
+					$user2 = HockUserDB::getUserByID_NameAndHome($team1->getUID2());
+					#$user2 = HockUserDB::getUsersBy('id', $team1->getUID2());
+					$user3 = HockUserDB::getUserByID_NameAndHome($team1->getUID3());
 					//team2
-					$user4 = HockUserDB::getUsersBy('id', $team2->getUID1());
-					$user5 = HockUserDB::getUsersBy('id', $team2->getUID2());
-					$user6 = HockUserDB::getUsersBy('id', $team2->getUID3());
+					$user4 = HockUserDB::getUserByID_NameAndHome($team2->getUID1());
+					$user5 = HockUserDB::getUserByID_NameAndHome($team2->getUID2());
+					$user6 = HockUserDB::getUserByID_NameAndHome($team2->getUID3());
 					$winnerskill = $game->getTeamSkill1();
 					$loserskill = $game->getTeamSkill2();
 				} else {
 					//team2 won
 					//team1
-					$user4 = HockUserDB::getUsersBy('id', $team1->getUID1());
-					$user5 = HockUserDB::getUsersBy('id', $team1->getUID2());
-					$user6 = HockUserDB::getUsersBy('id', $team1->getUID3());
+					$user4 = HockUserDB::getUserByID_NameAndHome($team1->getUID1());
+					$user5 = HockUserDB::getUserByID_NameAndHome($team1->getUID2());
+					$user6 = HockUserDB::getUserByID_NameAndHome($team1->getUID3());
 					//team2
-					$user1 = HockUserDB::getUsersBy('id', $team2->getUID1());
-					$user2 = HockUserDB::getUsersBy('id', $team2->getUID2());
-					$user3 = HockUserDB::getUsersBy('id', $team2->getUID3());
+					$user1 = HockUserDB::getUserByID_NameAndHome($team2->getUID1());
+					$user2 = HockUserDB::getUserByID_NameAndHome($team2->getUID2());
+					$user3 = HockUserDB::getUserByID_NameAndHome($team2->getUID3());
 					$winnerskill = $game->getTeamSkill2();
 					$loserskill = $game->getTeamSkill1();
 					$plusminus = $worth[1];
@@ -166,35 +167,35 @@ class ProfileView {
 				$user3 = $user3[0];
 				$user4 = $user4[0];
 				$user5 = $user5[0];
-				$user6 = $user6[0];
+				$user6 = $user6[0]; 
 				
 				$u1 = $u2 = $u3 = $u4 = $u5 = $u6 = "";
 				switch ($arguments){
-					case $user1->getUserName():
+					case strcasecmp($arguments, $user1->getUserName()):
 						$u1 = "user";
 						break;
-					case $user2->getUserName():
+					case strcasecmp($arguments, $user2->getUserName()):
 						$tmp = $user1;
 						$user1 = $user2;
 						$user2 = $tmp;
 						$u1 = "user";
 						break;
-					case $user3->getUserName():
+					case strcasecmp($arguments, $user3->getUserName()):
 						$tmp = $user1;
 						$user1 = $user3;
 						$user3 = $tmp;
 						$u1 = "user";
 						break;
-					case $user4->getUserName():
+					case strcasecmp($arguments, $user4->getUserName()):
 						$u4 = "user";
 						break;
-					case $user5->getUserName() :
+					case strcasecmp($arguments, $user5->getUserName()) :
 						$tmp = $user4;
 						$user4 = $user5;
 						$user5 = $tmp;
 						$u4 = "user";
 						break;
-					case $user6->getUserName() :
+					case strcasecmp($arguments, $user6->getUserName()) :
 						$tmp = $user4;
 						$user4 = $user6;
 						$user6 = $tmp;

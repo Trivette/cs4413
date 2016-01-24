@@ -51,6 +51,23 @@ class HockUserDB {
 		return $users;
 	}
 	
+	public static function getUserByID_NameAndHome($id=null){
+		$users = array();
+		if(!is_null($id)){
+			$query = "SELECT name,home FROM users WHERE id=".$id;
+			try{
+				$db = Database::getDB();
+				$statement = $db->prepare($query);
+				$statement->execute();
+				$users = HockUserDB::getUsersArray ($statement->fetchAll(PDO::FETCH_ASSOC));
+				$statement->closeCursor();
+			} catch (PDOException $e){
+				echo "<p>Error getting all users by fields name,home " . $e->getMessage () . "</p>";
+			}
+		}
+		return $users;
+	}
+	
 	public static function getUserRowSetsBy($type = null, $value = null) {
 		// Returns the rows of Users whose $type field has value $value
 		$allowedTypes = ["id", "name", "alias"];
@@ -81,7 +98,8 @@ class HockUserDB {
 		if (!empty($rowSets)) {
 			foreach ($rowSets as $userRow ) {
 				$user = new HockUser($userRow);
-				$user->setUserId($userRow['id']);
+				if(array_key_exists('id', $userRow))
+					$user->setUserId($userRow['id']);
 				array_push ($users, $user );
 			}
 		}
