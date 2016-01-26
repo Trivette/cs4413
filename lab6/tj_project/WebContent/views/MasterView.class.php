@@ -80,16 +80,16 @@ class MasterView {
      	echo '</nav>';
      	
      	/*$nav = 	"<nav>
-		<a href='/".$base."/signup'>Register</a> |
-		<a href='/".$base."/login'>Login</a> |
-		<a href='/".$base."/user/leaderboard'>Leaderboard</a> |
-		<a href='/".$base."/bet'>Betting</a> |
-		<a href='/".$base."/games.html'>Recent Games</a> |
-		<a href='/".$base."/tests.html'>Tests</a> |
-		<a href='/".$base."/validation.html'>Validation</a>
+		<a href='".$base."/signup'>Register</a> |
+		<a href='".$base."/login'>Login</a> |
+		<a href='".$base."/user/leaderboard'>Leaderboard</a> |
+		<a href='".$base."/bet'>Betting</a> |
+		<a href='".$base."/games.html'>Recent Games</a> |
+		<a href='".$base."/tests.html'>Tests</a> |
+		<a href='".$base."/validation.html'>Validation</a>
 		</nav>
   		<section>
-		<a href='/".$base."/home'><img src='/".$base."/resources/Drawing.png' alt='Home'></a>
+		<a href='".$base."/home'><img src='".$base."/resources/Drawing.png' alt='Home'></a>
 		</section>";
      	echo $nav;*/
 ?>

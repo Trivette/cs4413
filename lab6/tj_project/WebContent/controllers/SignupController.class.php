@@ -15,7 +15,7 @@ class SignupController {
 						$base = (array_key_exists('base', $_SESSION))? $_SESSION['base']: "";
 						//find the hockuser related to this dude
 						//$hockusers = HockUserDB::getUsersBy('name', $webuser->getHockName());
-						header("Location: /".$base."/user/show/".$webuser->getHockName());
+						header("Location: ".$base."/user/show/".$webuser->getHockName());
 						UserController::show();
 						//ProfileView::show($webuser, $hockusers[0]);//HomeView::show();
 					}
