@@ -6,9 +6,9 @@ class BetController {
 		$arguments = $_SESSION['arguments'];
 		switch ($action) {
 			case "generate":
-				GameController::generateNewGame();
-				BetView::showGames();
-				break;
+				#GameController::generateNewGame();
+				#BetView::showGames();
+				#break;
 			default:
 				BetController::show();
 		}

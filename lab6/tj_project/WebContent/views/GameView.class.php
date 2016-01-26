@@ -39,7 +39,7 @@ class GameView {
 		//iterate through all games
 		foreach($games as $game){
 			//If the game is not finished or had a bad/cancel don't show here
-			if($game->getPending() != 0)
+			if($game->getPending() != 0 || (strcmp($game->getWinReports(), 'team1') != 0 && strcmp($game->getWinReports(), 'team2') != 0))
 				continue;
 			$teams = TeamDB::getTeamsBy('id', $game->getTeamID1());
 			if(empty($teams))

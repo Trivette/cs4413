@@ -159,7 +159,7 @@ class BetView {
 				$timestr = $timestr.$length->d."d ";
 			if($length->h != 0)
 				$timestr = $timestr.$length->h."h ";
-				
+			
 			$timestr = $timestr.$length->i."m ".$length->s."s";
 			$bets = BetDB::findBet($game->getID(), $authenticatedUser->getHockName());
 			$selected = "";
@@ -268,7 +268,7 @@ class BetView {
 			$start = new DateTime($game->getStart());
 			$end = new DateTime(date("Y-m-d H:i:s"));
 			
-			$length = $start->diff($end);
+			$length = $end->diff($start);
 			$timestr = "";
 			if($length->m != 0)
 				$timestr = $timestr.$length->m."mo ";
